@@ -12,8 +12,8 @@ CREATE TABLE public.user_(
                              first_name   VARCHAR (50) NOT NULL ,
                              name         VARCHAR (50) NOT NULL ,
                              email        VARCHAR (50) NOT NULL ,
-                             age          INT  NOT NULL ,
-                             password     VARCHAR (50) NOT NULL  ,
+                             birth_date   DATE  NOT NULL ,
+                             password     VARCHAR (50) NOT NULL ,
                              CONSTRAINT user__PK PRIMARY KEY (id_user)
 )WITHOUT OIDS;
 
