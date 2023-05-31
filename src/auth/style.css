@@ -2,15 +2,27 @@
 /*for mobile phones*/
 body{
   background-color: #f8f8f9;
-  color: #191919;
+  color: #111111;
   font-family: 'Verdana', sans-serif;
 }
 
 h1{
   font-size: 2.5rem;
   text-align: center;
-  margin: 0;
+  margin: 5vw;
+}
+
+p{
+  font-size: 5vw;
+  text-align: center;
+  margin: 10vw 0;
   padding: 0;
+}
+
+a{
+  color: #ee7733;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 form{
@@ -22,20 +34,35 @@ form{
 
 label{
   font-size: 3vw;
-  color: #191919;
+  color: #111111;
   margin: 0 3vw;
   padding: 0;
 }
 
 input{
-  font-size: 3vw;
-  height: 10vw;
-  color: #9d9ca6;
   background-color: #ffffff;
+  color: #111111;
+  border: 1px solid #eeeeee;
   border-radius: 5vw;
-  border: 1px solid #aeaeae;
-  margin: 1vw 3vw 3vw 3vw;
+  margin: 1vw 3vw 4vw 3vw;
   padding: 0 4vw;
+  font-size: 4vw;
+  height: 10vw;  
+}
+
+input:focus{
+  outline: 1px solid #ee7733;
+}
+
+input.button{
+  background-color: #eeeeee;
+  border: 0;
+  margin: 10vw 0;
+}
+
+input.button:hover{
+  background-color: #ee7733;
+  color: #ffffff;
 }
 
 /*for desktops*/
