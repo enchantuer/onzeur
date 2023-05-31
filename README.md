@@ -62,7 +62,7 @@ Change `peer` to `trust` on the lines `local all postgres` and `local all all`
 ### Create the table
 To create the table use the file `model.sql` which is in the dir `sql` with the command
 - `psql -d onzeur -U jarvis -f model.sql`
-### Create the table
+### Fill the table
 To fill the table use the file `data.sql` which is in the dir `sql` with the command
 - `psql -d onzeur -U jarvis -f data.sql`
 
