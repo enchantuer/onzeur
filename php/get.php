@@ -7,7 +7,7 @@ function dbGetArtistes(PDO $db): false|array {
 }
 
 function dbGetArtist(PDO $db, int $id): false|array {
-    $query = $db->prepare('SELECT * FROM artist_ WHERE id_artist = :id');
+    $query = $db->prepare('SELECT * FROM artist_ NATURAL JOIN artist_type_ WHERE id_artist = :id');
     $query->execute([':id' => $id]);
     return $query->fetch(PDO::FETCH_ASSOC);
 }
@@ -19,7 +19,7 @@ function dbGetAlbums(PDO $db): false|array {
 }
 
 function dbGetAlbum(PDO $db, int $id): false|array {
-    $query = $db->prepare('SELECT * FROM album_ WHERE id_album = :id');
+    $query = $db->prepare('SELECT * FROM album_ NATURAL JOIN music_type_ WHERE id_album = :id');
     $query->execute([':id' => $id]);
     return $query->fetch(PDO::FETCH_ASSOC);
 }
