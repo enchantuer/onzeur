@@ -1,87 +1,47 @@
 <?php
 
+require_once "DatabaseElement.php";
 require_once "Album.php";
 require_once "Track.php";
 
-class Artist {
+class Artist extends DatabaseElement {
     // Properties
     public string $name;
     public string $type;
-    public array $albums;
-    public array $tracks;
-    public string $imageUrl;
-    // Constructor
+    public int $nbOfAlbums;
+    public int $nbOfTracks;
+//    public string $imageUrl;
 
-    /**
-     * @param string $name
-     * @param string $type
-     * @param array  $albums
-     * @param array  $tracks
-     * @param string $image_url
-     */
-    function __constructor(string $name, string $type, array $albums, array $tracks, string $image_url) {
+    private function getNumbers(): void {
+        $this->nbOfTracks = dbGetNumberOfTrackByArtist(self::$db, $this->id);
+        $this->nbOfAlbums = dbGetNumberOfAlbumByArtist(self::$db, $this->id);
+    }
 
+    public static function fromArray(array $data): static {
+        $artist = new static($data['id_artist']);
+//        $album->imageUrl = $data['image'];
+        $artist->type = $data['type'];
+        $artist->getNumbers();
+        return $artist;
     }
-    // Getters
-    /**
-     * @return array
-     */
-    public function getAlbums(): array {
-        return $this->albums;
+
+    public function get(): false|static {
+        $data = dbGetArtist(self::$db, $this->id);
+        if (!$data) {
+            return false;
+        }
+        $this->name = $data['name'];
+        $this->type = $data['type'];
+//        $this->imageUrl = $data['image'];
+        $this->getNumbers();
+        return $this;
     }
-    /**
-     * @return string
-     */
-    public function getImageUrl(): string {
-        return $this->imageUrl;
+
+    public function add() {
+        // TODO: Implement add() method.
     }
-    /**
-     * @return string
-     */
-    public function getName(): string {
-        return $this->name;
-    }
-    /**
-     * @return array
-     */
-    public function getTracks(): array {
-        return $this->tracks;
-    }
-    /**
-     * @return string
-     */
-    public function getType(): string {
-        return $this->type;
-    }
-    // Setters
-    /**
-     * @param array $albums
-     */
-    public function setAlbums(array $albums): void {
-        $this->albums = $albums;
-    }
-    /**
-     * @param string $imageUrl
-     */
-    public function setImageUrl(string $imageUrl): void {
-        $this->imageUrl = $imageUrl;
-    }
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): void {
-        $this->name = $name;
-    }
-    /**
-     * @param array $tracks
-     */
-    public function setTracks(array $tracks): void {
-        $this->tracks = $tracks;
-    }
-    /**
-     * @param string $type
-     */
-    public function setType(string $type): void {
-        $this->type = $type;
+
+    public function update() {
+        // TODO: Implement update() method.
     }
 }
