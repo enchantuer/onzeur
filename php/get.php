@@ -54,3 +54,21 @@ function dbGetAlbumsByArtist(PDO $db, int $id): false|array {
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function dbGetTracksByTitle(PDO $db, string $title): false|array {
+    $query = $db->prepare('SELECT * FROM track_ WHERE title LIKE :title');
+    $query->execute([':title' => "%$title%"]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function dbGetAlbumsByTitle(PDO $db, string $title): false|array {
+    $query = $db->prepare('SELECT * FROM album_ WHERE title LIKE :title');
+    $query->execute([':title' => "%$title%"]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function dbGetArtistesByName(PDO $db, string $name): false|array {
+    $query = $db->prepare('SELECT * FROM artist_ WHERE name LIKE :name');
+    $query->execute([':name' => "%$name%"]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
