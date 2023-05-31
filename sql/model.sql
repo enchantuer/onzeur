@@ -9,8 +9,8 @@ DROP TABLE IF EXISTS artist_type_ CASCADE ;
 DROP TABLE IF EXISTS artist_ CASCADE ;
 DROP TABLE IF EXISTS album_ CASCADE ;
 DROP TABLE IF EXISTS track_ CASCADE ;
-DROP TABLE IF EXISTS avoir CASCADE ;
-DROP TABLE IF EXISTS contient CASCADE ;
+DROP TABLE IF EXISTS playlist_track_ CASCADE ;
+DROP TABLE IF EXISTS history_ CASCADE ;
 
 ------------------------------------------------------------
 -- Table: music_type_
