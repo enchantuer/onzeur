@@ -5,7 +5,7 @@ It is access via a **web page** and use a **database** to store the music, playl
 
 _Onzeur_ has been made in follow-up of a **student project** in **engineering school**.
 
-# Fonctinnalities
+# Functionalities
 ### User
 - Authentication using email and password
 - Changing user information

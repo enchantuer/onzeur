@@ -2,7 +2,15 @@
 --        Script Postgre
 ------------------------------------------------------------
 
-
+DROP TABLE IF EXISTS user_;
+DROP TABLE IF EXISTS playlist_;
+DROP TABLE IF EXISTS music_type_;
+DROP TABLE IF EXISTS artist_type_;
+DROP TABLE IF EXISTS artist_;
+DROP TABLE IF EXISTS album_;
+DROP TABLE IF EXISTS track_;
+DROP TABLE IF EXISTS avoir;
+DROP TABLE IF EXISTS contient;
 
 ------------------------------------------------------------
 -- Table: user_
@@ -12,8 +20,8 @@ CREATE TABLE public.user_(
                              first_name   VARCHAR (50) NOT NULL ,
                              name         VARCHAR (50) NOT NULL ,
                              email        VARCHAR (50) NOT NULL ,
-                             age          INT  NOT NULL ,
-                             password     VARCHAR (50) NOT NULL  ,
+                             birth_date   DATE  NOT NULL ,
+                             password     VARCHAR (50) NOT NULL ,
                              CONSTRAINT user__PK PRIMARY KEY (id_user)
 )WITHOUT OIDS;
 
