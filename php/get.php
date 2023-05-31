@@ -72,3 +72,20 @@ function dbGetArtistesByName(PDO $db, string $name): false|array {
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function dbGetNumberOfTrackByAlbum(PDO $db, int $id): false|int {
+    $query = $db->prepare('SELECT count(*) FROM track_ WHERE id_album = :id');
+    $query->execute([':id' => $id]);
+    return $query->fetchColumn();
+}
+
+function dbGetNumberOfTrackByArtist(PDO $db, int $id): false|int {
+    $query = $db->prepare('SELECT count(*) FROM album_ WHERE id_artist = :id');
+    $query->execute([':id' => $id]);
+    return $query->fetchColumn();
+}
+
+function dbGetNumberOfAlbumByArtist(PDO $db, int $id): false|int {
+    $query = $db->prepare('SELECT count(*) FROM album_ WHERE id_album = :id');
+    $query->execute([':id' => $id]);
+    return $query->fetchColumn();
+}
