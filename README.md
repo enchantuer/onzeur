@@ -22,12 +22,13 @@ _Onzeur_ has been made in follow-up of a **student project** in **engineering sc
 
 ### Update
 - `sudo apt-get update`
+- `sudo apt-get upgrade`
 
 ### Install apache2
 - `sudo apt-get install apache2`
 - `sudo nano /etc/php/8.0/apache2/php.ini`
 
-Uncomment the plugin related to the desired database. For postgresql `php_psql` and `psql`
+Uncomment the plugin related to the desired database. For postgresql `pdo_pgsql` and `pgsql`
 
 
 ### Install postgresql or other database
@@ -71,6 +72,6 @@ To fill the table use the file `data.sql` which is in the dir `sql` with the com
 - `apt-get install git git-core`
 ### Clone the repository
 - `cd /var/www/html`
-- `git clone https://github.com/enchantuer/onzeur`
+- `git clone https://github.com/enchantuer/onzeur.git`
 
 Now the server is all setup, the site host and the database fill with the initial data.
