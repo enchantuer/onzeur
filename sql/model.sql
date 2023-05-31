@@ -2,7 +2,15 @@
 --        Script Postgre
 ------------------------------------------------------------
 
-
+DROP TABLE IF EXISTS user_;
+DROP TABLE IF EXISTS playlist_;
+DROP TABLE IF EXISTS music_type_;
+DROP TABLE IF EXISTS artist_type_;
+DROP TABLE IF EXISTS artist_;
+DROP TABLE IF EXISTS album_;
+DROP TABLE IF EXISTS track_;
+DROP TABLE IF EXISTS avoir;
+DROP TABLE IF EXISTS contient;
 
 ------------------------------------------------------------
 -- Table: user_
