@@ -1,13 +1,13 @@
 
 /*for mobile phones*/
 body{
-  background-color: #f8f8f9;
+  background-color: #ffffff;
   color: #111111;
   font-family: 'Verdana', sans-serif;
 }
 
 h1{
-  font-size: 2.5rem;
+  font-size: 10vw;
   text-align: center;
   margin: 5vw;
 }
@@ -68,9 +68,75 @@ input.button:hover{
 /*for desktops*/
 @media only screen and (min-width: 600px) {
   body{
-    background-color: #121216;
+    background-color: #111111;
     color: #ffffff;
     font-family: 'Verdana', sans-serif;
     text-align: center;
+  }
+
+  h1{
+    font-size: 4vw;
+    text-align: center;
+    margin: 2vw;
+  }
+
+  p{
+    font-size: 2vw;
+    text-align: center;
+    margin: 4vw;
+    padding: 0;
+  }
+  
+  a{
+    color: #ee7733;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  form{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+  
+  label{
+    font-size: 0.9vw;
+    color: #eeeeee;
+    margin: 0 36vw;
+    padding: 0;
+    text-align: left;
+  }
+  
+  input{
+    background-color: #ffffff;
+    color: #111111;
+    border: 0;
+    border-radius: 3px;
+    margin: 0.5vw 36vw 2vw 36vw;
+    padding: 0 1vw;
+    font-size: 1vw;
+    height: 3vw;
+  }
+  
+  input:focus{
+    outline: 1px solid #ee7733;
+  }
+  
+  input.button{
+    background-color: #eeeeee;
+    border: 0;
+    margin: 5vw 0;
+    background-color: #ffffff;
+    border-radius: 1.5vw;
+    margin: 1vw 36vw 1vw 36vw;
+    padding: 0 4vw;
+    font-size: 1vw;
+    height: 3vw;
+  }
+  
+  input.button:hover{
+    background-color: #ee7733;
+    color: #ffffff;
   }
 }
