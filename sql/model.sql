@@ -103,7 +103,7 @@ CREATE TABLE public.playlist_(
 CREATE TABLE public.playlist_track_(
                                        id_track      INT  NOT NULL ,
                                        id_playlist   INT  NOT NULL ,
-                                       add_date      DATE  NOT NULL  ,
+                                       add_date      DATE  NOT NULL DEFAULT now(),
                                        CONSTRAINT playlist_track__PK PRIMARY KEY (id_track,id_playlist)
 );
 
@@ -114,7 +114,7 @@ CREATE TABLE public.playlist_track_(
 CREATE TABLE public.history_(
                                 id_track   INT  NOT NULL ,
                                 id_user    INT  NOT NULL ,
-                                add_date   DATE  NOT NULL  ,
+                                add_date   DATE  NOT NULL DEFAULT now(),
                                 CONSTRAINT history__PK PRIMARY KEY (id_track,id_user)
 );
 
