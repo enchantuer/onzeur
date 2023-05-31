@@ -5,8 +5,8 @@ require_once "Album.php";
 
 class Track {
     // Properties
-    public Artist $artist;
-    public Album $album;
+    public int $artistId;
+    public int $albumId;
     public string $title;
     public int $duration;
 }

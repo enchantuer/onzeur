@@ -5,7 +5,7 @@ require_once "Track.php";
 
 class Album {
     // Properties
-    public Artist $artist;
+    public int $artistId;
     public string $title;
     public int $releaseDate;
     public string $imageUrl;
