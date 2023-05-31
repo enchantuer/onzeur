@@ -103,7 +103,7 @@ CREATE TABLE public.playlist_(
 CREATE TABLE public.playlist_track_(
                                        id_track      INT  NOT NULL ,
                                        id_playlist   INT  NOT NULL ,
-                                       add_date      DATE  NOT NULL  ,
+                                       add_date      DATE  NOT NULL DEFAULT now(),
                                        CONSTRAINT playlist_track__PK PRIMARY KEY (id_track,id_playlist)
 );
 
@@ -114,7 +114,7 @@ CREATE TABLE public.playlist_track_(
 CREATE TABLE public.history_(
                                 id_track   INT  NOT NULL ,
                                 id_user    INT  NOT NULL ,
-                                add_date   DATE  NOT NULL  ,
+                                add_date   DATE  NOT NULL DEFAULT now(),
                                 CONSTRAINT history__PK PRIMARY KEY (id_track,id_user)
 );
 
@@ -129,27 +129,32 @@ ALTER TABLE public.artist_
 ALTER TABLE public.album_
     ADD CONSTRAINT album__artist_0_FK
         FOREIGN KEY (id_artist)
-            REFERENCES public.artist_(id_artist);
+            REFERENCES public.artist_(id_artist)
+            ON DELETE CASCADE;
 
 ALTER TABLE public.album_
     ADD CONSTRAINT album__music_type_1_FK
         FOREIGN KEY (id_type)
-            REFERENCES public.music_type_(id_type);
+            REFERENCES public.music_type_(id_type)
+            ON DELETE SET NULL;
 
 ALTER TABLE public.track_
     ADD CONSTRAINT track__album_0_FK
         FOREIGN KEY (id_album)
-            REFERENCES public.album_(id_album);
+            REFERENCES public.album_(id_album)
+            ON DELETE CASCADE;
 
 ALTER TABLE public.track_
     ADD CONSTRAINT track__artist_1_FK
         FOREIGN KEY (id_artist)
-            REFERENCES public.artist_(id_artist);
+            REFERENCES public.artist_(id_artist)
+            ON DELETE CASCADE;
 
 ALTER TABLE public.user_
     ADD CONSTRAINT user__playlist_0_FK
         FOREIGN KEY (id_playlist_favorite)
-            REFERENCES public.playlist_(id_playlist);
+            REFERENCES public.playlist_(id_playlist)
+            ON DELETE SET NULL;
 
 ALTER TABLE public.user_
     ADD CONSTRAINT user__playlist_0_AK
@@ -158,27 +163,31 @@ ALTER TABLE public.user_
 ALTER TABLE public.playlist_
     ADD CONSTRAINT playlist__user_0_FK
         FOREIGN KEY (id_user)
-            REFERENCES public.user_(id_user);
+            REFERENCES public.user_(id_user)
+            ON DELETE CASCADE;
 
 ALTER TABLE public.playlist_track_
     ADD CONSTRAINT playlist_track__track_0_FK
         FOREIGN KEY (id_track)
-            REFERENCES public.track_(id_track);
+            REFERENCES public.track_(id_track)
+            ON DELETE CASCADE;
 
 ALTER TABLE public.playlist_track_
     ADD CONSTRAINT playlist_track__playlist_1_FK
         FOREIGN KEY (id_playlist)
-            REFERENCES public.playlist_(id_playlist);
+            REFERENCES public.playlist_(id_playlist)
+            ON DELETE CASCADE;
+
 
 ALTER TABLE public.history_
     ADD CONSTRAINT history__track_0_FK
         FOREIGN KEY (id_track)
-            REFERENCES public.track_(id_track);
+            REFERENCES public.track_(id_track)
+            ON DELETE CASCADE;
 
 ALTER TABLE public.history_
     ADD CONSTRAINT history__user_1_FK
         FOREIGN KEY (id_user)
-            REFERENCES public.user_(id_user);
-
-
+            REFERENCES public.user_(id_user)
+            ON DELETE CASCADE;
 
