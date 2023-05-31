@@ -1,17 +1,32 @@
 /*for mobile*/
 body{
-  background-color: #111111;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #111111;
   font-family: 'Verdana', sans-serif;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 /*for desktop*/
 @media only screen and (min-width: 600px){
   body{
-    background-color: #ffffff;
-    color: #111111;
+    background-image: linear-gradient(to bottom, #111111bb, #111111ff),
+    url(img/album_covers/vv5.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: left;
+    color: #ffffff;
     font-family: 'Verdana', sans-serif;
-    text-align: center;
+    margin: 0;
+  padding: 0;
+  }
+
+  img.main_cover{
+    width: 20vw;
+    height: 20vw;
+    border-radius: 2vw;
   }
 }

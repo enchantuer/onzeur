@@ -7,5 +7,5 @@
 <body>
 
 <main>
-
+  <img class="main_cover" src="img/album_covers/vv5.jpg" alt="album" width="500" height="500">
 </main>
