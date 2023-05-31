@@ -1,0 +1,17 @@
+/*for mobile*/
+body{
+  background-color: #111111;
+  color: #ffffff;
+  font-family: 'Verdana', sans-serif;
+  text-align: center;
+}
+
+/*for desktop*/
+@media only screen and (min-width: 600px){
+  body{
+    background-color: #ffffff;
+    color: #111111;
+    font-family: 'Verdana', sans-serif;
+    text-align: center;
+  }
+}
