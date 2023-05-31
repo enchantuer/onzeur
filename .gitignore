@@ -1,2 +1,4 @@
 .vscode/settings.json
 onzeur.session.sql
+sql/test.sql
+.gitignore
