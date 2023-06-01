@@ -21,6 +21,7 @@ class Artist extends DatabaseElement {
         $artist = new static($data['id_artist']);
 //        $album->imageUrl = $data['image'];
         $artist->type = $data['type'];
+        $artist->name = $data['name'];
         $artist->getNumbers();
         return $artist;
     }
