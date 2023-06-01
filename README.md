@@ -51,6 +51,16 @@ Change `peer` to `trust` on the lines `local all postgres` and `local all all`
 - `sudo service apache2 restart`
 - `sudo service postgresql restart`
 
+# Clone the repository in apache
+### Install git
+- `apt-get install git git-core`
+### Clone the repository
+- `cd /var/www/html`
+- `sudo git clone https://github.com/enchantuer/onzeur.git`
+### Update
+If the repository on GitHub has been updated. You can, instead of delete it and clone it again, just pull the update using :
+- `cd /var/www/html/onzeur`
+- `sudo git pull`
 
 # Create the database
 
@@ -63,21 +73,15 @@ Change `peer` to `trust` on the lines `local all postgres` and `local all all`
 - Leave the database using `\q`
 
 ### Create the table
-To create the table use the file `model.sql` which is in the dir `sql` with the command
+To create the table use the file `model.sql` which is in the dir `sql`.
+
+First move to that dir
+- `cd /var/www/html/onzeur`
+
+Then execute the file using : 
 - `psql -d onzeur -U jarvis -f model.sql`
 ### Fill the table
 To fill the table use the file `data.sql` which is in the dir `sql` with the command
 - `psql -d onzeur -U jarvis -f data.sql`
-
-# Clone the repository in apache
-### Install git
-- `apt-get install git git-core`
-### Clone the repository
-- `cd /var/www/html`
-- `sudo git clone https://github.com/enchantuer/onzeur.git`
-### Update
-If the repository on GitHub has been updated. You can, instead of delete it and clone it again, just pull the update using :
-- `cd /var/www/html/onzeur`
-- `sudo git pull`
 
 Now the server is all setup, the site host and the database fill with the initial data.
