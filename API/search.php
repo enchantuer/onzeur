@@ -12,6 +12,9 @@ require_once "SearchAlbum.php";
 require_once "SearchArtist.php";
 
 function getData() {
+    if (!isset($_SERVER['PATH_INFO'])) {
+        return null;
+    }
     DatabaseElement::connect();
     $request = substr($_SERVER['PATH_INFO'], 1);
     $request = explode('/', $request);
@@ -21,10 +24,9 @@ function getData() {
     if ($request_resource == 'track') {
         if ($request_method == 'GET') {
             if (count($request) == 0) {
-                if (isset($_GET['title'])) {
-                    $search = new SearchTrack($_GET['title']);
-                    return $search->find();
-                }
+                $searchWord = $_GET['title'] ?? '';
+                $search = new SearchTrack($searchWord);
+                return $search->find();
             } else {
                 $trackId = array_shift($request);
                 return Track::fromId($trackId);
@@ -34,10 +36,9 @@ function getData() {
     elseif ($request_resource == 'album') {
         if ($request_method == 'GET') {
             if (count($request) == 0) {
-                if (isset($_GET['title'])) {
-                    $search = new SearchAlbum($_GET['title']);
-                    return $search->find();
-                }
+                $searchWord = $_GET['title'] ?? '';
+                $search = new SearchAlbum($searchWord);
+                return $search->find();
             } else {
                 $albumId = array_shift($request);
                 return Album::fromId($albumId);
@@ -47,10 +48,9 @@ function getData() {
     elseif ($request_resource == 'artist') {
         if ($request_method == 'GET') {
             if (count($request) == 0) {
-                if (isset($_GET['name'])) {
-                    $search = new SearchArtist($_GET['name']);
-                    return $search->find();
-                }
+                $searchWord = $_GET['name'] ?? '';
+                $search = new SearchArtist($searchWord);
+                return $search->find();
             } else {
                 $artistId = array_shift($request);
                 return Artist::fromId($artistId);
@@ -61,6 +61,7 @@ function getData() {
 //        parse_str(file_get_contents('php://input'), $_PUT);
 //        return db_modify_tweet($conn, $request[0], $_PUT['login'], $_PUT['text']);
 //    }
+    return null;
 }
 
 echo json_encode(getData());

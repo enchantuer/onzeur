@@ -7,7 +7,7 @@ abstract class Search extends DatabaseInteraction {
     public array $results;
 
     public function __construct(string $search) {
-        $this->search = $search;
+        $this->search = strtolower($search);
     }
 
     abstract function find();
