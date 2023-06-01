@@ -49,7 +49,7 @@ function dbGetTracksByArtist(PDO $db, int $id): false|array {
 }
 
 function dbGetAlbumsByArtist(PDO $db, int $id): false|array {
-    $query = $db->prepare('SELECT * FROM album_ WHERE id_artist = :id');
+    $query = $db->prepare('SELECT * FROM album_ NATURAL JOIN music_type_ WHERE id_artist = :id');
     $query->execute([':id' => $id]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
