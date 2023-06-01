@@ -7,14 +7,11 @@ require_once "../php/get.php";
 
 class Track extends DatabaseElement {
     // Properties
+    protected static string $functionGet = 'dbGetTrack';
     public int $artistId;
     public int $albumId;
     public string $title;
     public int $duration;
-
-//    public function __construct(int $id=null) {
-//        $this->id = $id;
-//    }
 
     public static function fromArray(array $data): static {
         $track = new static($data['id_track']);
@@ -25,8 +22,15 @@ class Track extends DatabaseElement {
         return $track;
     }
 
+    public static function fromAlbum(int|Album $element): false|array {
+        return self::fromElement($element, 'dbGetTracksByAlbum');
+    }
+    public static function fromArtist(int|Album $element): false|array {
+        return self::fromElement($element, 'dbGetTracksByArtist');
+    }
+
     public function get(): false|static {
-        $data = dbGetTrack(self::$db, $this->id);
+        $data = parent::get();
         if (!$data) {
             return false;
         }

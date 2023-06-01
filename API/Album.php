@@ -6,6 +6,7 @@ require_once "Track.php";
 
 class Album extends DatabaseElement {
     // Properties
+    protected static string $functionGet = 'dbGetAlbum';
     public int $artistId;
     public string $title;
     public string $releaseDate;
@@ -15,6 +16,10 @@ class Album extends DatabaseElement {
 
     private function getNumbers(): void {
         $this->nbOfTrack = dbGetNumberOfTrackByAlbum(self::$db, $this->id);
+    }
+
+    public static function fromArtist(int|Album $element): false|array {
+        return self::fromElement($element, 'dbGetAlbumsByArtist');
     }
 
     public static function fromArray(array $data): static {
@@ -28,7 +33,7 @@ class Album extends DatabaseElement {
     }
 
     public function get(): false|static {
-        $data = dbGetAlbum(self::$db, $this->id);
+        $data = parent::get();
         if (!$data) {
             return false;
         }

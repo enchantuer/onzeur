@@ -6,6 +6,7 @@ require_once "Track.php";
 
 class Artist extends DatabaseElement {
     // Properties
+    protected static string $functionGet = 'dbGetArtist';
     public string $name;
     public string $type;
     public int $nbOfAlbums;
@@ -27,7 +28,7 @@ class Artist extends DatabaseElement {
     }
 
     public function get(): false|static {
-        $data = dbGetArtist(self::$db, $this->id);
+        $data = parent::get();
         if (!$data) {
             return false;
         }
