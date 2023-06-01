@@ -12,6 +12,7 @@ class Track extends DatabaseElement {
     public int $albumId;
     public string $title;
     public int $duration;
+    public string $url;
 
     public static function fromArray(array $data): static {
         $track = new static($data['id_track']);
@@ -19,6 +20,7 @@ class Track extends DatabaseElement {
         $track->albumId = $data['id_album'];
         $track->title = $data['title'];
         $track->duration = $data['duration'];
+        $track->url = $data['url'];
         return $track;
     }
 
@@ -38,6 +40,7 @@ class Track extends DatabaseElement {
         $this->albumId = $data['id_album'];
         $this->title = $data['title'];
         $this->duration = $data['duration'];
+        $this->url = $data['url'];
         return $this;
     }
 
