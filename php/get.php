@@ -1,8 +1,8 @@
 <?php
 
-function dbGetArtistes(PDO $db): false|array {
-    $query = $db->prepare('SELECT * FROM artist_');
-    $query->execute();
+function dbGetArtistes(PDO $db, int $offset=0): false|array {
+    $query = $db->prepare('SELECT * FROM artist_ ORDER BY id_artist LIMIT 20 OFFSET :offset');
+    $query->execute([':offset' => $offset]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -12,9 +12,9 @@ function dbGetArtist(PDO $db, int $id): false|array {
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 
-function dbGetAlbums(PDO $db): false|array {
-    $query = $db->prepare('SELECT * FROM album_');
-    $query->execute();
+function dbGetAlbums(PDO $db, int $offset=0): false|array {
+    $query = $db->prepare('SELECT * FROM album_ ORDER BY id_album LIMIT 20 OFFSET :offset');
+    $query->execute([':offset' => $offset]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -24,9 +24,9 @@ function dbGetAlbum(PDO $db, int $id): false|array {
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 
- function dbGetTracks(PDO $db): false|array {
-    $query = $db->prepare('SELECT * FROM track_');
-    $query->execute();
+ function dbGetTracks(PDO $db, int $offset=0): false|array {
+    $query = $db->prepare('SELECT * FROM track_ ORDER BY id_track LIMIT 20 OFFSET :offset');
+    $query->execute([':offset' => $offset]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -36,39 +36,39 @@ function dbGetTrack(PDO $db, int $id): false|array {
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 
-function dbGetTracksByAlbum(PDO $db, int $id): false|array {
-    $query = $db->prepare('SELECT * FROM track_ WHERE id_album = :id');
-    $query->execute([':id' => $id]);
+function dbGetTracksByAlbum(PDO $db, int $id, int $offset=0): false|array {
+    $query = $db->prepare('SELECT * FROM track_ WHERE id_album = :id ORDER BY id_track LIMIT 20 OFFSET :offset');
+    $query->execute([':id' => $id, ':offset' => $offset]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function dbGetTracksByArtist(PDO $db, int $id): false|array {
+function dbGetTracksByArtist(PDO $db, int $id, int $offset=0): false|array {
     $query = $db->prepare('SELECT * FROM track_ WHERE id_artist = :id');
-    $query->execute([':id' => $id]);
+    $query->execute([':id' => $id, ':offset' => $offset]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function dbGetAlbumsByArtist(PDO $db, int $id): false|array {
-    $query = $db->prepare('SELECT * FROM album_ NATURAL JOIN music_type_ WHERE id_artist = :id');
-    $query->execute([':id' => $id]);
+function dbGetAlbumsByArtist(PDO $db, int $id, int $offset=0): false|array {
+    $query = $db->prepare('SELECT * FROM album_ NATURAL JOIN music_type_ WHERE id_artist = :id ORDER BY id_album LIMIT 20 OFFSET :offset');
+    $query->execute([':id' => $id, ':offset' => $offset]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function dbGetTracksByTitle(PDO $db, string $title): false|array {
-    $query = $db->prepare('SELECT * FROM track_ WHERE LOWER(title) LIKE :title');
-    $query->execute([':title' => "%$title%"]);
+function dbGetTracksByTitle(PDO $db, string $title, int $offset=0): false|array {
+    $query = $db->prepare('SELECT * FROM track_ WHERE LOWER(title) LIKE :title ORDER BY title LIMIT 20 OFFSET :offset');
+    $query->execute([':title' => "%$title%", ':offset' => $offset]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function dbGetAlbumsByTitle(PDO $db, string $title): false|array {
-    $query = $db->prepare('SELECT * FROM album_ NATURAL JOIN music_type_ WHERE LOWER(title) LIKE :title');
-    $query->execute([':title' => "%$title%"]);
+function dbGetAlbumsByTitle(PDO $db, string $title, int $offset=0): false|array {
+    $query = $db->prepare('SELECT * FROM album_ NATURAL JOIN music_type_ WHERE LOWER(title) LIKE :title ORDER BY title LIMIT 20 OFFSET :offset');
+    $query->execute([':title' => "%$title%", ':offset' => $offset]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function dbGetArtistesByName(PDO $db, string $name): false|array {
-    $query = $db->prepare('SELECT * FROM artist_ NATURAL JOIN artist_type_ WHERE LOWER(name) LIKE :name');
-    $query->execute([':name' => "%$name%"]);
+function dbGetArtistesByName(PDO $db, string $name, int $offset=0): false|array {
+    $query = $db->prepare('SELECT * FROM artist_ NATURAL JOIN artist_type_ WHERE LOWER(name) LIKE :name ORDER BY name LIMIT 20 OFFSET :offset');
+    $query->execute([':name' => "%$name%", ':offset' => $offset]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 

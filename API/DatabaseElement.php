@@ -7,11 +7,12 @@ abstract class DatabaseElement extends DatabaseInteraction {
 
     protected static string $functionGet;
 
-    public function __construct(int $id=null) {
+    public function __construct(int $id=null, int $page=0) {
+        parent::__construct($page);
         $this->id = $id;
     }
 
-    protected static function fromElement($element, string $getFunction): false|array {
+    protected static function fromElement($element, string $getFunction, int $page=0): false|array {
         $elements = [];
         $id = is_int($element) ? $element : $element->id;
         $data = $getFunction(self::$db, $id);
@@ -19,12 +20,12 @@ abstract class DatabaseElement extends DatabaseInteraction {
             return false;
         }
         foreach ($data as $elementData) {
-            $elements[] = static::fromArray($elementData);
+            $elements[] = static::fromArray($elementData, $page);
         }
         return $elements;
     }
 
-    abstract public static function fromArray(array $data): static;
+    abstract public static function fromArray(array $data, int $page=0): static;
     public static function fromId(int $id): false|static {
         $element = new static($id);
         $bool = $element->get();
@@ -35,7 +36,7 @@ abstract class DatabaseElement extends DatabaseInteraction {
     }
 
     public function get() {
-        return (static::$functionGet)(self::$db, $this->id);
+        return (static::$functionGet)(self::$db, $this->id, $this->offset);
     }
     abstract public function add();
     abstract public function update();

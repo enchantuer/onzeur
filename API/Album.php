@@ -18,12 +18,12 @@ class Album extends DatabaseElement {
         $this->nbOfTrack = dbGetNumberOfTrackByAlbum(self::$db, $this->id);
     }
 
-    public static function fromArtist(int|Album $element): false|array {
-        return self::fromElement($element, 'dbGetAlbumsByArtist');
+    public static function fromArtist(int|Album $element, int $page=0): false|array {
+        return self::fromElement($element, 'dbGetAlbumsByArtist', $page);
     }
 
-    public static function fromArray(array $data): static {
-        $album = new static($data['id_album']);
+    public static function fromArray(array $data, int $page=0): static {
+        $album = new static($data['id_album'], $page);
         $album->artistId = $data['id_artist'];
         $album->title = $data['title'];
         $album->imageUrl = $data['image'];

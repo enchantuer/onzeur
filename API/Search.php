@@ -9,13 +9,14 @@ abstract class Search extends DatabaseInteraction {
     protected static string $searchFunction;
     protected static string $searchElement;
 
-    public function __construct(string $search) {
+    public function __construct(string $search, int $page=0) {
+        parent::__construct($page);
         $this->search = strtolower($search);
     }
 
     public function find(): false|array {
         $this->results = [];
-        $data = (static::$searchFunction)(self::$db, $this->search);
+        $data = (static::$searchFunction)(self::$db, $this->search, $this->offset);
         if ($data === false) {
             return false;
         }

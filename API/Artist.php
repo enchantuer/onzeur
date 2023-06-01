@@ -18,8 +18,8 @@ class Artist extends DatabaseElement {
         $this->nbOfAlbums = dbGetNumberOfAlbumByArtist(self::$db, $this->id);
     }
 
-    public static function fromArray(array $data): static {
-        $artist = new static($data['id_artist']);
+    public static function fromArray(array $data, int $page=0): static {
+        $artist = new static($data['id_artist'], $page);
 //        $album->imageUrl = $data['image'];
         $artist->type = $data['type'];
         $artist->name = $data['name'];
