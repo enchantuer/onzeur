@@ -11,7 +11,7 @@ require_once "SearchTrack.php";
 require_once "SearchAlbum.php";
 require_once "SearchArtist.php";
 
-function getData() {
+function getData(): Album|false|Track|array|Artist|null {
     if (!isset($_SERVER['PATH_INFO'])) {
         return null;
     }
