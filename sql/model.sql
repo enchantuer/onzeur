@@ -64,6 +64,7 @@ CREATE TABLE public.track_(
                               id_track    SERIAL NOT NULL ,
                               title       VARCHAR (50) NOT NULL ,
                               duration    INT  NOT NULL ,
+                              url         VARCHAR (100) NOT NULL ,
                               id_album    INT  NOT NULL ,
                               id_artist   INT  NOT NULL  ,
                               CONSTRAINT track__PK PRIMARY KEY (id_track)
