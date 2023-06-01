@@ -6,9 +6,11 @@
 </head>
 <body>
 
-<div class="form">
-<h1>Sign up</h1>
-<p>Already have an account? <a href='login.php'>LOG IN</a></p>
+<header>
+  <h1>Sign Up</h1>
+  <p>Already have an account? <a href='login.php'>LOG IN</a></p>
+</header>
+
 <form name="registration" action="" method="post">
   <label for="firstname">First Name:</label>
   <input type="text" name="firstname" placeholder="First Name" required/>
@@ -23,10 +25,33 @@
   <label for="password2">Password Verification:</label>
   <input type="password" name="password2" placeholder="Password Verification" required/>
   <input class="button" type="submit" name="submit" value="Sign Up"/>
-
 </form>
 
-</div>
+<label id="theme_switch" for="theme">
+  <img class="moon" src="../icons/light/moon1.svg" alt="moon"/>
+  <img class="sun" src="../icons/dark/sun_ffffff.svg" alt="sun"/>
+  <input type="checkbox" id="theme"/>
+  <div class="slider round"></div>
+</label>
+
+<script>
+const toggle=document.getElementById('theme');
+const elements=document.getElementsByTagName('*');
+
+toggle.addEventListener('input',e=>{
+  const checked=e.target.checked;
+
+  if(checked){
+    for(let i=0;i<elements.length;i++){
+      elements[i].classList.add('dark');
+    }
+  }else{
+    for(let i=0;i<elements.length;i++){
+      elements[i].classList.remove('dark');
+    }
+  }
+});
+</script>
 
 </body>
 
