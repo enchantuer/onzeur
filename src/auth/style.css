@@ -1,9 +1,18 @@
 
 /*for mobile phones*/
+#toggle_theme{
+  background: url(icons/light/moon.svg);
+}
+
 body{
   background-color: #ffffff;
   color: #111111;
   font-family: 'Verdana', sans-serif;
+}
+
+body.dark{
+  background-color: #111111;
+  color: #ffffff;
 }
 
 h1{
