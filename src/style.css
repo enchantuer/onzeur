@@ -1,4 +1,7 @@
 :root{
+  --dark-121216: #121216;
+  --dark-191922: #191922;
+
   --border: #32323d;
   --text: #ffffff;
   --color3: #eeeeee;
@@ -6,8 +9,8 @@
   --color5: #aeaeae;
 
   --text1-light: #191919;
-  --border-light: #aeaeae;
   --text2-light: #52525d;
+  --border-light: #aeaeae;
 }
 
 /*for mobile*/
@@ -21,11 +24,48 @@ body{
 }
 
 nav{
+  display: flex;
+  flex-direction: row;
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 10vh;
+  height: 8vh;
   background-color: #ffffff;
+}
+
+nav .nav_item{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25vw;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+nav a{
+  text-decoration: none;
+  color: var(--text1-light);
+  font-size: 3vw;
+  /* padding: 2vw 0; */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* height: 100%; */
+}
+
+nav a img{
+  width: 9vw;
+  height: 9vw;
+  margin: 0;
+  padding: 0;
+}
+nav a p{
+  margin: 0;
+  padding: 0;
+  font-size: 3vw;
 }
 
 .album{

@@ -14,7 +14,30 @@ $tracklist=array("Forfait","Satan 3","Show","Echelon Freestyle","Feelings","Tech
 <body>
 
 <nav>
-
+  <div class="nav_item">
+    <a href="#">
+      <img src="icons/light/home1.svg" alt="home">
+      <p>Home</p>
+    </a>
+  </div>
+  <div class="nav_item">
+    <a href="#">
+      <img src="icons/light/search1.svg" alt="search">
+      <p>Search</p>
+    </a>
+  </div>
+  <div class="nav_item">
+    <a href="#">
+      <img src="icons/light/playlists1.svg" alt="playlists">
+      <p>Playlists</p>
+    </a>
+  </div>
+  <div class="nav_item">
+    <a href="#">
+      <img src="icons/light/profile1.svg" alt="profile">
+      <p>Profile</p>
+    </a>
+  </div>
 </nav>
 
 <main>
