@@ -77,10 +77,10 @@ CREATE TABLE public.user_(
                              id_user       SERIAL NOT NULL ,
                              first_name    VARCHAR (50) NOT NULL ,
                              name          VARCHAR (50) NOT NULL ,
-                             email         VARCHAR (50) NOT NULL UNIQUE,
+                             email         VARCHAR (50) NOT NULL UNIQUE ,
                              birth_date    DATE  NOT NULL ,
                              password      VARCHAR (150) NOT NULL ,
-                             id_playlist_favorite   INT  ,
+                             id_playlist_favorite   INT ,
                              CONSTRAINT user__PK PRIMARY KEY (id_user)
 );
 
