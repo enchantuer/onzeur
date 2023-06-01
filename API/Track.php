@@ -12,21 +12,23 @@ class Track extends DatabaseElement {
     public int $albumId;
     public string $title;
     public int $duration;
+    public string $url;
 
-    public static function fromArray(array $data): static {
-        $track = new static($data['id_track']);
+    public static function fromArray(array $data, int $page=0): static {
+        $track = new static($data['id_track'], $page);
         $track->artistId = $data['id_artist'];
         $track->albumId = $data['id_album'];
         $track->title = $data['title'];
         $track->duration = $data['duration'];
+        $track->url = $data['url'];
         return $track;
     }
 
-    public static function fromAlbum(int|Album $element): false|array {
-        return self::fromElement($element, 'dbGetTracksByAlbum');
+    public static function fromAlbum(int|Album $element, int $page=0): false|array {
+        return self::fromElement($element, 'dbGetTracksByAlbum', $page);
     }
-    public static function fromArtist(int|Album $element): false|array {
-        return self::fromElement($element, 'dbGetTracksByArtist');
+    public static function fromArtist(int|Album $element, int $page=0): false|array {
+        return self::fromElement($element, 'dbGetTracksByArtist', $page);
     }
 
     public function get(): false|static {
@@ -38,6 +40,7 @@ class Track extends DatabaseElement {
         $this->albumId = $data['id_album'];
         $this->title = $data['title'];
         $this->duration = $data['duration'];
+        $this->url = $data['url'];
         return $this;
     }
 
