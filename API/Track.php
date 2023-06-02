@@ -3,7 +3,7 @@
 require_once "DatabaseElement.php";
 
 
-require_once "../php/get.php";
+require_once "php/get.php";
 
 class Track extends DatabaseElement {
     // Properties

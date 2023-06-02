@@ -36,14 +36,14 @@ function dbGetTrack(PDO $db, int $id): false|array {
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 
-function dbGetTracksByAlbum(PDO $db, int $id, int $offset=0): false|array {
-    $query = $db->prepare('SELECT * FROM track_ WHERE id_album = :id ORDER BY id_track LIMIT 20 OFFSET :offset');
-    $query->execute([':id' => $id, ':offset' => $offset]);
+function dbGetTracksByAlbum(PDO $db, int $id): false|array {
+    $query = $db->prepare('SELECT * FROM track_ WHERE id_album = :id ORDER BY id_track');
+    $query->execute([':id' => $id]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function dbGetTracksByArtist(PDO $db, int $id, int $offset=0): false|array {
-    $query = $db->prepare('SELECT * FROM track_ WHERE id_artist = :id');
+    $query = $db->prepare('SELECT * FROM track_ WHERE id_artist = :id ORDER BY id_track LIMIT 20 OFFSET :offset');
     $query->execute([':id' => $id, ':offset' => $offset]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }

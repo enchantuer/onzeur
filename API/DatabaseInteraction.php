@@ -1,6 +1,6 @@
 <?php
 
-require_once '../php/database.php';
+require_once 'php/database.php';
 
 abstract class DatabaseInteraction {
     protected static PDO $db;

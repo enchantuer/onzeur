@@ -1,5 +1,5 @@
 <?php
-require_once '../php/database.php';
+require_once 'php/database.php';
 require_once 'DatabaseInteraction.php';
 
 abstract class DatabaseElement extends DatabaseInteraction {
@@ -15,7 +15,7 @@ abstract class DatabaseElement extends DatabaseInteraction {
     protected static function fromElement($element, string $getFunction, int $page=0): false|array {
         $elements = [];
         $id = is_int($element) ? $element : $element->id;
-        $data = $getFunction(self::$db, $id);
+        $data = $getFunction(self::$db, $id, $page*20);
         if ($data === false) {
             return false;
         }

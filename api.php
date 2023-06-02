@@ -92,7 +92,7 @@ function getJSON($request, $request_resource) {
             return $search->find();
         }
         $artistId = array_shift($request);
-        if (count($request) > 0 or !intval($request_resource)) {
+        if (count($request) > 0 or !intval($artistId)) {
             notFound();
         }
         return Artist::fromId($artistId);
