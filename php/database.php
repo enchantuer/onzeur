@@ -15,15 +15,24 @@ function dbConnect() {
 function dbVerifyPassword(PDO $conn, string $email, string $password) : bool  {
     $statement = $conn->prepare("SELECT id_user, password FROM user_ WHERE email=:email");
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
-    $bool = $statement->execute();
-    if (!$bool) {
+    $statement->execute();
+    $result = $statement->fetch();
+    if (!$result) {
         return false;
     }
-    $result = $statement->fetch();
     $valid_password = password_verify($password, $result['password']);
 
     if (!$valid_password) {
         return false;
     }
     return $result['id_user'];
+}
+
+require_once 'get.php';
+function isValidUser(PDO $db, int $userId): bool {
+    return boolval(dbGetUser($db, $userId));
+}
+
+function isAvailableEmail(PDO $db, string $email): bool {
+    return !dbGetUserByEmail($db, $email);
 }

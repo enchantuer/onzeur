@@ -1,3 +1,17 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+include_once '../php/database.php';
+$conn = dbConnect();
+session_start();
+
+if (isset($_SESSION['userId']) && isValidUser($conn, $_SESSION['userId'])) {
+    header('Location: home.php');
+    exit();
+}
+?>
+
 <html>
 <head>
   <title>Login</title>
@@ -46,13 +60,7 @@
 </script>
 
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include_once '../php/database.php';
-    $conn = dbConnect();
-
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -60,7 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($userId === false) {
         echo 'Incorrect Credentials';
     } else {
-        session_start();
         $_SESSION['userId'] = $userId;
         header('Location: home.php');
         exit();

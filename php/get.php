@@ -91,7 +91,6 @@ function dbGetNumberOfAlbumByArtist(PDO $db, int $id): false|int {
 }
 
 function dbGetUser(PDO $db, int $id): false|array {
-    // TODO : GET history
     $query = $db->prepare('SELECT * FROM user_ WHERE id_user = :id');
     $query->execute([':id' => $id]);
     return $query->fetch(PDO::FETCH_ASSOC);
@@ -107,3 +106,11 @@ function dbGetPlaylistByUserAndId(PDO $db, int $userId, int $playlistId): false|
     $query->execute([':playlist_id' => $playlistId, ':user_id' => $userId]);
     return $query->fetch(PDO::FETCH_ASSOC);
 }
+
+function dbGetUserByEmail(PDO $db, string $email) {
+    $query = $db->prepare('SELECT * FROM user_ WHERE email = :email');
+    $query->execute([':email' => $email]);
+    return $query->fetch(PDO::FETCH_ASSOC);
+}
+
+// TODO : GET history
