@@ -6,25 +6,18 @@
 // \param url The url with the data.
 // \param callback The callback to call where the request is successful.
 // \param data The data associated with the request.
-function ajaxRequest(type, url, callback, data = null)
-{
-  let xhr;
+function ajaxRequest(type,url,callback,data=null){
+  var xhr=new XMLHttpRequest();
+  if (type==='GET' && data!=null){
+    url+='?'+data;
+  }
+  xhr.open(type,url);
+  xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 
-  // Create XML HTTP request.
-  xhr = new XMLHttpRequest();
-  if (type == 'GET' && data != null)
-    url += '?' + data;
-  xhr.open(type, url);
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-  // Add the onload function.
-  xhr.onload = () =>
-  {
-    switch (xhr.status)
-    {
+  xhr.onload=function(){
+    switch (xhr.status){
       case 200:
       case 201:
-        console.log(xhr.responseText);
         callback(JSON.parse(xhr.responseText));
         break;
       default:
@@ -32,7 +25,6 @@ function ajaxRequest(type, url, callback, data = null)
     }
   };
 
-  // Send XML HTTP request.
   xhr.send(data);
 }
 
