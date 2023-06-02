@@ -25,10 +25,8 @@ function notFound(): void {
 
 // TODO : Add an admin exception
 function checkUserConnection(int $wantedId): void {
-    return;
     session_start();
     if (!(isset($_SESSION['userId']) AND isValidUser($wantedId))) {
-        session_destroy();
         http_response_code(401);
         echo 'You must be log in as the user first';
         exit();
@@ -36,12 +34,10 @@ function checkUserConnection(int $wantedId): void {
 }
 // TODO : Add an admin exception
 function isValidUser(int $wantedId): bool {
-    if ($wantedId !== $_SESSION['userId']) {
+    if ($wantedId !== intval($_SESSION['userId'])) {
         return false;
     }
-    // TODO : dbGetUser(int $id)
-    $user = [];
-    return boolval($user);
+    return true;
 }
 
 function getJSON($request, $request_resource) {
