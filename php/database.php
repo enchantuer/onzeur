@@ -17,10 +17,22 @@ function dbVerifyPassword(PDO $conn, string $email, string $password) : bool  {
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->execute();
     $result = $statement->fetch();
+    if (!$result) {
+        return false;
+    }
     $valid_password = password_verify($password, $result['password']);
 
     if (!$valid_password) {
         return false;
     }
-    return true;
+    return $result['id_user'];
+}
+
+require_once 'get.php';
+function isValidUser(PDO $db, int $userId): bool {
+    return boolval(dbGetUser($db, $userId));
+}
+
+function isAvailableEmail(PDO $db, string $email): bool {
+    return !dbGetUserByEmail($db, $email);
 }

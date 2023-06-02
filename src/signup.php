@@ -1,3 +1,17 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+include_once '../php/database.php';
+$conn = dbConnect();
+session_start();
+
+if (isset($_SESSION['userId']) && isValidUser($conn, $_SESSION['userId'])) {
+    header('Location: home.php');
+    exit();
+}
+?>
+
 <html>
 <head>
   <title>Sign Up</title>
@@ -60,9 +74,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include_once '../../php/database.php';
-    require_once '../../php/add.php';
-    $conn = dbConnect();
+    require_once '../php/add.php';
 
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
@@ -72,15 +84,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password2 = $_POST['password2'];
 
     if ($password != $password2) {
-        echo "Les mots de passe ne correspondent pas.";
+        echo "The password are not the same.";
         exit();
     }
 
-    $success = dbAddUser($conn, $firstname, $lastname, $birthdate, $email, $password);
-    if ($success) {
-        echo "Votre compte a bien été créé.";
+    if (!isAvailableEmail($conn, $email)) {
+        echo "An account already exist for that email.";
     } else {
-        echo "Une erreur est survenue lors de la création de votre compte.";
+        if (dbAddUser($conn, $firstname, $lastname, $birthdate, $email, $password)) {
+            header('Location: login.php');
+            exit();
+        } else {
+            echo "An error occurred during the creation of your account.";
+        }
     }
 
 }

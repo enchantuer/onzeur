@@ -11,6 +11,7 @@ require_once "API/Artist.php";
 require_once "API/SearchTrack.php";
 require_once "API/SearchAlbum.php";
 require_once "API/SearchArtist.php";
+require_once "API/User.php";
 
 function checkNotFound($request): void {
     if (count($request) != 1) {
@@ -25,23 +26,19 @@ function notFound(): void {
 
 // TODO : Add an admin exception
 function checkUserConnection(int $wantedId): void {
-    return;
     session_start();
-    if (!(isset($_SESSION['userId']) AND isValidUser($wantedId))) {
-        session_destroy();
+    if (!(isset($_SESSION['userId']) AND isAllowedUser($wantedId))) {
         http_response_code(401);
         echo 'You must be log in as the user first';
         exit();
     }
 }
 // TODO : Add an admin exception
-function isValidUser(int $wantedId): bool {
-    if ($wantedId !== $_SESSION['userId']) {
+function isAllowedUser(int $wantedId): bool {
+    if ($wantedId !== intval($_SESSION['userId'])) {
         return false;
     }
-    // TODO : dbGetUser(int $id)
-    $user = [];
-    return boolval($user);
+    return true;
 }
 
 function getJSON($request, $request_resource) {
@@ -92,7 +89,7 @@ function getJSON($request, $request_resource) {
             return $search->find();
         }
         $artistId = array_shift($request);
-        if (count($request) > 0 or !intval($request_resource)) {
+        if (count($request) > 0 or !intval($artistId)) {
             notFound();
         }
         return Artist::fromId($artistId);
@@ -105,7 +102,6 @@ function getJSON($request, $request_resource) {
         $userId = array_shift($request);
         checkUserConnection($userId);
         if (count($request) == 0) {
-            // TODO : dbGetPlaylistByUser()
             return Playlist::fromUser($userId);
         }
         $playlistId = array_shift($request);
@@ -113,19 +109,24 @@ function getJSON($request, $request_resource) {
         if (count($request) > 0 or !intval($playlistId)) {
             notFound();
         }
-        // TODO : dbGetPlaylistByUserAndId()
         return Playlist::fromIds($userId, $playlistId);
     }
 
     elseif ($request_resource == 'user') {
         if (count($request) == 0) {
-            return null;
+            session_start();
+            if (!(isset($_SESSION['userId']))) {
+                session_destroy();
+                http_response_code(401);
+                echo 'You must be log in as the user first';
+                exit();
+            }
+            return User::fromId($_SESSION['userId']);
         }
         checkNotFound($request);
         $userId = array_shift($request);
         checkUserConnection($userId);
-        // TODO : dbGetUser()
-        return true;
+        return User::fromId($userId);
     }
 
     notFound();

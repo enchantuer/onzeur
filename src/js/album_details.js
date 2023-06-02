@@ -1,25 +1,31 @@
-document.addEventListener('DOMContentLoaded', function() {
-  let params = new URLSearchParams(document.location.search);
-  let albumId = params.get('id');
+console.log('allo');
+let params = new URLSearchParams(document.location.search);
+let albumId = params.get('id');
 
-  if(albumId){
+if(albumId){
 
-    ajaxRequest('GET', 'api.php/album/' + albumId, function(response){
-      document.getElementById('album-name').textContent = response.album_name;
-      document.getElementById('artist-name').textContent = response.artist_name;
-      document.getElementById('release-date').textContent = response.release_date;
-
-      // Mettre à jour la liste des titres
-      var tracklist = response.tracklist;
-      var tracklistContainer = document.getElementById('tracklist-container');
-      for (var i = 0; i < tracklist.length; i++) {
-        var track = tracklist[i];
-        var trackHtml = '<div class="track">' +
-                        '<img src="img/album_covers/vv5.jpg" alt="album">' +
-                        '<p class="track_name">' + (i+1) + '. ' + track + '</p>' +
-                        '</div>';
-        tracklistContainer.insertAdjacentHTML('beforeend', trackHtml);
-      }
+  ajaxRequest('GET', '../api.php/album/' + albumId, function(album){
+    console.log(album);
+    document.getElementById('album-name').textContent = album.title;
+    ajaxRequest('GET', '../api.php/artist/' + album.artistId, function(artist) {
+      console.log(artist);
+      document.getElementById('artist-name').textContent = artist.name;
     });
-  }
-});
+    document.getElementById('release-date').textContent = album.releaseData;
+    document.getElementById('album-cover').src = album.imageUrl;
+
+    // Mettre à jour la liste des titres
+    ajaxRequest('GET', '../api.php/track/album/' + albumId, function(trackList) {
+      console.log(trackList);
+      const trackListContainer = document.getElementById('tracklist-container');
+      for (let i = 0; i < trackList.length; i++) {
+        const track = trackList[i];
+        const trackHtml = '<div class="track">' +
+            `<img src="${album.imageUrl}" alt="album">` +
+            '<p class="track_name">' + (i+1) + '. ' + track.title + '</p>' +
+            '</div>';
+        trackListContainer.insertAdjacentHTML('beforeend', trackHtml);
+      }
+    })
+  });
+}

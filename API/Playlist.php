@@ -1,7 +1,7 @@
 <?php
 
 require_once "Track.php";
-require_once "../php/User.php";
+require_once "User.php";
 require_once "DatabaseElement.php";
 
 class Playlist extends DatabaseElement {
