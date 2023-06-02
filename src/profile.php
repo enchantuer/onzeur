@@ -14,19 +14,19 @@
 
 <form name="registration" action="" method="post">
   <label for="firstname">First Name:</label>
-  <input type="text" name="firstname" placeholder="First Name" required/>
+  <input type="text" name="firstname" id="firstname" placeholder="First Name" required/>
   <label for="lastname">Last Name:</label>
-  <input type="text" name="lastname" placeholder="Last Name" required/>
+  <input type="text" name="lastname" id="lastname" placeholder="Last Name" required/>
   <label for="birthdate">Birthdate:</label>
-  <input type="date" name="birthdate" placeholder="Birthdate" required/>
+  <input type="date" name="birthdate" id="birthdate" placeholder="Birthdate" required/>
   <label for="birthdate">Birthdate:</label>
-  <input type="number" name="Age" placeholder="Age" disabled/>
+  <input type="number" name="age" id="age" placeholder="Age" disabled/>
   <label for="email">Email:</label>
-  <input type="email" name="email" placeholder="Email" required/>
+  <input type="email" name="email" id="email" placeholder="Email" required/>
   <label for="password">Password:</label>
-  <input type="password" name="password" placeholder="Password" required/>
+  <input type="password" name="password" id="password" placeholder="New Password" />
   <label for="password2">Password Verification:</label>
-  <input type="password" name="password2" placeholder="Password Verification" required/>
+  <input type="password" name="password2" id="password2" placeholder="Password Verification" />
   <input class="button" type="submit" name="submit" value="Modify"/>
 </form>
 
