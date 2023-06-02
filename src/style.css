@@ -1,17 +1,5 @@
-:root{
-  --dark-121216: #121216;
-  --dark-191922: #191922;
-
-  --border: #32323d;
-  --text: #ffffff;
-  --color3: #eeeeee;
-  --color4: #ee7733;
-  --color5: #aeaeae;
-
-  --text1-light: #191919;
-  --text2-light: #52525d;
-  --border-light: #aeaeae;
-}
+@import "style/colors.css";
+@import "style/theme_switch.css";
 
 /*for mobile*/
 body{
