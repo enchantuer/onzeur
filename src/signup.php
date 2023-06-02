@@ -2,7 +2,7 @@
 <head>
   <title>Sign Up</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style/main_style.css"/>
 </head>
 <body>
 
@@ -60,8 +60,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include_once '../../php/database.php';
-    require_once '../../php/add.php';
+    include_once '../php/database.php';
+    require_once '../php/add.php';
     $conn = dbConnect();
 
     $firstname = $_POST['firstname'];
