@@ -69,7 +69,7 @@ If the repository on GitHub has been updated. You can, instead of delete it and 
 
 ### Create the database with related role
 - `CREATE ROLE jarvis LOGIN ENCRYPTED PASSWORD 'password';`
-- `CREATE DATABASE onzeur OWNER jarvis;`
+- `CREATE DATABASE onzeur WITH OWNER jarvis ENCODING 'UTF8' TEMPLATE template0;`
 - Leave the database using `\q`
 
 ### Create the table
