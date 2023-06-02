@@ -28,8 +28,8 @@
 </form>
 
 <label id="theme_switch" for="theme">
-  <img class="moon" src="../icons/light/moon1.svg" alt="moon"/>
-  <img class="sun" src="../icons/dark/sun_ffffff.svg" alt="sun"/>
+  <img class="moon" src="../icons/broken/moon_191919.svg" alt="moon"/>
+  <img class="sun" src="../icons/broken/sun_ffffff.svg" alt="sun"/>
   <input type="checkbox" id="theme"/>
   <div class="slider round"></div>
 </label>
