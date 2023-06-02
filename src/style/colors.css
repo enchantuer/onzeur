@@ -1,0 +1,14 @@
+:root{
+  --light-ffffff: #ffffff; /*background 1*/
+  --light-eeeeee: #eeeeee; /*background 2*/
+  --light-191919: #191919; /*text 1*/
+  --light-52525d: #52525d; /*text 2*/
+  --light-aeaeae: #aeaeae; /*border*/
+
+  --orange: #ee7733;
+
+  --dark-121216: #121216; /*background 1*/
+  --dark-191922: #191922; /*background 2*/
+  --dark-ffffff: #ffffff; /*text 1*/
+  --dark-32323d: #32323d; /*border*/
+}
