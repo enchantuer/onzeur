@@ -1,0 +1,30 @@
+#theme_switch{
+  position: fixed;
+  top: 0;
+  right: 0;
+  border: 0;
+  margin: 2vw;
+  padding: 0;
+  width: 10vw;
+  height: 10vw;
+}
+#theme_switch img{
+  width: 10vw;
+  height: 10vw;
+  cursor: pointer;
+}
+#theme_switch input{
+  display: none;
+}
+.moon{
+  display: block;
+}
+.moon.dark{
+  display: none;
+}
+.sun{
+  display: none;
+}
+.sun.dark{
+  display: block;
+}
