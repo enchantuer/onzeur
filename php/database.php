@@ -15,11 +15,11 @@ function dbConnect() {
 function dbVerifyPassword(PDO $conn, string $email, string $password) : bool  {
     $statement = $conn->prepare("SELECT id_user, password FROM user_ WHERE email=:email");
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
-    $bool = $statement->execute();
-    if (!$bool) {
+    $statement->execute();
+    $result = $statement->fetch();
+    if (!$result) {
         return false;
     }
-    $result = $statement->fetch();
     $valid_password = password_verify($password, $result['password']);
 
     if (!$valid_password) {
