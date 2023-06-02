@@ -89,3 +89,21 @@ function dbGetNumberOfAlbumByArtist(PDO $db, int $id): false|int {
     $query->execute([':id' => $id]);
     return $query->fetchColumn();
 }
+
+function dbGetUser(PDO $db, int $id): false|array {
+    // TODO : GET history
+    $query = $db->prepare('SELECT * FROM user_ WHERE id_user = :id');
+    $query->execute([':id' => $id]);
+    return $query->fetch(PDO::FETCH_ASSOC);
+}
+
+function dbGetPlaylistByUser(PDO $db, int $userId): false|array {
+    $query = $db->prepare('SELECT * FROM playlist_ WHERE id_user = :id');
+    $query->execute([':id' => $userId]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+function dbGetPlaylistByUserAndId(PDO $db, int $userId, int $playlistId): false|array {
+    $query = $db->prepare('SELECT * FROM playlist_ WHERE id_playlist = :playlist_id AND id_user = :user_id');
+    $query->execute([':playlist_id' => $playlistId, ':user_id' => $userId]);
+    return $query->fetch(PDO::FETCH_ASSOC);
+}

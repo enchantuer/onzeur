@@ -2,9 +2,52 @@
 
 require_once "Track.php";
 require_once "../php/User.php";
+require_once "DatabaseElement.php";
 
-class Playlist {
+class Playlist extends DatabaseElement {
+    protected static string $functionGet = 'dbGetPlaylistByUserAndId';
     public string $name;
-    public array $tracks;
-    public User $owner;
+    public int $userId;
+    public string $creationDate;
+
+    public static function fromArray(array $data, int $page=0): static {
+        $playlist = new static($data['id_playlist'], $page);
+        $playlist->name = $data['name'];
+        $playlist->userId = $data['id_user'];
+        $playlist->creationDate = $data['creation_date'];
+        return $playlist;
+    }
+
+    public static function fromUser(int|User $element, int $page=0): false|array {
+        return self::fromElement($element, 'dbGetPlaylistByUser', $page);
+    }
+
+    public static function fromIds(int $userId, int $playlistId): false|static {
+        $element = new static($playlistId);
+        $element->userId = $userId;
+        $bool = $element->get();
+        if (!$bool) {
+            return false;
+        }
+        return $element;
+    }
+
+    public function get(): false|static {
+        $data = (static::$functionGet)(self::$db, $this->userId, $this->id, $this->offset);
+        if (!$data) {
+            return false;
+        }
+        $this->name = $data['name'];
+        $this->userId = $data['id_user'];
+        $this->creationDate = $data['creation_date'];
+        return $this;
+    }
+
+    public function add() {
+        // TODO: Implement add() method.
+    }
+
+    public function update() {
+        // TODO: Implement update() method.
+    }
 }
