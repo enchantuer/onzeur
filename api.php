@@ -27,14 +27,14 @@ function notFound(): void {
 // TODO : Add an admin exception
 function checkUserConnection(int $wantedId): void {
     session_start();
-    if (!(isset($_SESSION['userId']) AND isValidUser($wantedId))) {
+    if (!(isset($_SESSION['userId']) AND isAllowedUser($wantedId))) {
         http_response_code(401);
         echo 'You must be log in as the user first';
         exit();
     }
 }
 // TODO : Add an admin exception
-function isValidUser(int $wantedId): bool {
+function isAllowedUser(int $wantedId): bool {
     if ($wantedId !== intval($_SESSION['userId'])) {
         return false;
     }

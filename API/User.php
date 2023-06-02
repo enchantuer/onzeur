@@ -9,7 +9,7 @@ class User extends DatabaseElement {
     public string $firstName;
     public string $lastName;
     public string $email;
-    public string $birthDate;
+    public string $birthdate;
     protected string $password;
     public int $favoriteId;
 
@@ -18,7 +18,7 @@ class User extends DatabaseElement {
         $user->firstName = $data['first_name'];
         $user->lastName = $data['name'];
         $user->email = $data['email'];
-        $user->birthDate = $data['birth_date'];
+        $user->birthdate = $data['birth_date'];
         $user->password = $data['password'];
         $user->favoriteId = $data['id_playlist_favorite'];
         return $user;
@@ -32,7 +32,7 @@ class User extends DatabaseElement {
         $this->firstName = $data['first_name'];
         $this->lastName = $data['name'];
         $this->email = $data['email'];
-        $this->birthDate = $data['birth_date'];
+        $this->birthdate = $data['birth_date'];
         $this->password = $data['password'];
         $this->favoriteId = $data['id_playlist_favorite'];
         return $this;
