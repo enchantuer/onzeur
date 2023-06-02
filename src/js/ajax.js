@@ -44,14 +44,12 @@ function httpErrors(errorCode)
     503: 'Service indisponible'
   };
 
-  // Display error.
-  if (errorCode in messages)
-  {
-    $('#errors').html('<strong>' + messages[errorCode] + '</strong>');
-    $('#errors').show();
-    setTimeout(() =>
-    {
-      $('#errors').hide();
-    }, 5000);
+  var errorElement=document.getElementById('errors');
+  if(errorCode in messages){
+    errorElement.innerHTML='<strong>'+messages[errorCode]+'</strong>';
+    errorElement.style.display='block';
+    setTimeout(function(){
+      errorElement.style.display='none';
+    },5000);
   }
 }
