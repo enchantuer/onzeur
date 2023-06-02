@@ -1,19 +1,24 @@
 
 
 /*for mobile phones*/
-@import "theme_switch.css";
 @import "colors.css";
-
+@import "theme_switch.css";
+@import "navbar.css";
 
 body{
   background-color: var(--light-ffffff);
   color: var(--light-191919);
   font-family: 'Verdana', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 body.dark{
   background-color: var(--dark-121216);
   color: var(--dark-ffffff);
 }
+
+
 
 /*
  _                    _
@@ -56,6 +61,7 @@ form{
 label{
   font-size: 3vw;
   color: var(--light-191919);
+  text-align: left;
   margin: 0 5vw;
   padding: 0;
 }
@@ -103,22 +109,13 @@ input.button.dark:hover{
 
 /*for desktops*/
 @media/* only*/ screen and (min-device-width: 768px){
-  #theme_switch{
-    margin: 2vw;
-    width: 4vw;
-    height: 4vw;
-  }
-  #theme_switch img{
-    width: 4vw;
-    height: 4vw;
-  }
-
   body{
     background-color: var(--light-ffffff);
     color: var(--light-191919);
     font-family: 'Verdana', sans-serif;
     text-align: center;
   }
+
   h1{
     font-size: 4vw;
     text-align: center;
