@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS history_ CASCADE ;
 ------------------------------------------------------------
 CREATE TABLE public.music_type_(
                                    id_type   SERIAL NOT NULL ,
-                                   type      VARCHAR (50) NOT NULL  ,
+                                   type      VARCHAR (50) NOT NULL UNIQUE ,
                                    CONSTRAINT music_type__PK PRIMARY KEY (id_type)
 );
 
@@ -27,7 +27,7 @@ CREATE TABLE public.music_type_(
 ------------------------------------------------------------
 CREATE TABLE public.artist_type_(
                                     id_type   SERIAL NOT NULL ,
-                                    type      VARCHAR (50) NOT NULL  ,
+                                    type      VARCHAR (50) NOT NULL UNIQUE ,
                                     CONSTRAINT artist_type__PK PRIMARY KEY (id_type)
 );
 
@@ -48,7 +48,7 @@ CREATE TABLE public.artist_(
 ------------------------------------------------------------
 CREATE TABLE public.album_(
                               id_album       SERIAL NOT NULL ,
-                              title          VARCHAR (50) NOT NULL ,
+                              title          VARCHAR (100) NOT NULL ,
                               release_date   DATE  NOT NULL ,
                               Image          VARCHAR (50) NOT NULL ,
                               id_artist      INT  NOT NULL ,
@@ -62,7 +62,7 @@ CREATE TABLE public.album_(
 ------------------------------------------------------------
 CREATE TABLE public.track_(
                               id_track    SERIAL NOT NULL ,
-                              title       VARCHAR (50) NOT NULL ,
+                              title       VARCHAR (100) NOT NULL ,
                               duration    INT  NOT NULL ,
                               url         VARCHAR (100) NOT NULL ,
                               id_album    INT  NOT NULL ,
