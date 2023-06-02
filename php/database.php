@@ -27,3 +27,12 @@ function dbVerifyPassword(PDO $conn, string $email, string $password) : bool  {
     }
     return $result['id_user'];
 }
+
+require_once 'get.php';
+function isValidUser(PDO $db, int $userId): bool {
+    return boolval(dbGetUser($db, $userId));
+}
+
+function isAvailableEmail(PDO $db, string $email): bool {
+    return !dbGetUserByEmail($db, $email);
+}
