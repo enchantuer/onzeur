@@ -83,7 +83,7 @@ nav a p{
     border-right: 1px solid var(--light-aeaeae);
     left: 0;
     margin: 0;
-    padding-top: 1vw;
+    padding: 0;
     width: 15vw;
     height: 100%;
     background-color: var(--light-ffffff);
@@ -91,6 +91,21 @@ nav a p{
   nav.dark{
     border: 1px solid var(--dark-32323d);
     background-color: var(--dark-191922);
+  }
+
+  nav .logo{
+    height: 10vh;
+  }
+
+  nav .nav_item{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    width: 10vw;
+    border: 0;
+    margin: 0;
+    padding: 0;
   }
 
   nav a{
@@ -111,8 +126,8 @@ nav a p{
   }
 
   nav a .nav_icon{
-    width: 2.5vw;
-    height: 2.5vw;
+    width: 2vw;
+    height: 2vw;
     margin: 0;
     padding: 0;
   }
@@ -124,16 +139,16 @@ nav a p{
   }
   nav a .nav_icon_dark.dark{
     display: block;
-    width: 2.5vw;
-    height: 2.5vw;
+    width: 2vw;
+    height: 2vw;
     margin: 0;
     padding: 0;
   }
   
   nav a p{
-    margin: 0;
+    margin-left: .8vw;
     padding: 0;
-    font-size: 1.2vw;
+    font-size: 1.1vw;
     font-weight: bold;
   }
 }
