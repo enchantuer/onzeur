@@ -13,9 +13,11 @@ if (artistId) {
       for (let i = 0; i < albumList.length; i++) {
         const album = albumList[i];
         const albumHtml = '<div class="album">' +
+          `<a href="album_details.html?id=${album.id}">` +
           `<img src="${album.imageUrl}" alt="album">` +
           '<p class="album_title">' + album.title + '</p>' +
           '<p class="album_year">' + album.releaseDate + '</p>' +
+          '</a>' +
           '</div>';
         albumListContainer.insertAdjacentHTML('beforeend', albumHtml);
       }
