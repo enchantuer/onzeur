@@ -182,8 +182,8 @@ a{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: left;
-    align-items: center;
+    justify-content: right;
+    align-items: top;
     width: 100%;
   }
 
@@ -194,7 +194,6 @@ a{
     flex-direction: column;
     justify-content: left;
     width: 20vw;
-    height: 20vw;
   }
 
   .album img{
@@ -206,8 +205,7 @@ a{
   .album .album_title{
     margin: 0;
     padding: 1vw 0 1vw 0;
-    font-weight: bold;
-    font-size: 1.5vw;
+    font-size: 1vw;
     text-align: left;
   }
 }
