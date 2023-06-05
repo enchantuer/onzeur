@@ -23,7 +23,7 @@ if(albumId){
         const trackHtml = '<div class="track">' +
             `<img src="${album.imageUrl}" alt="album">` +
             // `<p class="track_name" onclick="playTrack('${track.audioUrl}','${track.title}')">` + (i+1) + '. ' + track.title + '</p>' +
-            `<a href="audio_player.html?audioUrl=${track.audioUrl}&trackName=${track.title}" class="track_name">${(i+1)}. ${track.title}</a>` +
+            `<a href="audio_player.html?id=${track.id}}" class="track_name">${(i+1)}. ${track.title}</a>` +
             '</div>';
         trackListContainer.insertAdjacentHTML('beforeend', trackHtml);
       }
