@@ -5,6 +5,8 @@ require_once "ErrorAPI.php";
 
 require_once "php/get.php";
 require_once "php/update.php";
+require_once "php/add.php";
+require_once "php/delete.php";
 require_once "php/database.php";
 
 class User extends DatabaseElement {
@@ -76,5 +78,21 @@ class User extends DatabaseElement {
             return $this;
         }
         return new ErrorAPI("Invalid fields", 3);
+    }
+
+    function addToHistory(int $trackId): bool {
+        return dbAddTrackToHistory(self::$db, $this->id, $trackId);
+    }
+
+    function getFavorites(): false|array {
+        return dbGetFavoriteByUser(self::$db, $this->id);
+    }
+
+    function addToFavorites(int $trackId): bool {
+        return dbAddTrackToFavorites(self::$db, $trackId, $this->id);
+    }
+
+    function removeFromFavorites(int $trackId): bool {
+        return dbDeleteTrackFromFavorites(self::$db, $trackId, $this->id);
     }
 }

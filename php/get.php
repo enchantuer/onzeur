@@ -107,6 +107,12 @@ function dbGetPlaylistByUserAndId(PDO $db, int $userId, int $playlistId): false|
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 
+function dbGetFavoriteByUser(PDO $db, int $userId): false|array {
+    $query = $db->prepare('SELECT * FROM playlist_ WHERE name = \'Favorites\' AND id_user = :user_id');
+    $query->execute([':user_id' => $userId]);
+    return $query->fetch(PDO::FETCH_ASSOC);
+}
+
 function dbGetUserByEmail(PDO $db, string $email) {
     $query = $db->prepare('SELECT * FROM user_ WHERE email = :email');
     $query->execute([':email' => $email]);
@@ -119,4 +125,8 @@ function dbGetAlbumCover(PDO $db, int $id) {
     return $query->fetchColumn();
 }
 
-// TODO : GET history
+function dbGetHistory(PDO $db, int $userId): false|array {
+    $query = $db->prepare('SELECT * FROM history_ WHERE id_user = :id');
+    $query->execute([':id' => $userId]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
