@@ -89,6 +89,7 @@ a{
   img.main_cover{
     width: 12vw;
     height: 12vw;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     border-radius: 3px;
     margin: 0;
   }
@@ -133,9 +134,9 @@ a{
     text-align: left;
     color: var(--light-191919);
   }
-  /* .track_name_link.dark{
+  .track_name_link.dark{
     color: var(--dark-ffffff);
-  } */
+  }
 
   .track_name_link:hover{
     color: var(--orange);
@@ -174,6 +175,7 @@ a{
     margin: 0;
     padding: 0;
     border: 0;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   }
   .track img.dark{
     border: 1px solid var(--dark-32323d);
