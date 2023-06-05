@@ -7,7 +7,7 @@ if(albumId){
   ajaxRequest('GET', '../api.php/album/' + albumId, function(album){
     console.log(album);
     document.getElementById('album-name').textContent = album.title;
-    ajaxRequest('GET', '../api.php/artist/' + album.artistId, function(artist) {
+    ajaxRequest('GET', '../api.php/artist/' + album.artistId, function(artist){
       console.log(artist);
       document.getElementById('artist-name').textContent = artist.name;
     });
@@ -22,10 +22,18 @@ if(albumId){
         const track = trackList[i];
         const trackHtml = '<div class="track">' +
             `<img src="${album.imageUrl}" alt="album">` +
-            '<p class="track_name">' + (i+1) + '. ' + track.title + '</p>' +
+            // `<p class="track_name" onclick="playTrack('${track.audioUrl}','${track.title}')">` + (i+1) + '. ' + track.title + '</p>' +
+            `<a href="audio_player.html?audioUrl=${track.audioUrl}&trackName=${track.title}" class="track_name">${(i+1)}. ${track.title}</a>` +
             '</div>';
         trackListContainer.insertAdjacentHTML('beforeend', trackHtml);
       }
-    })
+    });
   });
+}
+
+function playTrack(audioUrl, title) {
+  const urlParams = new URLSearchParams();
+  urlParams.append('audioUrl', audioUrl);
+  urlParams.append('title', title);
+  window.location.href = 'audio_player.html?' + urlParams.toString();
 }
