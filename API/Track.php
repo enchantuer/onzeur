@@ -13,6 +13,7 @@ class Track extends DatabaseElement {
     public string $title;
     public int $duration;
     public string $url;
+    public string|null $image;
 
     public static function fromArray(array $data, int $page=0): static {
         $track = new static($data['id_track'], $page);
@@ -21,6 +22,10 @@ class Track extends DatabaseElement {
         $track->title = $data['title'];
         $track->duration = $data['duration'];
         $track->url = $data['url'];
+        $image = dbGetAlbumCover(self::$db, $track->albumId);
+        if ($image) {
+            $track->image = $image;
+        }
         return $track;
     }
 
@@ -41,6 +46,10 @@ class Track extends DatabaseElement {
         $this->title = $data['title'];
         $this->duration = $data['duration'];
         $this->url = $data['url'];
+        $image = dbGetAlbumCover(self::$db, $this->albumId);
+        if ($image) {
+            $this->image = $image;
+        }
         return $this;
     }
 

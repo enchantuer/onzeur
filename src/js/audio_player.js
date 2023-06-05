@@ -3,18 +3,22 @@ document.addEventListener("DOMContentLoaded", function() {
   const audioSource = document.getElementById('audio-source');
   const trackTitle = document.getElementById('track-title');
 
-  // Récupérer l'URL du fichier audio à partir des paramètres de l'URL
+  // Récupérer l'id de la track à partir des paramètres de l'URL
   const params = new URLSearchParams(document.location.search);
-  const audioUrl = params.get('audioUrl');
-  const trackName = params.get('trackName');
+  const trackId = params.get('id');
+  // Recupere les info de la track
+  ajaxRequest('GET', '../api.php/track/'+trackId, displayTrack);
 
-  // Mettre à jour le titre du morceau
-  trackTitle.textContent = trackName;
+  function displayTrack(data) {
+    // Mettre à jour le titre du morceau
+    trackTitle.textContent = data.title;
+    document.querySelector('#trackImage').src = data.image
 
-  // Charger et jouer le fichier audio
-  if (audioUrl) {
-    audioSource.src = audioUrl;
-    audio.load();
-    audio.play();
+    // Charger et jouer le fichier audio
+    if (data.url) {
+      audioSource.src = data.url;
+      audio.load();
+      audio.play();
+    }
   }
 });

@@ -44,10 +44,23 @@ class Playlist extends DatabaseElement {
     }
 
     public function add() {
-        // TODO: Implement add() method.
+        return dbAddPlaylist(self::$db, $this->name, $this->userId);
+    }
+
+    public function delete() {
+        return dbDeletePlaylist(self::$db, $this->id);
     }
 
     public function update() {
         // TODO: Implement update() method.
     }
+
+    public function addTrack(int $trackId) {
+        return dbAddTrackToPlaylist(self::$db, $trackId, $this->id);
+    }
+
+    public function removeTrack(int $trackId) {
+        return dbDeleteTrackFromPlaylist(self::$db, $trackId, $this->id);
+    }
+
 }

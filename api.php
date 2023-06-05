@@ -98,7 +98,14 @@ function getJSON($request) {
 
     elseif ($request_resource == 'playlist') {
         if (count($request) == 0) {
-            notFound();
+            session_start();
+            if (!(isset($_SESSION['userId']))) {
+                session_destroy();
+                http_response_code(401);
+                echo 'You must be log in as the user first';
+                exit();
+            }
+            return Playlist::fromUser($_SESSION['userId']);
         }
         $userId = array_shift($request);
         checkUserConnection($userId);
@@ -130,6 +137,20 @@ function getJSON($request) {
         return User::fromId($userId);
     }
 
+    elseif ($request_resource == 'favorites') {
+        if (count($request) > 0) {
+            notFound();
+        }
+        session_start();
+        if (!(isset($_SESSION['userId']))) {
+            session_destroy();
+            http_response_code(401);
+            echo 'You must be log in as the user first';
+            exit();
+        }
+        return (new User($_SESSION['userId']))->getFavorites();
+    }
+
     notFound();
 }
 
@@ -137,7 +158,7 @@ function getData($request): string {
     return json_encode(getJSON($request));
 }
 
-function addData($request) {
+function updateData($request) {
     parse_str(file_get_contents('php://input'), $_PUT);
     $request_resource = array_shift($request);
     if ($request_resource == 'user') {
@@ -155,6 +176,96 @@ function addData($request) {
     notFound();
 }
 
+function addData($request) {
+    $request_resource = array_shift($request);
+    session_start();
+    if (!(isset($_SESSION['userId']))) {
+        session_destroy();
+        http_response_code(401);
+        echo 'You must be log in as the user first';
+        exit();
+    }
+    if ($request_resource == 'history') {
+        if (count($request) > 0) {
+            notFound();
+        }
+        if (!isset($_POST['id'])) {
+            return null;
+        }
+        $user = new User($_SESSION['userId']);
+        return json_encode($user->addToHistory(intval($_POST['id'])));
+    }
+
+    elseif ($request_resource == 'favorites') {
+        if (count($request) > 0) {
+            notFound();
+        }
+        if (!isset($_POST['id'])) {
+            return null;
+        }
+        return json_encode((new User($_SESSION['userId']))->addToFavorites($_POST['id']));
+    }
+
+    elseif ($request_resource == 'playlist') {
+        if (count($request) > 0) {
+            checkNotFound($request);
+            $request_resource = array_shift($request);
+            if ($request_resource != 'track') {
+                notFound();
+            }
+            if (!isset($_SESSION['id'])) {
+                return null;
+            }
+            json_encode((new Playlist($_SESSION['userId']))->addTrack($_SESSION['id']));
+        }
+        if (!isset($_POST['id'])) {
+            return null;
+        }
+        return json_encode((new Playlist($_SESSION['userId']))->add());
+    }
+    notFound();
+}
+
+function deleteData($request) {
+    $request_resource = array_shift($request);
+    session_start();
+    if (!(isset($_SESSION['userId']))) {
+        session_destroy();
+        http_response_code(401);
+        echo 'You must be log in as the user first';
+        exit();
+    }
+
+    if ($request_resource == 'favorites') {
+        if (count($request) > 0) {
+            notFound();
+        }
+        if (!isset($_POST['id'])) {
+            return null;
+        }
+        return json_encode((new User($_SESSION['userId']))->removeFromFavorites($_POST['id']));
+    }
+
+    elseif ($request_resource == 'playlist') {
+        if (count($request) > 0) {
+            checkNotFound($request);
+            $request_resource = array_shift($request);
+            if ($request_resource != 'track') {
+                notFound();
+            }
+            if (!isset($_SESSION['id'])) {
+                return null;
+            }
+            json_encode((new Playlist($_SESSION['userId']))->removeTrack($_SESSION['id']));
+        }
+        if (!isset($_POST['id'])) {
+            return null;
+        }
+        return json_encode((new Playlist($_SESSION['userId']))->delete());
+    }
+    notFound();
+}
+
 function getResponse() {
     if (!isset($_SERVER['PATH_INFO'])) {
         return null;
@@ -167,12 +278,13 @@ function getResponse() {
     if ($request_method == 'GET') {
         return getData($request);
     }
-    if ($request_method == 'PUT') {
+    if ($request_method == 'POST') {
         return addData($request);
-//        return db_modify_tweet($conn, $request[0], $_PUT['login'], $_PUT['text']);
+    }
+    if ($request_method == 'PUT') {
+        return updateData($request);
     }
     return null;
 }
 
 echo getResponse();
-//getResponse();

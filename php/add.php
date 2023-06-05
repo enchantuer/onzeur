@@ -12,7 +12,7 @@ function dbAddPlaylist(PDO $db, string $name, int $id_user): bool|int {
 }
 
 function dbAddTrackToFavorites(PDO $db, int $id_track, int $id_user): bool {
-    $query = $db->prepare('INSERT INTO playlist_track (id_playlist, id_track) VALUES ((SELECT id_playlist_favorite from user_ where id_user = :id_user), :id_track)');
+    $query = $db->prepare('INSERT INTO playlist_track_ (id_playlist, id_track) VALUES ((SELECT id_playlist_favorite from user_ where id_user = :id_user), :id_track)');
     return $query->execute([':id_user' => $id_user, ':id_track' => $id_track]);
 }
 
@@ -37,6 +37,33 @@ function dbAddUser(PDO $db, string $first_name, string $name, string $birth_date
     if(!$success) {
         $db->rollBack();
         return false;
+    }
+    $db->commit();
+    return true;
+}
+
+function dbAddTrackToHistory(PDO $db, int $userId, int $trackId): bool {
+    $db->beginTransaction();
+    $query = $db->prepare('INSERT INTO history_ (id_track, id_user) VALUES (:track_id, :user_id)');
+    $bool = $query->execute([':track_id' => $trackId, ':user_id' => $userId]);
+    if (!$bool) {
+        $db->rollBack();
+        return false;
+    }
+    // Check if there are more than 10 tracks for the user
+    $query = $db->prepare('SELECT count(*) FROM history_ WHERE id_user=:user_id');
+    $bool = $query->execute([':user_id' => $userId]);
+    if (!$bool) {
+        $db->rollBack();
+        return false;
+    }
+    if ($query->fetchColumn() > 10) {
+        $query = $db->prepare('DELETE FROM history_ WHERE id_history = (SELECT id_history FROM history_ WHERE id_user=:user_id ORDER BY add_date ASC LIMIT 1)');
+        $bool = $query->execute([':user_id' => $userId]);
+        if (!$bool) {
+            $db->rollBack();
+            return false;
+        }
     }
     $db->commit();
     return true;
