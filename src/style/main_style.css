@@ -317,3 +317,154 @@ p.album_artist{
 </div>
 
 */
+
+#img_item_container {
+  position: relative;
+  aspect-ratio: 1;
+  height: 3vw;
+}
+
+.searchBar {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  border-radius: 3px;
+  margin: 2.5vw 0 0 2em;
+  padding: 0;
+  width: 87%;
+  border: 1px solid var(--light-aeaeae);
+}
+
+.searchBar > input {
+  margin: 0;
+  flex-shrink: 0;
+  flex-grow: 1;
+  height: inherit;
+  border: none;
+}
+.searchBar > input:focus {
+  outline: none;
+}
+
+.searchBar button > div > img {
+  top: 0;
+  left: 0;
+  position: absolute;
+  aspect-ratio: 1;
+  height: 3vw;
+}
+.searchBar button {
+  background-color: var(--light-ffffff);
+  border: none;
+
+}
+.searchBar button.dark {
+  background-color: var(--dark-191922);
+}
+.searchBar button:hover {
+  cursor: pointer;
+}
+.searchBar button:active.dark {
+  background-color: var(--dark-32323d);
+}
+.searchBar button:active {
+  background-color: var(--light-aeaeae);
+}
+
+.select-container > select {
+  appearance: none;
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  outline: none;
+
+  background-color: var(--light-eeeeee);
+  /*background-image: linear-gradient(to top, #cc0d0d, #da3434 33%);*/
+  /*background-color: transparent;*/
+  padding-right: 27px;
+  height: 100%;
+  position: relative;
+  padding-left: 10px;
+  color: var(--light-191919);
+  font-family: inherit;
+}
+.select-container > select.dark {
+  color: var(--dark-ffffff);
+  background-color: var(--dark-191922);
+}
+
+.select-container {
+  position: relative;
+  display: inline-block;
+}
+.select-container, .searchBar>button {
+  border-left: solid 1px var(--light-aeaeae);
+}
+
+/* Styler une bordure autour du select */
+.select-container::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--light-191919); /* Couleur de la flèche */
+}
+.select-container.dark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--dark-ffffff); /* Couleur de la flèche */
+}
+
+.cards {
+  margin: 2em;
+  margin-right: 1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.card {
+  /*flex-grow: 1;*/
+  /*min-width: 10em;*/
+  background-color: var(--light-eeeeee);
+  border: solid 2px var(--light-52525d);
+  padding: 0.5em;
+  border-radius: 5%;
+}
+.card-title {
+  margin: 0 0 0.5em 0;
+}
+.card-body {
+  margin-top: 0.50em;
+}
+.card-footer {
+  font-size: 0.70em;
+  margin-top: 0.75em;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  justify-content: space-between;
+}
+
+
+.icon_dark{
+  display: none;
+}
+.icon_dark.dark{
+  display: revert;
+}
+.icon.dark{
+  display: none;
+}
