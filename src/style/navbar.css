@@ -49,6 +49,10 @@ nav a.dark{
   color: var(--dark-ffffff);
 }
 
+nav a:hover{
+  color: var(--orange);
+}
+
 nav a .nav_icon{
   width: 9vw;
   height: 9vw;
