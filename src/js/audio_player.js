@@ -8,8 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
   const trackId = params.get('id');
   // Recupere les info de la track
   ajaxRequest('GET', '../api.php/track/'+trackId, displayTrack);
-
+  ajaxRequest('POST', '../api.php/history', () => {}, 'id='+trackId);
   function displayTrack(data) {
+    console.log(data);
     // Mettre à jour le titre du morceau
     trackTitle.textContent = data.title;
     document.querySelector('#trackImage').src = data.image
