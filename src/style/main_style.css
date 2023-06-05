@@ -77,7 +77,7 @@ a{
 
 
 
-  .album{
+  .album_details{
     display: flex;
     flex-direction: row;
     text-align: left;
@@ -89,6 +89,7 @@ a{
   img.main_cover{
     width: 12vw;
     height: 12vw;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     border-radius: 3px;
     margin: 0;
   }
@@ -126,6 +127,21 @@ a{
     color: #a2a2ad;
   }
 
+  .track_name_link{
+    margin-left: 1.5vw;
+    padding: 0;
+    font-size: 1vw;
+    text-align: left;
+    color: var(--light-191919);
+  }
+  .track_name_link.dark{
+    color: var(--dark-ffffff);
+  }
+
+  .track_name_link:hover{
+    color: var(--orange);
+  }
+
 
 
   .tracklist{
@@ -159,6 +175,7 @@ a{
     margin: 0;
     padding: 0;
     border: 0;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
   }
   .track img.dark{
     border: 1px solid var(--dark-32323d);
