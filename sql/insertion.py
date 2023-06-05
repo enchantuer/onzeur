@@ -59,13 +59,12 @@ def get_tracks(album):
 
     if response.status_code == 200:
         data = response.json()
-        # print(data)
         tracks = []
         for track in data["data"]:
             tracks.append({
                 "deezer_id": track["id"],
                 "title": track["title"],
-                "link": track["link"],
+                "link": track["preview"],
                 "duration": track["duration"],
                 "track_position": track["track_position"],
                 "disk_number": track["disk_number"]
