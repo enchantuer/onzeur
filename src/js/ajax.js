@@ -12,16 +12,15 @@ function ajaxRequest(type,url,callback,data=null){
     url+='?'+data;
   }
   xhr.open(type,url);
-  xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-
-  xhr.onload=function(){
+  xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');  xhr.onload=function(){
     switch (xhr.status){
       case 200:
       case 201:
         callback(JSON.parse(xhr.responseText));
         break;
       default:
-        httpErrors(xhr.status);
+        httpErrors(/*xhr.status*/xhr.responseText);
+        callback(xhr.status);
     }
   };
 
@@ -33,23 +32,25 @@ function ajaxRequest(type,url,callback,data=null){
 //------------------------------------------------------------------------------
 // Display an error message accordingly to an error code.
 // \param errorCode The error code (HTTP status for example).
-function httpErrors(errorCode)
+function httpErrors(/*errorCode*/text)
 {
-  let messages = {
-    400: 'Requête incorrecte',
-    401: 'Authentifiez vous',
-    403: 'Accès refusé',
-    404: 'Page non trouvée',
-    500: 'Erreur interne du serveur',
-    503: 'Service indisponible'
-  };
+  // let messages = {
+  //   400: 'Requête incorrecte',
+  //   401: 'Authentifiez vous',
+  //   403: 'Accès refusé',
+  //   404: 'Page non trouvée',
+  //   500: 'Erreur interne du serveur',
+  //   503: 'Service indisponible'
+  // };
 
-  var errorElement=document.getElementById('errors');
-  if(errorCode in messages){
-    errorElement.innerHTML='<strong>'+messages[errorCode]+'</strong>';
-    errorElement.style.display='block';
-    setTimeout(function(){
-      errorElement.style.display='none';
-    },5000);
-  }
+  const errorElement=document.getElementById('errors');
+  errorElement.innerText = text;
+  errorElement.style.display='block';
+  // if(errorCode in messages){
+  //   errorElement.innerHTML='<strong>'+messages[errorCode]+'</strong>';
+  //   errorElement.style.display='block';
+    // setTimeout(function(){
+    //   errorElement.style.display='none';
+    // },5000);
+  // }
 }

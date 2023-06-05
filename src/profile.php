@@ -44,11 +44,11 @@
   </div>
 </nav>
 
-<form name="registration" action="" method="post">
+<form name="registration" action="" method="post" id="form">
   <label for="firstname">First Name:</label>
-  <input type="text" name="firstname" id="firstname" placeholder="First Name" required/>
+  <input type="text" name="firstName" id="firstname" placeholder="First Name" required/>
   <label for="lastname">Last Name:</label>
-  <input type="text" name="lastname" id="lastname" placeholder="Last Name" required/>
+  <input type="text" name="lastName" id="lastname" placeholder="Last Name" required/>
   <label for="birthdate">Birthdate:</label>
   <input type="date" name="birthdate" id="birthdate" placeholder="Birthdate" required/>
   <label for="birthdate">Birthdate:</label>
@@ -60,6 +60,7 @@
   <label for="password2">Password Verification:</label>
   <input type="password" name="password2" id="password2" placeholder="Password Verification" />
   <input class="button" type="submit" name="submit" value="Modify"/>
+  <p id="errors" style="display: none">
 </form>
 
 <label id="theme_switch" for="theme">

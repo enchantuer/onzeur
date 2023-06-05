@@ -1,8 +1,11 @@
 <?php
 
 require_once "DatabaseElement.php";
+require_once "ErrorAPI.php";
 
 require_once "php/get.php";
+require_once "php/update.php";
+require_once "php/database.php";
 
 class User extends DatabaseElement {
     protected static string $functionGet = 'dbGetuser';
@@ -24,6 +27,16 @@ class User extends DatabaseElement {
         return $user;
     }
 
+    public static function fromPUT(array& $data, int $page=0): static {
+        $user = new static($data['userId'], $page);
+        $user->firstName = $data['firstName'];
+        $user->lastName = $data['lastName'];
+        $user->email = $data['email'];
+        $user->birthdate = $data['birthdate'];
+        $user->password = $data['password'];
+        return $user;
+    }
+
     public function get(): false|static {
         $data = parent::get();
         if (!$data) {
@@ -42,7 +55,26 @@ class User extends DatabaseElement {
         // TODO: Implement void() method.
     }
 
-    public function update() {
-        // TODO: Implement update() method.
+    public function update(): ErrorAPI|static {
+        $userData = dbGetUser(self::$db, $this->id);
+        if (!isAvailableEmail(self::$db, $this->email) and $userData['email'] != $this->email) {
+            return new ErrorAPI("Email unavailable", 1);
+        }
+        if (strtotime($this->birthdate) > strtotime('now')) {
+            return new ErrorAPI("Invalid birthdate", 2);
+        }
+
+        $userData = dbGetUser(self::$db, $this->id);
+        if ($this->password) {
+            $this->password = crypt($this->password, '$5$rounds=5000$gnsltinfgwlqpazm$');
+        } else {
+            $this->password = $userData['password'];
+        }
+
+        $success = dbUpdateUser(self::$db, $this->id, $this->firstName, $this->lastName, $this->email, $this->birthdate, $this->password);
+        if ($success) {
+            return $this;
+        }
+        return new ErrorAPI("Invalid fields", 3);
     }
 }
