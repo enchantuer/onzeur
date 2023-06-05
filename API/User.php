@@ -42,7 +42,26 @@ class User extends DatabaseElement {
         // TODO: Implement void() method.
     }
 
-    public function update() {
-        // TODO: Implement update() method.
+    public function update(): ErrorAPI|static {
+        $userData = dbGetUser(self::$db, $this->id);
+        if (!isAvailableEmail(self::$db, $this->email) and $userData['email'] != $this->email) {
+            return new ErrorAPI("Email unavailable", 1);
+        }
+        if (strtotime($this->birthdate) > strtotime('now')) {
+            return new ErrorAPI("Invalid birthdate", 2);
+        }
+
+        $userData = dbGetUser(self::$db, $this->id);
+        if ($this->password) {
+            $this->password = crypt($this->password, '$5$rounds=5000$gnsltinfgwlqpazm$');
+        } else {
+            $this->password = $userData['password'];
+        }
+
+        $success = dbUpdateUser(self::$db, $this->id, $this->firstName, $this->lastName, $this->email, $this->birthdate, $this->password);
+        if ($success) {
+            return $this;
+        }
+        return new ErrorAPI("Invalid fields", 3);
     }
 }
