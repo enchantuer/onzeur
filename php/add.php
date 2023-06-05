@@ -12,7 +12,7 @@ function dbAddPlaylist(PDO $db, string $name, int $id_user): bool|int {
 }
 
 function dbAddTrackToFavorites(PDO $db, int $id_track, int $id_user): bool {
-    $query = $db->prepare('INSERT INTO playlist_track (id_playlist, id_track) VALUES ((SELECT id_playlist_favorite from user_ where id_user = :id_user), :id_track)');
+    $query = $db->prepare('INSERT INTO playlist_track_ (id_playlist, id_track) VALUES ((SELECT id_playlist_favorite from user_ where id_user = :id_user), :id_track)');
     return $query->execute([':id_user' => $id_user, ':id_track' => $id_track]);
 }
 

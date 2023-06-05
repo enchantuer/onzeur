@@ -97,12 +97,12 @@ function dbGetUser(PDO $db, int $id): false|array {
 }
 
 function dbGetPlaylistByUser(PDO $db, int $userId): false|array {
-    $query = $db->prepare('SELECT * FROM playlist_ WHERE id_user = :id');
+    $query = $db->prepare('SELECT * FROM playlist_ WHERE id_user = :id EXCEPT (SELECT * FROM playlist_ WHERE name=\'Favorites\')');
     $query->execute([':id' => $userId]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 function dbGetPlaylistByUserAndId(PDO $db, int $userId, int $playlistId): false|array {
-    $query = $db->prepare('SELECT * FROM playlist_ WHERE id_playlist = :playlist_id AND id_user = :user_id');
+    $query = $db->prepare('SELECT * FROM playlist_ WHERE id_playlist = :playlist_id AND id_user = :user_id EXCEPT (SELECT * FROM playlist_ WHERE name=\'Favorites\')');
     $query->execute([':playlist_id' => $playlistId, ':user_id' => $userId]);
     return $query->fetch(PDO::FETCH_ASSOC);
 }
