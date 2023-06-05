@@ -12,10 +12,12 @@ class Album extends DatabaseElement {
     public string $releaseDate;
     public string $imageUrl;
     public string $type;
-    public int $nbOfTrack;
+    public int $nbOfTracks;
+
+    public string|null $artistName;
 
     private function getNumbers(): void {
-        $this->nbOfTrack = dbGetNumberOfTrackByAlbum(self::$db, $this->id);
+        $this->nbOfTracks = dbGetNumberOfTrackByAlbum(self::$db, $this->id);
     }
 
     public static function fromArtist(int|Album $element, int $page=0): false|array {
@@ -29,6 +31,7 @@ class Album extends DatabaseElement {
         $album->imageUrl = $data['image'];
         $album->type = $data['type'];
         $album->getNumbers();
+        $album->artistName = $data['artist_name'] ?? null;
         return $album;
     }
 
@@ -43,6 +46,7 @@ class Album extends DatabaseElement {
         $this->imageUrl = $data['image'];
         $this->releaseDate = $data['release_date'];
         $this->artistId = $data['id_artist'];
+        $this->artistName = $data['artist_name'] ?? null;
         return $this;
     }
 
