@@ -1,14 +1,13 @@
 
 function displayProfile(user) {
-    console.log(user);
     document.getElementById('firstname').value = user.firstName;
     document.getElementById('lastname').value = user.lastName;
     document.getElementById('birthdate').value = user.birthdate;
     document.getElementById('email').value = user.email;
-    getAge();
+    getAge(user);
 }
 
-function getAge(){
+function getAge(user){
     let birthdate= new Date(user.birthdate);
     let today = new Date();
     let age = today.getFullYear() - birthdate.getFullYear();
@@ -19,9 +18,25 @@ function getAge(){
 }
 
 
-ajaxRequest('GET', '../api.php/user', displayProfile(user));
+ajaxRequest('GET', '../api.php/user', displayProfile);
 
-ajaxRequest('PUT', '../api.php/user', displayProfile(user), `first_name=${user.firstName}&last_name=${user.lastName}&birth_date=${user.birthdate}&email=${user.email}&password=${user.password}`);
+const form = document.querySelector("form");
+form.addEventListener('submit', event => {
+    event.preventDefault();
+    const firstName = document.querySelector('#firstname').value;
+    const lastName = document.querySelector('#lastname').value;
+    const birthdate = document.querySelector('#birthdate').value;
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#password').value;
+    ajaxRequest('PUT', '../api.php/user', updateResponse, `firstName=${firstName}&lastName=${lastName}&birthdate=${birthdate}&email=${email}&password=${password}`);
+
+});
 
 
-
+function updateResponse(status) {
+    if (status === 400) {
+        ajaxRequest('GET', '../api.php/user', displayProfile);
+    } else {
+        document.querySelector('#errors').style.display='none';
+    }
+}
