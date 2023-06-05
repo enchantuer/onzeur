@@ -45,6 +45,88 @@ a{
   font-weight: bold;
 }
 
+
+
+
+.album_details{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin-top: 15vw;
+  padding: 1vw 0;
+}
+
+img.main_cover{
+  width: 50vw;
+  height: 50vw;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border-radius: 3px;
+  margin: 0;
+}
+
+p.album_title{
+  margin: 1vw;
+}
+p.album_artist{
+  margin: 1vw;
+  font-weight: normal;
+  font-size: 4vw;
+  color: var(--light-52525d);
+}
+
+
+.tracklist{ 
+  margin-bottom: 20vw;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.track{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+}
+
+.track img{
+  width: 15vw;
+  height: 15vw;
+  margin: 1vw 6vw;
+  padding: 0;
+  border: 0;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.track img.dark{
+  border: 1px solid var(--dark-32323d);
+  border-radius: 3px;
+}
+
+.track p{
+  margin: 0;
+  margin-left: 1.2vw;
+  padding: 0;
+  font-size: 3vw;
+  color: var(--light-191919);
+}
+
+.track_name_link{
+  color: var(--light-191919);
+}
+.track_name_link.dark{
+  color: var(--dark-ffffff);
+}
+
+.track_name_link:hover{
+  color: var(--orange);
+}
+
+
 /*for desktops*/
 @media/* only*/ screen and (min-device-width: 768px){
   body{
