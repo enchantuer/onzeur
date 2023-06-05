@@ -41,7 +41,8 @@ function isAllowedUser(int $wantedId): bool {
     return true;
 }
 
-function getJSON($request, $request_resource) {
+function getJSON($request) {
+    $request_resource = array_shift($request);
     $page = $_GET['page'] ?? 0;
 
     if ($request_resource == 'track') {
@@ -132,8 +133,26 @@ function getJSON($request, $request_resource) {
     notFound();
 }
 
-function getData($request, $request_resource): string {
-    return json_encode(getJSON($request, $request_resource));
+function getData($request): string {
+    return json_encode(getJSON($request));
+}
+
+function addData($request) {
+    parse_str(file_get_contents('php://input'), $_PUT);
+    $request_resource = array_shift($request);
+    if ($request_resource == 'user') {
+        if (count($request) > 0) {
+            notFound();
+        }
+        session_start();
+        $_PUT['userId'] = $_SESSION['userId'];
+        $result = (User::fromPUT($_PUT))->update();
+        if (is_a($result, 'ErrorAPI')) {
+            $result->fetchError();
+        }
+        return json_encode($result);
+    }
+    notFound();
 }
 
 function getResponse() {
@@ -143,16 +162,15 @@ function getResponse() {
     DatabaseElement::connect();
     $request = substr($_SERVER['PATH_INFO'], 1);
     $request = explode('/', $request);
-    $request_resource = array_shift($request);
     $request_method = $_SERVER['REQUEST_METHOD'];
 
     if ($request_method == 'GET') {
-        return getData($request, $request_resource);
+        return getData($request);
     }
-//    if ($request_method == 'PUT') {
-    //        parse_str(file_get_contents('php://input'), $_PUT);
+    if ($request_method == 'PUT') {
+        return addData($request);
 //        return db_modify_tweet($conn, $request[0], $_PUT['login'], $_PUT['text']);
-//    }
+    }
     return null;
 }
 

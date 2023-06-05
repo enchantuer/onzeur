@@ -1,8 +1,11 @@
 <?php
 
 require_once "DatabaseElement.php";
+require_once "ErrorAPI.php";
 
 require_once "php/get.php";
+require_once "php/update.php";
+require_once "php/database.php";
 
 class User extends DatabaseElement {
     protected static string $functionGet = 'dbGetuser';
@@ -21,6 +24,16 @@ class User extends DatabaseElement {
         $user->birthdate = $data['birth_date'];
         $user->password = $data['password'];
         $user->favoriteId = $data['id_playlist_favorite'];
+        return $user;
+    }
+
+    public static function fromPUT(array& $data, int $page=0): static {
+        $user = new static($data['userId'], $page);
+        $user->firstName = $data['firstName'];
+        $user->lastName = $data['lastName'];
+        $user->email = $data['email'];
+        $user->birthdate = $data['birthdate'];
+        $user->password = $data['password'];
         return $user;
     }
 
