@@ -41,3 +41,30 @@ function dbAddUser(PDO $db, string $first_name, string $name, string $birth_date
     $db->commit();
     return true;
 }
+
+function dbAddTrackToHistory(PDO $db, int $userId, int $trackId): bool {
+    $db->beginTransaction();
+    $query = $db->prepare('INSERT INTO history_ (id_track, id_user) VALUES (:track_id, :user_id)');
+    $bool = $query->execute([':track_id' => $trackId, ':user_id' => $userId]);
+    if (!$bool) {
+        $db->rollBack();
+        return false;
+    }
+    // Check if there are more than 10 tracks for the user
+    $query = $db->prepare('SELECT count(*) FROM history_ WHERE id_user=:user_id');
+    $bool = $query->execute([':user_id' => $userId]);
+    if (!$bool) {
+        $db->rollBack();
+        return false;
+    }
+    if ($query->fetchColumn() > 10) {
+        $query = $db->prepare('DELETE FROM history_ WHERE id_history = (SELECT id_history FROM history_ WHERE id_user=:user_id ORDER BY add_date ASC LIMIT 1)');
+        $bool = $query->execute([':user_id' => $userId]);
+        if (!$bool) {
+            $db->rollBack();
+            return false;
+        }
+    }
+    $db->commit();
+    return true;
+}
