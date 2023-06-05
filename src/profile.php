@@ -60,6 +60,7 @@
   <label for="password2">Password Verification:</label>
   <input type="password" name="password2" id="password2" placeholder="Password Verification" />
   <input class="button" type="submit" name="submit" value="Modify"/>
+  <p id="errors" style="display: none">
 </form>
 
 <label id="theme_switch" for="theme">
