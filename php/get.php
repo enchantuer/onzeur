@@ -113,4 +113,10 @@ function dbGetUserByEmail(PDO $db, string $email) {
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 
+function dbGetAlbumCover(PDO $db, int $id) {
+    $query = $db->prepare('SELECT image FROM album_ WHERE id_album = :id');
+    $query->execute([':id' => $id]);
+    return $query->fetchColumn();
+}
+
 // TODO : GET history
