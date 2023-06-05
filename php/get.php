@@ -55,13 +55,13 @@ function dbGetAlbumsByArtist(PDO $db, int $id, int $offset=0): false|array {
 }
 
 function dbGetTracksByTitle(PDO $db, string $title, int $offset=0): false|array {
-    $query = $db->prepare('SELECT * FROM track_ WHERE LOWER(title) LIKE :title ORDER BY title LIMIT 20 OFFSET :offset');
+    $query = $db->prepare('SELECT t.id_track, t.title, t.duration, t.url, t.id_album, t.id_artist, a.name artist_name, ab.title album_title FROM track_ t JOIN artist_ a USING(id_artist) JOIN album_ ab USING(id_album) WHERE LOWER(t.title) LIKE :title ORDER BY t.title LIMIT 20 OFFSET :offset');
     $query->execute([':title' => "%$title%", ':offset' => $offset]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function dbGetAlbumsByTitle(PDO $db, string $title, int $offset=0): false|array {
-    $query = $db->prepare('SELECT * FROM album_ NATURAL JOIN music_type_ WHERE LOWER(title) LIKE :title ORDER BY title LIMIT 20 OFFSET :offset');
+    $query = $db->prepare('SELECT album_.id_album, album_.title, album_.release_date, album_.image, album_.id_artist, music_type_.id_type, music_type_.type, a.name artist_name FROM album_ NATURAL JOIN music_type_ JOIN artist_ a USING(id_artist) WHERE LOWER(title) LIKE :title ORDER BY title LIMIT 20 OFFSET :offset');
     $query->execute([':title' => "%$title%", ':offset' => $offset]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -79,13 +79,13 @@ function dbGetNumberOfTrackByAlbum(PDO $db, int $id): false|int {
 }
 
 function dbGetNumberOfTrackByArtist(PDO $db, int $id): false|int {
-    $query = $db->prepare('SELECT count(*) FROM album_ WHERE id_artist = :id');
+    $query = $db->prepare('SELECT count(*) FROM track_ WHERE id_artist = :id');
     $query->execute([':id' => $id]);
     return $query->fetchColumn();
 }
 
 function dbGetNumberOfAlbumByArtist(PDO $db, int $id): false|int {
-    $query = $db->prepare('SELECT count(*) FROM album_ WHERE id_album = :id');
+    $query = $db->prepare('SELECT count(*) FROM album_ WHERE id_artist = :id');
     $query->execute([':id' => $id]);
     return $query->fetchColumn();
 }
