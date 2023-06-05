@@ -1,10 +1,10 @@
 <html>
 <head>
-  <title>Profile</title>
+  <title>User Info</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style/main_style.css"/>
   <script src="js/ajax.js" defer></script>
-  <script src="js/album_details.js" defer></script>
+  <script src="js/user_info.js" defer></script>
   <script src="js/theme_switch.js" defer></script>
 </head>
 <body>
@@ -42,7 +42,22 @@
 </nav>
 
 <main>
-  <p>user informations</p>
+  <h1>User Info</h1>
+  <form class="user_info" name="user_info" action="" method="post">
+    <label for="firstname">First Name:</label>
+    <input type="text" name="firstname" id="first-name" readonly/>
+    <label for="lastname">Last Name:</label>
+    <input type="text" name="lastname" id="last-name" readonly/>
+    <label for="birthdate">Birthdate:</label>
+    <input type="date" name="birthdate" id="birthdate" readonly/>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" readonly/>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" readonly/>
+
+    <input type="button" name="edit" id="edit" value="Edit"/>
+    <input type="button" name="save" id="save" value="Save"/>
+  </form>
 </main>
 
 <label id="theme_switch" for="theme">
