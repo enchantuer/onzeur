@@ -2,34 +2,40 @@
 <head>
   <title>Artist</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style/main_style.css"/>
   <script src="js/ajax.js" defer></script>
   <script src="js/artist_details.js" defer></script>
+  <script src="js/theme_switch.js" defer></script>
 </head>
 <body>
 
 <nav>
+  <div class="logo"></div>
   <div class="nav_item">
     <a href="#">
-      <img src="icons/light/home1.svg" alt="home">
+      <img class="nav_icon" src="icons/broken/home_191919.svg" alt="home">
+      <img class="nav_icon_dark" src="icons/broken/home_ffffff.svg" alt="home">
       <p>Home</p>
     </a>
   </div>
   <div class="nav_item">
     <a href="#">
-      <img src="icons/light/search1.svg" alt="search">
+      <img class="nav_icon" src="icons/broken/search_191919.svg" alt="search">
+      <img class="nav_icon_dark" src="icons/broken/search_ffffff.svg" alt="search">
       <p>Search</p>
     </a>
   </div>
   <div class="nav_item">
     <a href="#">
-      <img src="icons/light/playlists1.svg" alt="playlists">
+      <img class="nav_icon" src="icons/broken/playlists_191919.svg" alt="playlists">
+      <img class="nav_icon_dark" src="icons/broken/playlists_ffffff.svg" alt="playlists">
       <p>Playlists</p>
     </a>
   </div>
   <div class="nav_item">
-    <a href="profile.php">
-      <img src="icons/light/profile1.svg" alt="profile">
+    <a href="#">
+      <img class="nav_icon" src="icons/broken/profile_191919.svg" alt="profile">
+      <img class="nav_icon_dark" src="icons/broken/profile_ffffff.svg" alt="profile">
       <p>Profile</p>
     </a>
   </div>
@@ -37,18 +43,25 @@
 
 <main>
   <div class="artist">
-    <div class="artistinfo">
-      <p class="artist-name" id="artist-name"><!--ici--></p>
-      <p class="album_title" id="album-name"><!--ici--></p>
-      <p class="album_year" id="release-date"><!--ici--></p>
+    <img class="artist_picture" id="artist-picture" src="#" alt="artist">
+    <div class="artist_info">
+      <p class="artist_name" id="artist-name"><!--ici--></p>
+      <p class="artist_type" id="artist-type"><!--ici--></p>
     </div>
   </div>
 
-  <div class="tracklist" id="tracklist-container">
+  <div class="album_list" id="album-list-container">
     <!--ici-->
   </div>
   
 </main>
+
+<label id="theme_switch" for="theme">
+  <img class="moon" src="icons/broken/moon_191919.svg" alt="moon"/>
+  <img class="sun" src="icons/broken/sun_ffffff.svg" alt="sun"/>
+  <input type="checkbox" id="theme"/>
+  <div class="slider round"></div>
+</label>
 
 </body>
 </html>
