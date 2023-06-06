@@ -12,7 +12,7 @@ function dbConnect() {
     return $db;
 }
 
-function dbVerifyPassword(PDO $conn, string $email, string $password) : bool  {
+function dbVerifyPassword(PDO $conn, string $email, string $password) : false|int  {
     $statement = $conn->prepare("SELECT id_user, password FROM user_ WHERE email=:email");
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->execute();
