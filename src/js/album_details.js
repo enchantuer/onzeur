@@ -11,8 +11,9 @@ if(albumId){
       console.log(artist);
       document.getElementById('artist-name').textContent = artist.name;
     });
-    document.getElementById('release-date').textContent = album.releaseData;
+    document.getElementById('release-date').textContent = album.releaseDate;
     document.getElementById('album-cover').src = album.imageUrl;
+    document.getElementById('album-type').textContent = album.type;
 
     // Mettre à jour la liste des titres
     ajaxRequest('GET', '../api.php/track/album/' + albumId, function(trackList) {
@@ -22,8 +23,7 @@ if(albumId){
         const track = trackList[i];
         const trackHtml = '<div class="track">' +
             `<img src="${album.imageUrl}" alt="album">` +
-            // `<p class="track_name" onclick="playTrack('${track.audioUrl}','${track.title}')">` + (i+1) + '. ' + track.title + '</p>' +
-            `<a href="audio_player.html?id=${track.id}" class="track_name_link">${(i+1)}. ${track.title}</a>` +
+            `<a href="audio_player.php?id=${track.id}" class="track_name_link">${(i+1)}. ${track.title}</a>` +
             '</div>';
         trackListContainer.insertAdjacentHTML('beforeend', trackHtml);
       }
