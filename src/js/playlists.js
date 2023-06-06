@@ -5,7 +5,7 @@ function displayPlaylists(playlistList) {
     for (let i = 0; i < playlistList.length; i++) {
         const playlist = playlistList[i];
         const playlistHtml = '<div class="playlist">' +
-            `<a href="playlist_details.html?id=${playlist.id}" class="playlist_name_link">${playlist.name} - ${playlist.creationDate}</a>` +
+            `<a href="playlist_details.php?id=${playlist.id}" class="playlist_name_link">${playlist.name} - ${playlist.creationDate}</a>` +
             '</div>';
         playlistListContainer.insertAdjacentHTML('beforeend', playlistHtml);
     }
