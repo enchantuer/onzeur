@@ -165,7 +165,7 @@ p.album_artist{
     text-align: left;
     margin: 5vw 5vw 0 5vw;
     padding: 1vw 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--light-aeaeae);
   }
 
   img.main_cover{
@@ -307,6 +307,109 @@ p.album_artist{
     font-size: 1vw;
     text-align: left;
   }
+
+  .cards{
+    /* margin: 2em; */
+    /* margin-right: 1em; */
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* flex-wrap: wrap; */
+    /* gap: 1em; */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: top;
+    width: 100%;
+  }
+  .card-link{
+    /*flex-grow: 1;*/
+    /*min-width: 10em;*/
+    /* background-color: var(--light-eeeeee);
+    border: solid 2px var(--light-52525d);
+    padding: 0.5em;
+    border-radius: 5%; */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 16vw;
+    height: 20vw;
+    color: var(--light-191919);
+  }
+  .card-link.dark{
+    color: var(--dark-ffffff);
+  }
+  .card-link:hover{
+    color: var(--orange);
+  }
+
+  #artistes{
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    margin: 0 5vw;
+    padding-bottom: 2.5vw;
+    width: auto;
+    border-bottom: 1px solid var(--light-aeaeae);
+    justify-content: space-between;
+  }
+  #artistes.dark{
+    border-bottom: 1px solid var(--dark-32323d);
+  }
+
+  #albums{
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    margin: 0 5vw;
+    padding-bottom: 2.5vw;
+    width: auto;
+    border-bottom: 1px solid var(--light-aeaeae);
+    justify-content: space-between;
+  }
+  #albums.dark{
+    border-bottom: 1px solid var(--dark-32323d);
+  }
+
+  #tracks{
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    margin: 0 5vw;
+    padding-bottom: 2.5vw;
+    width: auto;
+    border-bottom: 1px solid var(--light-aeaeae);
+    justify-content: space-between;
+  }
+  #tracks.dark{
+    border-bottom: 1px solid var(--dark-32323d);
+  }
+
+  .card img{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    width: 10vw;
+    height: 10vw;
+  }
+
+  .card-title {
+    margin: 0 0 0.5em 0;
+  }
+  .card-body {
+    margin-top: 0.50em;
+  }
+  .card-footer {
+    font-size: 0.70em;
+    margin-top: 0.75em;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    justify-content: space-between;
+  }
 }
 
 /*
@@ -425,37 +528,6 @@ p.album_artist{
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 5px solid var(--dark-ffffff); /* Couleur de la flèche */
-}
-
-.cards {
-  margin: 2em;
-  margin-right: 1em;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1em;
-}
-.card {
-  /*flex-grow: 1;*/
-  /*min-width: 10em;*/
-  background-color: var(--light-eeeeee);
-  border: solid 2px var(--light-52525d);
-  padding: 0.5em;
-  border-radius: 5%;
-}
-.card-title {
-  margin: 0 0 0.5em 0;
-}
-.card-body {
-  margin-top: 0.50em;
-}
-.card-footer {
-  font-size: 0.70em;
-  margin-top: 0.75em;
-  display: flex;
-  flex-direction: row;
-  gap: 0.5em;
-  justify-content: space-between;
 }
 
 
