@@ -1,6 +1,7 @@
-ajaxRequest('GET', '../api.php/playlist', function(playlistList) {
+function displayPlaylists(playlistList) {
     console.log(playlistList);
-    const playlistListContainer = document.getElementById('playlist-list-container');
+    const playlistListContainer = document.getElementById('playlist-list');
+    playlistListContainer.innerHTML = '';
     for (let i = 0; i < playlistList.length; i++) {
         const playlist = playlistList[i];
         const playlistHtml = '<div class="playlist">' +
@@ -8,7 +9,9 @@ ajaxRequest('GET', '../api.php/playlist', function(playlistList) {
             '</div>';
         playlistListContainer.insertAdjacentHTML('beforeend', playlistHtml);
     }
-});
+}
+
+ajaxRequest('GET', '../api.php/playlist', displayPlaylists);
 
 ajaxRequest('GET', '../api.php/favorites', function(favorites) {
     console.log(favorites);
@@ -19,7 +22,13 @@ const form = document.querySelector("form");
 form.addEventListener('submit', event => {
     event.preventDefault();
     const name = document.getElementById('playlist_name').value;
-    ajaxRequest('POST', '../api.php/playlist', function(playlist){
-    console.log(playlist);
-   "name ="+ name;}) 
+    ajaxRequest(
+        'POST',
+        '../api.php/playlist',
+        function(playlist){
+            console.log(playlist);
+            ajaxRequest('GET', '../api.php/playlist', displayPlaylists);
+        },
+        "name="+ name
+    ) 
 });

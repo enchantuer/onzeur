@@ -7,7 +7,7 @@ $conn = dbConnect();
 session_start();
 
 if (isset($_SESSION['userId']) && isValidUser($conn, $_SESSION['userId'])) {
-    header('Location: home.php');
+    header('Location: home.html');
     exit();
 }
 ?>
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo 'Incorrect Credentials';
     } else {
         $_SESSION['userId'] = $userId;
-        header('Location: home.php');
+        header('Location: home.html');
         exit();
     }
 }

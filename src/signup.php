@@ -7,7 +7,7 @@ $conn = dbConnect();
 session_start();
 
 if (isset($_SESSION['userId']) && isValidUser($conn, $_SESSION['userId'])) {
-    header('Location: home.php');
+    header('Location: home.html');
     exit();
 }
 ?>

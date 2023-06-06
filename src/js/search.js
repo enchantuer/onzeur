@@ -17,25 +17,37 @@ searchBar.addEventListener('submit', event => {
     }
 });
 
-function generateCard(titleText, imgSrc, bodyText, footerContent) {
+function generateCard(titleText, imgSrc, bodyText, footerContent,linkUrl){
     const card = document.createElement("div");
     card.className = 'card';
+
+    const link = document.createElement("a");
+    link.href = linkUrl;
+    link.className = 'card-link';
+    card.appendChild(link);
+
     const title = document.createElement('h3');
     title.className = 'card-title';
     title.innerHTML = titleText;
+    link.appendChild(title);
     const image = document.createElement('img');
     image.className = 'card-img';
     image.src = imgSrc;
+    link.appendChild(image);
     const body = document.createElement('div');
     body.className = 'card-body';
     body.innerHTML = bodyText;
+    link.appendChild(body);
     const footer = document.createElement('div');
     footer.className = 'card-footer';
     footer.innerHTML = footerContent;
-    card.appendChild(title);
-    card.appendChild(image);
-    card.appendChild(body);
-    card.appendChild(footer);
+    link.appendChild(footer);
+
+    // card.appendChild(link);
+    // card.appendChild(title);
+    // card.appendChild(image);
+    // card.appendChild(body);
+    // card.appendChild(footer);
     return card
 }
 
@@ -50,7 +62,8 @@ function displayArtistes(data) {
             'Artist',
             `<span>Albums : ${artist.nbOfAlbums}</span>
                 <span>|</span>
-                <span>Tracks : ${artist.nbOfTracks}</span>`
+                <span>Tracks : ${artist.nbOfTracks}</span>`,
+            `artist_details.html?id=${artist.id}`
         );
         // card.childNodes.item(0).textContent = artist.name;
         // // card.childNodes.item(1).textContent = data.name;
@@ -65,7 +78,11 @@ function displayArtistes(data) {
         // footer.appendChild(span1);
         // footer.appendChild(span2);
         // footer.appendChild(span3);
+        
         artistCards.appendChild(card);
+        // content="<a href='album_details.html?id="+artist.id+">"+card+"</a>"
+        // artistCards.innerHTML+=content;
+        // artistCards.appendChild(content);
     }
 }
 
@@ -77,9 +94,10 @@ function displayAlbum(data) {
             album.title,
             album.imageUrl,
             'Album',
-            `<span>Artist : ${album.artistName}</span>
+            `<span>${album.artistName}</span>
                 <span>|</span>
-                <span>Tracks : ${album.nbOfTracks}</span>`
+                <span>Tracks : ${album.nbOfTracks}</span>`,
+            `album_details.html?id=${album.id}`
         );
         // const card = generateCard();
         // card.childNodes.item(0).textContent = album.name;
@@ -107,9 +125,10 @@ function displayTrack(data) {
             track.title,
             track.image,
             'Track',
-            `<span>Artist : ${track.artistName}</span>
+            `<span>${track.artistName}</span>
                 <span>|</span>  
-                <span>Album : ${track.albumName}</span>`
+                <span>Album : ${track.albumName}</span>`,
+            `track_details.html?id=${track.id}`
         );
         // const card = generateCard();
         // card.childNodes.item(0).textContent = track.name;
