@@ -1,10 +1,15 @@
+<?php
+require_once '../php/connection.php';
+checkConnection();
+?>
+
 <html>
 <head>
-  <title>Track</title>
+  <title>Playlists</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style/main_style.css"/>
   <script src="js/ajax.js" defer></script>
-  <script src="js/audio_player.js" defer></script>
+  <script src="js/playlists.js" defer></script>
   <script src="js/theme_switch.js" defer></script>
 </head>
 <body>
@@ -12,21 +17,21 @@
 <nav>
   <div class="logo"></div>
   <div class="nav_item">
-    <a href="home.html">
+    <a href="home.php">
       <img class="nav_icon" src="icons/broken/home_191919.svg" alt="home">
       <img class="nav_icon_dark" src="icons/broken/home_ffffff.svg" alt="home">
       <p>Home</p>
     </a>
   </div>
   <div class="nav_item">
-    <a href="search.html">
+    <a href="search.php">
       <img class="nav_icon" src="icons/broken/search_191919.svg" alt="search">
       <img class="nav_icon_dark" src="icons/broken/search_ffffff.svg" alt="search">
       <p>Search</p>
     </a>
   </div>
   <div class="nav_item">
-    <a href="playlists.html">
+    <a href="#">
       <img class="nav_icon" src="icons/broken/playlists_191919.svg" alt="playlists">
       <img class="nav_icon_dark" src="icons/broken/playlists_ffffff.svg" alt="playlists">
       <p>Playlists</p>
@@ -42,13 +47,29 @@
 </nav>
 
 <main>
-  <h1 id="track-title"><!--titre--></h1>
-  <img src="" alt="album" id="trackImage" style="margin-bottom: 1em">
-  <div class="audio-player">
-    <audio id="audio" controls>
-      <source id="audio-source" type="audio/mp3">
-    </audio>
+
+  <div class="favorites">
+    <a href="favorites.html">
+      <img class="main_cover" src="icons/broken/playlists_191919.svg">
+      <p class="favorites_title" id="favorites-name">Favorites</p>
+    </a>
   </div>
+
+  <div class="new_playlist">
+    <p> New Playlist</p>
+    <form class="new_playlist_form" id="new-playlist-form" action="" method="post">
+      <input type="text" name="playlist_name" id="playlist_name" placeholder="New playlist name">
+      <input type="submit" value="Create">
+    </form>
+  </div>
+    
+  <div class="playlists" id="playlist-list-container">
+    <p>Playlists</p>
+    <div class="playlists_title" id="playlist-list">
+      <!--ici-->
+    </div>
+  </div>
+  
 </main>
 
 <label id="theme_switch" for="theme">

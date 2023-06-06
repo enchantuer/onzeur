@@ -2,12 +2,12 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include_once '../php/database.php';
+require_once '../php/database.php';
 $conn = dbConnect();
 session_start();
 
 if (isset($_SESSION['userId']) && isValidUser($conn, $_SESSION['userId'])) {
-    header('Location: home.html');
+    header('Location: home.php');
     exit();
 }
 ?>
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo 'Incorrect Credentials';
     } else {
         $_SESSION['userId'] = $userId;
-        header('Location: home.html');
+        header('Location: home.php');
         exit();
     }
 }

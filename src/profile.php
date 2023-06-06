@@ -1,6 +1,11 @@
+<?php
+require_once '../php/connection.php';
+checkConnection();
+?>
+
 <html>
 <head>
-  <title>Sign Up</title>
+  <title>Profile</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style/main_style.css"/>
   <script src="js/ajax.js" defer></script>
@@ -15,21 +20,21 @@
 <nav>
   <div class="logo"></div>
   <div class="nav_item">
-    <a href="home.html">
+    <a href="home.php">
       <img class="nav_icon" src="icons/broken/home_191919.svg" alt="home">
       <img class="nav_icon_dark" src="icons/broken/home_ffffff.svg" alt="home">
       <p>Home</p>
     </a>
   </div>
   <div class="nav_item">
-    <a href="search.html">
+    <a href="search.php">
       <img class="nav_icon" src="icons/broken/search_191919.svg" alt="search">
       <img class="nav_icon_dark" src="icons/broken/search_ffffff.svg" alt="search">
       <p>Search</p>
     </a>
   </div>
   <div class="nav_item">
-    <a href="playlists.html">
+    <a href="playlists.php">
       <img class="nav_icon" src="icons/broken/playlists_191919.svg" alt="playlists">
       <img class="nav_icon_dark" src="icons/broken/playlists_ffffff.svg" alt="playlists">
       <p>Playlists</p>
@@ -46,21 +51,22 @@
 
 <form name="registration" action="" method="post" id="form">
   <label for="firstname">First Name:</label>
-  <input type="text" name="firstName" id="firstname" placeholder="First Name" required/>
+  <input type="text" name="firstName" id="firstName" placeholder="First Name" required readonly/>
   <label for="lastname">Last Name:</label>
-  <input type="text" name="lastName" id="lastname" placeholder="Last Name" required/>
+  <input type="text" name="lastName" id="lastName" placeholder="Last Name" required readonly/>
   <label for="birthdate">Birthdate:</label>
-  <input type="date" name="birthdate" id="birthdate" placeholder="Birthdate" required/>
-  <label for="birthdate">Birthdate:</label>
+  <input type="date" name="birthdate" id="birthdate" placeholder="Birthdate" required readonly/>
+  <label for="birthdate">Age:</label>
   <input type="number" name="age" id="age" placeholder="Age" disabled/>
   <label for="email">Email:</label>
-  <input type="email" name="email" id="email" placeholder="Email" required/>
+  <input type="email" name="email" id="email" placeholder="Email" required readonly/>
   <label for="password">Password:</label>
-  <input type="password" name="password" id="password" placeholder="New Password" />
+  <input type="password" name="password" id="password" placeholder="New Password" readonly/>
   <label for="password2">Password Verification:</label>
-  <input type="password" name="password2" id="password2" placeholder="Password Verification" />
-  <input class="button" type="submit" name="submit" value="Modify"/>
-  <p id="errors" style="display: none">
+  <input type="password" name="password2" id="password2" placeholder="Password Verification" readonly/>
+  <input class="button" type="button" name="edit" id="edit" value="Edit"/>
+  <input class="button" type="submit" name="submit" value="Save"/>
+  <p id="errors" style="display: none"></p>
 </form>
 
 <label id="theme_switch" for="theme">

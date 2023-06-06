@@ -1,10 +1,15 @@
+<?php
+require_once '../php/connection.php';
+checkConnection();
+?>
+
 <html>
 <head>
-  <title>User Info</title>
+  <title>Track</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style/main_style.css"/>
   <script src="js/ajax.js" defer></script>
-  <script src="js/user_info.js" defer></script>
+  <script src="js/audio_player.js" defer></script>
   <script src="js/theme_switch.js" defer></script>
 </head>
 <body>
@@ -12,28 +17,28 @@
 <nav>
   <div class="logo"></div>
   <div class="nav_item">
-    <a href="#">
+    <a href="home.php">
       <img class="nav_icon" src="icons/broken/home_191919.svg" alt="home">
       <img class="nav_icon_dark" src="icons/broken/home_ffffff.svg" alt="home">
       <p>Home</p>
     </a>
   </div>
   <div class="nav_item">
-    <a href="#">
+    <a href="search.php">
       <img class="nav_icon" src="icons/broken/search_191919.svg" alt="search">
       <img class="nav_icon_dark" src="icons/broken/search_ffffff.svg" alt="search">
       <p>Search</p>
     </a>
   </div>
   <div class="nav_item">
-    <a href="#">
+    <a href="playlists.php">
       <img class="nav_icon" src="icons/broken/playlists_191919.svg" alt="playlists">
       <img class="nav_icon_dark" src="icons/broken/playlists_ffffff.svg" alt="playlists">
       <p>Playlists</p>
     </a>
   </div>
   <div class="nav_item">
-    <a href="#">
+    <a href="profile.php">
       <img class="nav_icon" src="icons/broken/profile_191919.svg" alt="profile">
       <img class="nav_icon_dark" src="icons/broken/profile_ffffff.svg" alt="profile">
       <p>Profile</p>
@@ -42,22 +47,17 @@
 </nav>
 
 <main>
-  <h1>User Info</h1>
-  <form class="user_info" name="user_info" action="" method="post">
-    <label for="firstname">First Name:</label>
-    <input type="text" name="firstname" id="first-name" readonly/>
-    <label for="lastname">Last Name:</label>
-    <input type="text" name="lastname" id="last-name" readonly/>
-    <label for="birthdate">Birthdate:</label>
-    <input type="date" name="birthdate" id="birthdate" readonly/>
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email" readonly/>
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password" readonly/>
-
-    <input type="button" name="edit" id="edit" value="Edit"/>
-    <input type="button" name="save" id="save" value="Save"/>
-  </form>
+  <h1 id="track-title"><!--titre--></h1>
+  <img src="" alt="album" id="trackImage">
+  <div class="audio-player">
+    <audio id="audio" controls>
+      <source id="audio-source" type="audio/mp3">
+    </audio>
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+    <button id="play-pause-button" class="play"></button>
+  </div>
 </main>
 
 <label id="theme_switch" for="theme">

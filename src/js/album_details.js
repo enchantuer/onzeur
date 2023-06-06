@@ -35,5 +35,5 @@ function playTrack(audioUrl, title) {
   const urlParams = new URLSearchParams();
   urlParams.append('audioUrl', audioUrl);
   urlParams.append('title', title);
-  window.location.href = 'audio_player.html?' + urlParams.toString();
+  window.location.href = 'audio_player.php?' + urlParams.toString();
 }

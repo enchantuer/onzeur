@@ -1,3 +1,8 @@
+<?php
+require_once '../php/connection.php';
+checkConnection();
+?>
+
 <html>
 <head>
   <title>Home</title>
@@ -19,14 +24,14 @@
     </a>
   </div>
   <div class="nav_item">
-    <a href="search.html">
+    <a href="search.php">
       <img class="nav_icon" src="icons/broken/search_191919.svg" alt="search">
       <img class="nav_icon_dark" src="icons/broken/search_ffffff.svg" alt="search">
       <p>Search</p>
     </a>
   </div>
   <div class="nav_item">
-    <a href="playlists.html">
+    <a href="playlists.php">
       <img class="nav_icon" src="icons/broken/playlists_191919.svg" alt="playlists">
       <img class="nav_icon_dark" src="icons/broken/playlists_ffffff.svg" alt="playlists">
       <p>Playlists</p>

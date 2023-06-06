@@ -1,20 +1,21 @@
+document.querySelector('#birthdate').max = new Date().toLocaleDateString('fr-ca');
 
 function displayProfile(user) {
     document.getElementById('firstname').value = user.firstName;
     document.getElementById('lastname').value = user.lastName;
     document.getElementById('birthdate').value = user.birthdate;
     document.getElementById('email').value = user.email;
-    getAge(user);
+    document.getElementById('age').value = getAge(user.birthdate);
 }
 
-function getAge(user){
-    let birthdate= new Date(user.birthdate);
+function getAge(birthdate){
+    let birthdateObject = new Date(birthdate);
     let today = new Date();
-    let age = today.getFullYear() - birthdate.getFullYear();
-    if (today.getMonth() < birthdate.getMonth() || (today.getMonth() == birthdate.getMonth() && today.getDate() < birthdate.getDate())) {
+    let age = today.getFullYear() - birthdateObject.getFullYear();
+    if (today.getMonth() < birthdateObject.getMonth() || (today.getMonth() === birthdateObject.getMonth() && today.getDate() < birthdateObject.getDate())) {
         age--;
     }
-    document.getElementById('age').value = age;
+    return age;
 }
 
 
@@ -27,9 +28,17 @@ form.addEventListener('submit', event => {
     const lastName = document.querySelector('#lastname').value;
     const birthdate = document.querySelector('#birthdate').value;
     const email = document.querySelector('#email').value;
-    const password = document.querySelector('#password').value;
-    ajaxRequest('PUT', '../api.php/user', updateResponse, `firstName=${firstName}&lastName=${lastName}&birthdate=${birthdate}&email=${email}&password=${password}`);
+    const password = document.querySelector('#password');
+    const confirmPassword = document.querySelector('#password2');
+    if (password.value === confirmPassword.value) {
+        ajaxRequest('PUT', '../api.php/user', updateResponse, `firstName=${firstName}&lastName=${lastName}&birthdate=${birthdate}&email=${email}&password=${password.value}`);
+    } else {
+        document.getElementById('errors').innerText = 'The password are not the same.'
+    }
+    password.value = '';
+    confirmPassword.value = '';
 
+    document.querySelector('#age').value = getAge(document.querySelector('#birthdate').value);
 });
 
 
@@ -40,3 +49,35 @@ function updateResponse(status) {
         document.querySelector('#errors').style.display='none';
     }
 }
+
+
+function toggleFields() {
+    const emailInput = document.getElementById('email');
+    const firstNameInput = document.getElementById('firstname');
+    const lastNameInput = document.getElementById('lastname');
+    const dateOfBirthInput = document.getElementById('birthdate');
+    const passwordInput = document.getElementById('password');
+    const passwordConfirmation = document.getElementById('password2');
+    const editBtn = document.getElementById('edit');
+
+    // Activer la modification des champs lors du clic sur le bouton "Edit"
+    editBtn.addEventListener('click', function() {
+        emailInput.removeAttribute('readonly');
+        firstNameInput.removeAttribute('readonly');
+        lastNameInput.removeAttribute('readonly');
+        dateOfBirthInput.removeAttribute('readonly');
+        passwordInput.removeAttribute('readonly');
+        passwordConfirmation.removeAttribute('readonly');
+    });
+
+    // Desactive les modifications lors du clic sur le bouton "Save"
+    form.addEventListener('submit', function() {
+        emailInput.setAttribute('readonly', 'true');
+        firstNameInput.setAttribute('readonly', 'true');
+        lastNameInput.setAttribute('readonly', 'true');
+        dateOfBirthInput.setAttribute('readonly', 'true');
+        passwordInput.setAttribute('readonly', 'true');
+        passwordConfirmation.setAttribute('readonly', 'true');
+    });
+}
+toggleFields();

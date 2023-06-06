@@ -16,11 +16,10 @@ function dbAddTrackToFavorites(PDO $db, int $id_track, int $id_user): bool {
     return $query->execute([':id_user' => $id_user, ':id_track' => $id_track]);
 }
 
-function dbAddUser(PDO $db, string $first_name, string $name, string $birth_date, string $email, string $password): bool {
+function dbAddUser(PDO $db, string $first_name, string $name, string $birth_date, string $email, string $hash): bool {
     $db->beginTransaction();
     
     $query = $db->prepare('INSERT INTO user_ (first_name, name, birth_date, email, password) VALUES (:first_name, :name, :birth_date, :email, :password) RETURNING id_user');
-    $hash = crypt($password, '$5$rounds=5000$gnsltinfgwlqpazm$');
     $success = $query->execute([':first_name' => $first_name, ':name' => $name, ':birth_date' => $birth_date, ':email' => $email, ':password' => $hash]);
     if(!$success) {
         $db->rollBack();

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'DatabaseInteraction.php';
+require_once dirname(__DIR__).'/php/get.php';
 
 abstract class Search extends DatabaseInteraction {
     public string $search;

@@ -1,9 +1,11 @@
 <?php
-require_once "constants.php";
-function check_connection() : void {
+require_once 'database.php';
+require_once 'get.php';
+function checkConnection() : void {
     session_start();
-    if ($_SESSION['id_user'] !== true) {
-        header("Location: " . ROOT . "/src/disconnect.php");
-        die();
+    $db = dbConnect();
+    if (!$db OR !isset($_SESSION['userId']) OR !dbGetUser($db, $_SESSION['userId'])) {
+        header("Location: " . "/onzeur/src/disconnect.php");
+        exit();
     }
 }
