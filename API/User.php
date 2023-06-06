@@ -18,6 +18,21 @@ class User extends DatabaseElement {
     protected string $password;
     public int $favoriteId;
 
+    /**
+     * @throws ErrorAPI
+     */
+    private function checkFields($userData=null): void {
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            throw new ErrorAPI("Incorrect email", 400);
+        }
+        if (!isAvailableEmail(self::$db, $this->email) and (!$userData or $userData['email'] != $this->email)) {
+            throw new ErrorAPI("Email unavailable", 400);
+        }
+        if (strtotime($this->birthdate) > strtotime('now')) {
+            throw new ErrorAPI("Invalid birthdate", 400);
+        }
+    }
+
     public static function fromArray(array $data, int $page=0): static {
         $user = new static($data['id_user'], $page);
         $user->firstName = $data['first_name'];
@@ -30,7 +45,7 @@ class User extends DatabaseElement {
     }
 
     public static function fromPUT(array& $data, int $page=0): static {
-        $user = new static($data['userId'], $page);
+        $user = new static($data['userId'] ?? null, $page);
         $user->firstName = $data['firstName'];
         $user->lastName = $data['lastName'];
         $user->email = $data['email'];
@@ -53,24 +68,28 @@ class User extends DatabaseElement {
         return $this;
     }
 
-    function add(): void {
-        // TODO: Implement void() method.
-    }
+    /**
+     * @throws ErrorAPI
+     */
+    function add(): static {
+        $this->checkFields();
 
-    public function update(): ErrorAPI|static {
-        $userData = dbGetUser(self::$db, $this->id);
-        if (!isAvailableEmail(self::$db, $this->email) and $userData['email'] != $this->email) {
-            return new ErrorAPI("Email unavailable", 1);
+        $this->password = crypt($this->password, '$5$rounds=5000$gnsltinfgwlqpazm$');
+
+        $success = dbAddUser(self::$db, $this->firstName, $this->lastName, $this->birthdate, $this->email, $this->password);
+        if ($success) {
+            return $this;
         }
-        if (strtotime($this->birthdate) > strtotime('now')) {
-            return new ErrorAPI("Invalid birthdate", 2);
-        }
+        throw new ErrorAPI("Invalid fields", 400);
+    }
 
     /**
      * @throws ErrorAPI
      */
     public function update(): static {
         $userData = dbGetUser(self::$db, $this->id);
+        $this->checkFields($userData);
+
         if ($this->password) {
             $this->password = crypt($this->password, '$5$rounds=5000$gnsltinfgwlqpazm$');
         } else {
