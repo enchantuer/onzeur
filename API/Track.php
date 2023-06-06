@@ -22,7 +22,7 @@ class Track extends DatabaseElement {
         $track->duration = $data['duration'];
         $track->url = $data['url'];
         $track->artistName = $data['artist_name'] ?? null;
-        $track->albumName = $data['album_name'] ?? null;
+        $track->albumName = $data['album_title'] ?? null;
         $image = dbGetAlbumCover(self::$db, $track->albumId);
         $track->image = $image ?? null;
         return $track;
@@ -46,7 +46,7 @@ class Track extends DatabaseElement {
         $this->duration = $data['duration'];
         $this->url = $data['url'];
         $this->artistName = $data['artist_name'] ?? null;
-        $this->albumName = $data['album_name'] ?? null;
+        $this->albumName = $data['album_title'] ?? null;
         $image = dbGetAlbumCover(self::$db, $this->albumId);
         $this->image = $image ?? null;
         return $this;
