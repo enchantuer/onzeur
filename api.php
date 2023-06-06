@@ -287,7 +287,7 @@ function getResponse() {
     if ($request_method == 'DELETE') {
         return deleteData($request);
     }
-    return null;
+    return 'lol';
 }
 
 echo getResponse();
