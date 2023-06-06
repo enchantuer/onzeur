@@ -71,6 +71,12 @@ function getJSON($request) {
             checkNotFound($request);
             return Track::fromArtist(array_shift($request), $page);
         }
+        if ($request_resource === 'playlist') {
+            checkNotFound($request);
+            $playlist = new Playlist(array_shift($request));
+            checkAllowed($playlist->getUserId());
+            return Track::fromPlaylist($playlist->id);
+        }
         if (count($request) > 0 or !intval($request_resource)) {
             notFound();
         }
@@ -144,6 +150,14 @@ function getJSON($request) {
         return (new User($_SESSION['userId']))->getFavorites();
     }
 
+    elseif ($request_resource == 'history') {
+        if (count($request) > 0) {
+            notFound();
+        }
+        checkUserConnection();
+        return Track::fromUser($_SESSION['userId']);
+    }
+
     notFound();
 }
 
@@ -209,10 +223,10 @@ function addData($request) {
             if ($request_resource != 'track') {
                 notFound();
             }
-            if (!isset($_POST['id'])) {
+            if (!(isset($_POST['playlistId']) AND isset($_POST['trackId']))) {
                 return 'null';
             }
-            json_encode((new Playlist(isset($_POST['id'])))->addTrack($_POST['title']));
+            json_encode((new Playlist(isset($_POST['playlistId'])))->addTrack($_POST['trackId']));
         }
         if (!isset($_POST['name'])) {
             return 'null';
@@ -250,15 +264,19 @@ function deleteData($request) {
             if ($request_resource != 'track') {
                 notFound();
             }
-            if (!isset($_SESSION['id'])) {
+            if (!isset($_POST['id'])) {
                 return null;
             }
-            json_encode((new Playlist($_SESSION['userId']))->removeTrack($_GET['id']));
+            $playlist = new Playlist($_POST['id']);
+            checkAllowed($playlist->getUserId());
+            json_encode($playlist->removeTrack($_GET['id']));
         }
         if (!isset($_POST['id'])) {
             return null;
         }
-        return json_encode((new Playlist($_SESSION['userId']))->delete());
+        $playlist = new Playlist($_POST['id']);
+        checkAllowed($playlist->getUserId());
+        return json_encode($playlist->delete());
     }
     notFound();
 }

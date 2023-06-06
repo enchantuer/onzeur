@@ -69,5 +69,8 @@ class Playlist extends DatabaseElement {
     public function removeTrack(int $trackId) {
         return dbDeleteTrackFromPlaylist(self::$db, $trackId, $this->id);
     }
+    public function  getUserId(): false|int {
+        return dbGetPlaylistUserId(self::$db, $this->id);
+    }
 
 }

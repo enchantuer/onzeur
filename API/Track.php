@@ -35,6 +35,14 @@ class Track extends DatabaseElement {
         return self::fromElement($element, 'dbGetTracksByArtist', $page);
     }
 
+    public static function fromUser(int|User $element): false|array {
+        return self::fromElement($element, 'dbGetHistory');
+    }
+
+    public static function fromPlaylist(int|Playlist $element): false|array {
+        return self::fromElement($element, 'dbGetTracksByPlaylist');
+    }
+
     public function get(): false|static {
         $data = parent::get();
         if (!$data) {
