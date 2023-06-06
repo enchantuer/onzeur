@@ -130,3 +130,15 @@ function dbGetHistory(PDO $db, int $userId): false|array {
     $query->execute([':id' => $userId]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function dbGetPlaylistUserId(PDO $db, int $playlistId): false|int {
+    $query = $db->prepare('SELECT id_user FROM playlist_ WHERE id_playlist = :id');
+    $query->execute([':id' => $playlistId]);
+    return $query->fetchColumn();
+}
+
+function dbGetTracksByPlaylist(PDO $db, int $playlistId): false|array {
+    $query = $db->prepare('SELECT * FROM playlist_track_ WHERE id_playlist = :id');
+    $query->execute([':id' => $playlistId]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
