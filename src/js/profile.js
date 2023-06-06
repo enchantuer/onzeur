@@ -1,8 +1,9 @@
 document.querySelector('#birthdate').max = new Date().toLocaleDateString('fr-ca');
 
-function displayProfile(user) {
-    document.getElementById('firstname').value = user.firstName;
-    document.getElementById('lastname').value = user.lastName;
+function displayProfile(user){
+    console.log(user.firstName);
+    document.getElementById('first_name').value = user.firstName;
+    document.getElementById('last_name').value = user.lastName;
     document.getElementById('birthdate').value = user.birthdate;
     document.getElementById('email').value = user.email;
     document.getElementById('age').value = getAge(user.birthdate);
@@ -24,7 +25,7 @@ ajaxRequest('GET', '../api.php/user', displayProfile);
 const form = document.querySelector("form");
 form.addEventListener('submit', event => {
     event.preventDefault();
-    const firstName = document.querySelector('#firstname').value;
+    const firstName = document.querySelector('#firstName').value;
     const lastName = document.querySelector('#lastname').value;
     const birthdate = document.querySelector('#birthdate').value;
     const email = document.querySelector('#email').value;
@@ -53,8 +54,8 @@ function updateResponse(status) {
 
 function toggleFields() {
     const emailInput = document.getElementById('email');
-    const firstNameInput = document.getElementById('firstname');
-    const lastNameInput = document.getElementById('lastname');
+    const firstNameInput = document.getElementById('firstName');
+    const lastNameInput = document.getElementById('lastName');
     const dateOfBirthInput = document.getElementById('birthdate');
     const passwordInput = document.getElementById('password');
     const passwordConfirmation = document.getElementById('password2');
