@@ -63,7 +63,7 @@ function displayArtistes(data) {
             `<span>Albums : ${artist.nbOfAlbums}</span>
                 <span>|</span>
                 <span>Tracks : ${artist.nbOfTracks}</span>`,
-            `artist_details.html?id=${artist.id}`
+            `artist_details.php?id=${artist.id}`
         );
         // card.childNodes.item(0).textContent = artist.name;
         // // card.childNodes.item(1).textContent = data.name;
@@ -97,7 +97,7 @@ function displayAlbum(data) {
             `<span>${album.artistName}</span>
                 <span>|</span>
                 <span>Tracks : ${album.nbOfTracks}</span>`,
-            `album_details.html?id=${album.id}`
+            `album_details.php?id=${album.id}`
         );
         // const card = generateCard();
         // card.childNodes.item(0).textContent = album.name;
@@ -128,7 +128,7 @@ function displayTrack(data) {
             `<span>${track.artistName}</span>
                 <span>|</span>  
                 <span>Album : ${track.albumName}</span>`,
-            `track_details.html?id=${track.id}`
+            `track_details.php?id=${track.id}`
         );
         // const card = generateCard();
         // card.childNodes.item(0).textContent = track.name;
