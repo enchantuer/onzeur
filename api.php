@@ -42,12 +42,11 @@ function checkUserConnection(): void {
 /**
  * @throws ErrorAPI
  */
-function checkAllowed(int $wantedId): bool {
+function checkAllowed(int $wantedId): void {
     checkUserConnection();
     if ($wantedId !== intval($_SESSION['userId'])) {
         throw new ErrorAPI('You must be log in as the user first', 401);
     }
-    return true;
 }
 
 /**
@@ -269,7 +268,7 @@ function deleteData($request) {
  */
 function getResponse() {
     if (!isset($_SERVER['PATH_INFO'])) {
-        return null;
+        notFound();
     }
     DatabaseElement::connect();
     $request = substr($_SERVER['PATH_INFO'], 1);
@@ -288,6 +287,7 @@ function getResponse() {
     if ($request_method == 'DELETE') {
         return deleteData($request);
     }
+    notFound();
 }
 
 try {
