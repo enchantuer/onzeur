@@ -13,6 +13,7 @@ class Track extends DatabaseElement {
     public string|null $image;
     public string|null $albumName;
     public string|null $artistName;
+    public string|null $addDate;
 
     public static function fromArray(array $data, int $page=0): static {
         $track = new static($data['id_track'], $page);
@@ -23,6 +24,7 @@ class Track extends DatabaseElement {
         $track->url = $data['url'];
         $track->artistName = $data['artist_name'] ?? null;
         $track->albumName = $data['album_title'] ?? null;
+        $track->addDate = $data['add_date'] ?? null;
         $image = dbGetAlbumCover(self::$db, $track->albumId);
         $track->image = $image ?? null;
         return $track;
