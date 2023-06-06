@@ -9,6 +9,7 @@ abstract class DatabaseInteraction {
 
     public function __construct(int $page=0) {
         $this->offset = $page * 20;
+        self::connect();
     }
 
     public static function connect(): false|PDO {
