@@ -214,12 +214,12 @@ function addData($request) {
                 notFound();
             }
             if (!isset($_POST['id'])) {
-                return null;
+                return 'null';
             }
             json_encode((new Playlist(isset($_POST['id'])))->addTrack($_POST['title']));
         }
         if (!isset($_POST['name'])) {
-            return null;
+            return 'null';
         }
         return json_encode(Playlist::createByUserIdAndName($_SESSION['userId'], $_POST['name']));
     }
