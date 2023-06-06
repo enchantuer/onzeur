@@ -11,7 +11,7 @@ if(albumId){
       console.log(artist);
       document.getElementById('artist-name').textContent = artist.name;
     });
-    document.getElementById('release-date').textContent = album.releaseData;
+    document.getElementById('release-date').textContent = album.releaseDate;
     document.getElementById('album-cover').src = album.imageUrl;
 
     // Mettre à jour la liste des titres
