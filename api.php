@@ -174,7 +174,7 @@ function getData($request): string {
 function updateData($request) {
     parse_str(file_get_contents('php://input'), $_PUT);
     $request_resource = array_shift($request);
-    if ($request_resource == 'user') {
+    if ($request_resource == 'user'){
         if (count($request) > 0) {
             notFound();
         }

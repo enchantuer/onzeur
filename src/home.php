@@ -9,7 +9,7 @@ checkConnection();
   <meta charset="utf-8">
   <link rel="stylesheet" href="style/main_style.css"/>
   <script src="js/ajax.js" defer></script>
-  <!-- <script src="js/album_details.js" defer></script> -->
+  <script src="js/home.js" defer></script>
   <script src="js/theme_switch.js" defer></script>
 </head>
 <body>
@@ -53,14 +53,7 @@ checkConnection();
 
   <div class="history">
     <!-- last 10 tracks played -->
-    <a href="album_details.php">
-      <div class="history_item">
-        <img class="history_cover" src="images/album_covers/cover_1.jpg" alt="cover"/>
-        <div class="history_info">
-          <p class="history_title">Title</p>
-          <p class="history_artist">Artist</p>
-        </div>
-      </div>
+    
   </div>
 
   <div class="playlists">
