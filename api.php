@@ -75,7 +75,7 @@ function getJSON($request) {
             checkNotFound($request);
             $playlist = new Playlist(array_shift($request));
             checkAllowed($playlist->getUserId());
-            return Track::fromPlaylist($playlist->id);
+            return Track::fromPlaylist($playlist);
         }
         if (count($request) > 0 or !intval($request_resource)) {
             notFound();
@@ -221,7 +221,7 @@ function addData($request) {
             if (!(isset($_POST['playlistId']) AND isset($_POST['trackId']))) {
                 return 'null';
             }
-            json_encode((new Playlist(isset($_POST['playlistId'])))->addTrack($_POST['trackId']));
+            json_encode((new Playlist($_POST['playlistId']))->addTrack($_POST['trackId']));
         }
         if (!isset($_POST['name'])) {
             return 'null';
