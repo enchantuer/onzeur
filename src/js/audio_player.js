@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const audio = document.getElementById('audio');
   const audioSource = document.getElementById('audio-source');
   const trackTitle = document.getElementById('track-title');
+  const artistName = document.getElementById('artist-name');
+  const albumName = document.getElementById('album-name');
   const progressBar = document.querySelector('.progress');
   const playPauseButton = document.getElementById('play-pause-button');
 
@@ -34,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log(data);
     // Mettre à jour le titre du morceau
     trackTitle.textContent = data.title;
+    artistName.textContent = data.artistName;
+    albumName.textContent = data.albumName;
     document.querySelector('#trackImage').src = data.image
 
     // Charger et jouer le fichier audio
