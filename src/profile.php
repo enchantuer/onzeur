@@ -51,9 +51,9 @@ checkConnection();
 
 <form name="registration" action="" method="post" id="form">
   <label for="firstname">First Name:</label>
-  <input type="text" name="firstName" id="firstname" placeholder="First Name" required readonly/>
+  <input type="text" name="firstName" id="firstName" placeholder="First Name" required readonly/>
   <label for="lastname">Last Name:</label>
-  <input type="text" name="lastName" id="lastname" placeholder="Last Name" required readonly/>
+  <input type="text" name="lastName" id="lastName" placeholder="Last Name" required readonly/>
   <label for="birthdate">Birthdate:</label>
   <input type="date" name="birthdate" id="birthdate" placeholder="Birthdate" required readonly/>
   <label for="birthdate">Age:</label>

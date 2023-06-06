@@ -16,7 +16,7 @@ function dbVerifyPassword(PDO $conn, string $email, string $password) : false|in
     $statement = $conn->prepare("SELECT id_user, password FROM user_ WHERE email=:email");
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->execute();
-    $result = $statement->fetch();
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
     if (!$result) {
         return false;
     }
