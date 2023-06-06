@@ -32,6 +32,13 @@ class Playlist extends DatabaseElement {
         return $element;
     }
 
+    public static function createByUserIdAndName(int $userId, string $name): bool|int {
+        $playlist = new Playlist();
+        $playlist->userId = $userId;
+        $playlist->name = $name;
+        return $playlist->add();
+    }
+
     public function get(): false|static {
         $data = (static::$functionGet)(self::$db, $this->userId, $this->id, $this->offset);
         if (!$data) {
@@ -43,11 +50,11 @@ class Playlist extends DatabaseElement {
         return $this;
     }
 
-    public function add() {
+    public function add(): bool|int {
         return dbAddPlaylist(self::$db, $this->name, $this->userId);
     }
 
-    public function delete() {
+    public function delete(): bool {
         return dbDeletePlaylist(self::$db, $this->id);
     }
 
