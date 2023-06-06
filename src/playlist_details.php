@@ -1,3 +1,8 @@
+<?php
+require_once '../php/connection.php';
+checkConnection();
+?>
+
 <html>
 <head>
   <title>Playlist</title>
