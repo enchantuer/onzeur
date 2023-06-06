@@ -9,3 +9,17 @@ ajaxRequest('GET', '../api.php/playlist', function(playlistList) {
         playlistListContainer.insertAdjacentHTML('beforeend', playlistHtml);
     }
 });
+
+ajaxRequest('GET', '../api.php/favorites', function(favorites) {
+    console.log(favorites);
+    document.getElementById('favorites-name').textContent = favorites.name;
+});
+
+const form = document.querySelector("form");
+form.addEventListener('submit', event => {
+    event.preventDefault();
+    const name = document.getElementById('playlist_name').value;
+    ajaxRequest('POST', '../api.php/playlist', function(playlist){
+    console.log(playlist);
+   "name ="+ name;}) 
+});

@@ -44,19 +44,19 @@
 <main>
 
   <div class="favorites">
-    <img class="main_cover" src="icons/broken/playlists_191919.svg">
-    <div class="favorites_info">
+    <a href="favorites.html">
+      <img class="main_cover" src="icons/broken/playlists_191919.svg">
       <p class="favorites_title" id="favorites-name">Favorites</p>
-      <p class="favorites_count" id="favorites-count"><!--ici--></p>
-    </div>
+    </a>
   </div>
 
   <div class="playlists" id="playlist-list-container">
     <p class="playlists_title">Playlists</p>
     <div class="new_playlist"></div>
-      <form class="new_playlist_form" id="new-playlist-form" action="new_playlist.php" method="post">
-        <input type="text" name="playlist_name" placeholder="New playlist name">
+      <form class="new_playlist_form" id="new-playlist-form" action="" method="post">
+        <input type="text" name="playlist_name" id="playlist_name" placeholder="New playlist name">
         <input type="submit" value="Create">
+      </form>
     <!--ici-->
   </div>
   
