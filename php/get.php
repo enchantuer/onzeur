@@ -138,7 +138,7 @@ function dbGetPlaylistUserId(PDO $db, int $playlistId): false|int {
 }
 
 function dbGetTracksByPlaylist(PDO $db, int $playlistId): false|array {
-    $query = $db->prepare('SELECT t.id_track, title, duration, url, id_album, id_artist FROM playlist_track_ pt JOIN track_ t USING(id_track) WHERE pt.id_playlist = :id');
+    $query = $db->prepare('SELECT t.id_track, title, duration, url, id_album, id_artist, pt.add_date FROM playlist_track_ pt JOIN track_ t USING(id_track) WHERE pt.id_playlist = :id');
     $query->execute([':id' => $playlistId]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
