@@ -126,7 +126,7 @@ function dbGetAlbumCover(PDO $db, int $id) {
 }
 
 function dbGetHistory(PDO $db, int $userId): false|array {
-    $query = $db->prepare('SELECT * FROM history_ WHERE id_user = :id');
+    $query = $db->prepare('SELECT t.id_track, title, duration, url, id_album, id_artist, id_history, id_user, add_date FROM history_ JOIN track_ t USING(id_track) WHERE id_user = :id ORDER BY add_date DESC');
     $query->execute([':id' => $userId]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }

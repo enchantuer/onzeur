@@ -22,7 +22,7 @@ checkConnection();
 
   </div>
 
-  <div class="history">
+  <div class="history" id="history-container">
     <!-- last 10 tracks played -->
     
   </div>

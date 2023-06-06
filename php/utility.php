@@ -1,6 +1,6 @@
 <?php
 function get_nav(): string {
-    if($_SERVER['PHP_SELF']==='/onzeur/src/home.php'){
+    if($_SERVER['PHP_SELF']!=='/onzeur/src/home.php'){
         $homeIcon = '<img class="nav_icon" src="icons/broken/home_191919.svg" alt="home"><img class="nav_icon_dark" src="icons/broken/home_ffffff.svg" alt="home">';
     }else{
         $homeIcon = '<img class="nav_icon" src="icons/broken/home_ee7733.svg" alt="home">';
@@ -16,7 +16,7 @@ function get_nav(): string {
     } else {
         $search = '';
     }
-    if ($_SERVER['PHP_SELF'] === '/onzeur/src/search.php') {
+    if ($_SERVER['PHP_SELF'] !== '/onzeur/src/search.php') {
         $searchIcon = '<img class="nav_icon" src="icons/broken/search_191919.svg" alt="search"><img class="nav_icon_dark" src="icons/broken/search_ffffff.svg" alt="search">';
     } else {
         $searchIcon = '<img class="nav_icon" src="icons/broken/search_ee7733.svg" alt="search">';
@@ -27,7 +27,7 @@ function get_nav(): string {
     } else {
         $playlist = '';
     }
-    if ($_SERVER['PHP_SELF'] === '/onzeur/src/search.php') {
+    if ($_SERVER['PHP_SELF'] !== '/onzeur/src/search.php') {
         $playlistIcon = '<img class="nav_icon" src="icons/broken/playlists_191919.svg" alt="search"><img class="nav_icon_dark" src="icons/broken/playlists_ffffff.svg" alt="search">';
     } else {
         $playlistIcon = '<img class="nav_icon" src="icons/broken/playlists_ee7733.svg" alt="search">';
@@ -38,7 +38,7 @@ function get_nav(): string {
     } else {
         $profile = '';
     }
-    if ($_SERVER['PHP_SELF'] === '/onzeur/src/search.php') {
+    if ($_SERVER['PHP_SELF'] !== '/onzeur/src/search.php') {
         $profileIcon = '<img class="nav_icon" src="icons/broken/profile_191919.svg" alt="search"><img class="nav_icon_dark" src="icons/broken/profile_ffffff.svg" alt="search">';
     } else {
         $profileIcon = '<img class="nav_icon" src="icons/broken/profile_ee7733.svg" alt="search">';
