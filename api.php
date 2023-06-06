@@ -1,6 +1,6 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
 
 
 require_once "php/database.php";
@@ -114,21 +114,16 @@ function getJSON($request) {
     }
 
     elseif ($request_resource == 'playlist') {
+        checkUserConnection();
         if (count($request) == 0) {
-            checkUserConnection();
             return Playlist::fromUser($_SESSION['userId']);
         }
-        $userId = array_shift($request);
-        checkAllowed($userId);
-        if (count($request) == 0) {
-            return Playlist::fromUser($userId);
-        }
         $playlistId = array_shift($request);
-
-        if (count($request) > 0 or !intval($playlistId)) {
-            notFound();
+        if (count($request) == 0) {
+            $playlist = Playlist::fromIds($_SESSION['userId'], $playlistId);
+            checkAllowed($playlist->userId);
+            return $playlist;
         }
-        return Playlist::fromIds($userId, $playlistId);
     }
 
     elseif ($request_resource == 'user') {
