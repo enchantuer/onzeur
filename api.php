@@ -221,7 +221,7 @@ function addData($request) {
             if (!(isset($_POST['playlistId']) AND isset($_POST['trackId']))) {
                 return 'null';
             }
-            json_encode((new Playlist(intval($_POST['playlistId'])))->addTrack($_POST['trackId']));
+            return json_encode((new Playlist(intval($_POST['playlistId'])))->addTrack($_POST['trackId']));
         }
         if (!isset($_POST['name'])) {
             return 'null';
