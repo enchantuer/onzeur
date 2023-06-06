@@ -13,6 +13,7 @@ if(albumId){
     });
     document.getElementById('release-date').textContent = album.releaseDate;
     document.getElementById('album-cover').src = album.imageUrl;
+    document.getElementById('album-type').textContent = album.type;
 
     // Mettre à jour la liste des titres
     ajaxRequest('GET', '../api.php/playlist', function(playlists) {

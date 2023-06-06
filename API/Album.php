@@ -29,6 +29,7 @@ class Album extends DatabaseElement {
         $album->artistId = $data['id_artist'];
         $album->title = $data['title'];
         $album->imageUrl = $data['image'];
+        $album->releaseDate = $data['release_date'];
         $album->type = $data['type'];
         $album->getNumbers();
         $album->artistName = $data['artist_name'] ?? null;

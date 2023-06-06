@@ -52,7 +52,7 @@ checkConnection();
     <div class="album_info">
       <p class="album_title" id="album-name"><!--ici--></p>
       <p class="album_artist" id="artist-name"><!--ici--></p>
-      <p class="album_year" id="release-date"><!--ici--></p>
+      <p class="album_year"><span id="release-date"><!--ici--></span> | <span id="album-type"><!--ici--></span></p>
     </div>
   </div>
 
