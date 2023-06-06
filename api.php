@@ -12,35 +12,47 @@ require_once "API/SearchTrack.php";
 require_once "API/SearchAlbum.php";
 require_once "API/SearchArtist.php";
 require_once "API/User.php";
+require_once "API/ErrorAPI.php";
 
+/**
+ * @throws ErrorAPI
+ */
 function checkNotFound($request): void {
     if (count($request) != 1) {
         notFound();
     }
 }
+
+/**
+ * @throws ErrorAPI
+ */
 function notFound(): void {
-    http_response_code(404);
-    echo 'Resource not found';
-    exit();
+    throw new ErrorAPI('Resource not found', 404);
 }
 
-// TODO : Add an admin exception
-function checkUserConnection(int $wantedId): void {
+/**
+ * @throws ErrorAPI
+ */
+function checkUserConnection(): void {
     session_start();
-    if (!(isset($_SESSION['userId']) AND isAllowedUser($wantedId))) {
-        http_response_code(401);
-        echo 'You must be log in as the user first';
-        exit();
+    if (!isset($_SESSION['userId'])) {
+        throw new ErrorAPI('You must be log in first', 401);
     }
 }
-// TODO : Add an admin exception
-function isAllowedUser(int $wantedId): bool {
+/**
+ * @throws ErrorAPI
+ */
+function checkAllowed(int $wantedId): bool {
+    checkUserConnection();
     if ($wantedId !== intval($_SESSION['userId'])) {
-        return false;
+        throw new ErrorAPI('You must be log in as the user first', 401);
     }
     return true;
 }
 
+/**
+ * @throws ErrorAPI
+ */
 function getJSON($request) {
     $request_resource = array_shift($request);
     $page = $_GET['page'] ?? 0;
@@ -98,17 +110,11 @@ function getJSON($request) {
 
     elseif ($request_resource == 'playlist') {
         if (count($request) == 0) {
-            session_start();
-            if (!(isset($_SESSION['userId']))) {
-                session_destroy();
-                http_response_code(401);
-                echo 'You must be log in as the user first';
-                exit();
-            }
+            checkUserConnection();
             return Playlist::fromUser($_SESSION['userId']);
         }
         $userId = array_shift($request);
-        checkUserConnection($userId);
+        checkAllowed($userId);
         if (count($request) == 0) {
             return Playlist::fromUser($userId);
         }
@@ -122,18 +128,12 @@ function getJSON($request) {
 
     elseif ($request_resource == 'user') {
         if (count($request) == 0) {
-            session_start();
-            if (!(isset($_SESSION['userId']))) {
-                session_destroy();
-                http_response_code(401);
-                echo 'You must be log in as the user first';
-                exit();
-            }
+            checkUserConnection();
             return User::fromId($_SESSION['userId']);
         }
         checkNotFound($request);
         $userId = array_shift($request);
-        checkUserConnection($userId);
+        checkAllowed($userId);
         return User::fromId($userId);
     }
 
@@ -141,23 +141,23 @@ function getJSON($request) {
         if (count($request) > 0) {
             notFound();
         }
-        session_start();
-        if (!(isset($_SESSION['userId']))) {
-            session_destroy();
-            http_response_code(401);
-            echo 'You must be log in as the user first';
-            exit();
-        }
+        checkUserConnection();
         return (new User($_SESSION['userId']))->getFavorites();
     }
 
     notFound();
 }
 
+/**
+ * @throws ErrorAPI
+ */
 function getData($request): string {
     return json_encode(getJSON($request));
 }
 
+/**
+ * @throws ErrorAPI
+ */
 function updateData($request) {
     parse_str(file_get_contents('php://input'), $_PUT);
     $request_resource = array_shift($request);
@@ -176,15 +176,12 @@ function updateData($request) {
     notFound();
 }
 
+/**
+ * @throws ErrorAPI
+ */
 function addData($request) {
     $request_resource = array_shift($request);
-    session_start();
-    if (!(isset($_SESSION['userId']))) {
-        session_destroy();
-        http_response_code(401);
-        echo 'You must be log in as the user first';
-        exit();
-    }
+    checkUserConnection();
     if ($request_resource == 'history') {
         if (count($request) > 0) {
             notFound();
@@ -226,14 +223,15 @@ function addData($request) {
     notFound();
 }
 
+/**
+ * @throws ErrorAPI
+ */
 function deleteData($request) {
     $request_resource = array_shift($request);
     session_start();
     if (!(isset($_SESSION['userId']))) {
         session_destroy();
-        http_response_code(401);
-        echo 'You must be log in as the user first';
-        exit();
+        throw new ErrorAPI('You must be log in as the user first', 401);
     }
 
     if ($request_resource == 'favorites') {
@@ -266,6 +264,9 @@ function deleteData($request) {
     notFound();
 }
 
+/**
+ * @throws ErrorAPI
+ */
 function getResponse() {
     if (!isset($_SERVER['PATH_INFO'])) {
         return null;
@@ -289,4 +290,8 @@ function getResponse() {
     }
 }
 
-echo getResponse();
+try {
+    echo getResponse();
+} catch (ErrorAPI $e) {
+    $e->fetchError();
+}

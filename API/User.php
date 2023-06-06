@@ -66,6 +66,10 @@ class User extends DatabaseElement {
             return new ErrorAPI("Invalid birthdate", 2);
         }
 
+    /**
+     * @throws ErrorAPI
+     */
+    public function update(): static {
         $userData = dbGetUser(self::$db, $this->id);
         if ($this->password) {
             $this->password = crypt($this->password, '$5$rounds=5000$gnsltinfgwlqpazm$');
@@ -77,7 +81,7 @@ class User extends DatabaseElement {
         if ($success) {
             return $this;
         }
-        return new ErrorAPI("Invalid fields", 3);
+        throw new ErrorAPI("Invalid fields", 400);
     }
 
     function addToHistory(int $trackId): bool {
