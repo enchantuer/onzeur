@@ -1,5 +1,6 @@
 <?php
 require_once '../php/connection.php';
+require_once '../php/utility.php';
 checkConnection();
 ?>
 
@@ -14,6 +15,7 @@ checkConnection();
 </head>
 <body>
 
+<?php echo get_nav(); ?>
 
 <main>
   <div class="filter_search">
