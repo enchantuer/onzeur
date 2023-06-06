@@ -3,11 +3,11 @@
 require_once "DatabaseElement.php";
 require_once "ErrorAPI.php";
 
-require_once "php/get.php";
-require_once "php/update.php";
-require_once "php/add.php";
-require_once "php/delete.php";
-require_once "php/database.php";
+require_once dirname(__DIR__)."/php/get.php";
+require_once dirname(__DIR__)."/php/update.php";
+require_once dirname(__DIR__)."/php/add.php";
+require_once dirname(__DIR__)."/php/delete.php";
+require_once dirname(__DIR__)."/php/database.php";
 
 class User extends DatabaseElement {
     protected static string $functionGet = 'dbGetuser';
