@@ -1,5 +1,5 @@
 <?php
-require_once 'php/database.php';
+include_once dirname(__DIR__).'/php/database.php';
 require_once 'DatabaseInteraction.php';
 
 abstract class DatabaseElement extends DatabaseInteraction {

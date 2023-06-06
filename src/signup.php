@@ -27,9 +27,9 @@ if (isset($_SESSION['userId']) && isValidUser($conn, $_SESSION['userId'])) {
 
 <form name="registration" action="" method="post">
   <label for="firstname">First Name:</label>
-  <input type="text" name="firstname" placeholder="First Name" required/>
+  <input type="text" name="firstName" placeholder="First Name" required/>
   <label for="lastname">Last Name:</label>
-  <input type="text" name="lastname" placeholder="Last Name" required/>
+  <input type="text" name="lastName" placeholder="Last Name" required/>
   <label for="birthdate">Birthdate:</label>
   <input type="date" name="birthdate" placeholder="Birthdate" required/>
   <label for="email">Email:</label>
@@ -49,6 +49,8 @@ if (isset($_SESSION['userId']) && isValidUser($conn, $_SESSION['userId'])) {
 </label>
 
 <script>
+  document.querySelector('#birthdate').max = new Date().toLocaleDateString('fr-ca');
+
   const toggle=document.getElementById('theme');
   const elements=document.getElementsByTagName('*');
 
@@ -66,43 +68,27 @@ if (isset($_SESSION['userId']) && isValidUser($conn, $_SESSION['userId'])) {
     }
   });
 </script>
-
-</body>
-
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require_once '../php/add.php';
+    require_once '../API/User.php';
 
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $birthdate = $_POST['birthdate'];
-    $email = $_POST['email'];
     $password = $_POST['password'];
     $password2 = $_POST['password2'];
-
     if ($password != $password2) {
         echo "The password are not the same.";
         exit();
     }
 
-    if (!isAvailableEmail($conn, $email)) {
-        echo "An account already exist for that email.";
-    } else {
-        if (dbAddUser($conn, $firstname, $lastname, $birthdate, $email, $password)) {
-            header('Location: login.php');
-            exit();
-        } else {
-            echo "An error occurred during the creation of your account.";
-        }
+    $user = User::fromPUT($_POST);
+    try {
+        $user->add();
+    } catch (ErrorAPI $e) {
+        echo '<span id="errors"><strong>'.$e->getMessage().'</strong></span>';
     }
-
 }
 ?>
-
-
-
-
+</body>
 </html>
