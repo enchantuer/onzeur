@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include_once '../php/database.php';
+require_once '../php/database.php';
 $conn = dbConnect();
 session_start();
 

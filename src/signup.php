@@ -85,6 +85,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = User::fromPUT($_POST);
     try {
         $user->add();
+        header('Location: login.php');
+        exit();
     } catch (ErrorAPI $e) {
         echo '<span id="errors"><strong>'.$e->getMessage().'</strong></span>';
     }
