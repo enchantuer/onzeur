@@ -112,6 +112,10 @@ nav a p{
     padding: 0;
   }
 
+  .nav_item.active a {
+    color: var(--orange);
+  }
+
   nav a{
     display: flex;
     flex-direction: row;
