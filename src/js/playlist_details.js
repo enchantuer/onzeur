@@ -15,17 +15,11 @@ if(playlistId){
             for (let i = 0; i < trackList.length; i++) {
               const track = trackList[i];
               const trackHtml = '<div class="track">' +
-                  `<img src="${album.imageUrl}" alt="album">` +
-                  `<a href="audio_player.html?id=${track.id}" class="track_name_link">${(i+1)}. ${track.title}</a>` +
+                  `<img src="${track.image}" alt="album">` +
+                  `<a href="audio_player.php?id=${track.id}" class="track_name_link">${(i+1)}. ${track.title}</a>` +
                   '</div>';
               trackListContainer.insertAdjacentHTML('beforeend', trackHtml);
             }
           });
         });
     }
-
-function displayTrack(track){
-    console.log(track);
-    
-
-}

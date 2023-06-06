@@ -44,6 +44,9 @@ if(albumId){
         const selectContainer = document.createElement('div');
         selectContainer.className = 'select-container';
         const select = document.createElement('select');
+        select.addEventListener('change', function() {
+          addTrackToPlaylist(track.id, this.value);
+        });
         select.id = 'filter';
         selectContainer.appendChild(select);
         
@@ -70,9 +73,10 @@ if(albumId){
 }
 
 function addTrackToPlaylist(trackId, playlistId) {
-  ajaxRequest('POST', '../api.php/playlist/' + playlistId + '/track/' + trackId, function() {
+  ajaxRequest('POST', '../api.php/playlist/track', function() {
     console.log('Track added to playlist');
-  });
+  },
+  `trackId=${trackId}&playlistId=${playlistId}`);
 }
 
 function playTrack(audioUrl, title) {
