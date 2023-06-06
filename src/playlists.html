@@ -50,14 +50,19 @@
     </a>
   </div>
 
+  <div class="new_playlist">
+    <p> New Playlist</p>
+    <form class="new_playlist_form" id="new-playlist-form" action="" method="post">
+      <input type="text" name="playlist_name" id="playlist_name" placeholder="New playlist name">
+      <input type="submit" value="Create">
+    </form>
+  </div>
+    
   <div class="playlists" id="playlist-list-container">
-    <p class="playlists_title">Playlists</p>
-    <div class="new_playlist"></div>
-      <form class="new_playlist_form" id="new-playlist-form" action="" method="post">
-        <input type="text" name="playlist_name" id="playlist_name" placeholder="New playlist name">
-        <input type="submit" value="Create">
-      </form>
-    <!--ici-->
+    <p>Playlists</p>
+    <div class="playlists_title" id="playlist-list">
+      <!--ici-->
+    </div>
   </div>
   
 </main>
