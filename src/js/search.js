@@ -91,7 +91,7 @@ function displayTrack(data) {
             `<span>${track.artistName}</span>
                 <span>|</span>  
                 <span>Album : ${track.albumName}</span>`,
-            `track_details.php?id=${track.id}`
+            `audio_player.php?id=${track.id}`
         );
         trackCards.appendChild(card);
     }

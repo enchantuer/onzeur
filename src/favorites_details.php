@@ -5,11 +5,11 @@ checkConnection();
 
 <html>
 <head>
-  <title>Playlists</title>
+  <title>Favorites</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style/main_style.css"/>
   <script src="js/ajax.js" defer></script>
-  <script src="js/playlists.js" defer></script>
+  <script src="js/favorites_details.js" defer></script>
   <script src="js/theme_switch.js" defer></script>
 </head>
 <body>
@@ -31,7 +31,7 @@ checkConnection();
     </a>
   </div>
   <div class="nav_item">
-    <a href="#">
+    <a href="playlists.php">
       <img class="nav_icon" src="icons/broken/playlists_191919.svg" alt="playlists">
       <img class="nav_icon_dark" src="icons/broken/playlists_ffffff.svg" alt="playlists">
       <p>Playlists</p>
@@ -47,27 +47,13 @@ checkConnection();
 </nav>
 
 <main>
-
-  <div class="favorites">
-    <a href="favorites_details.php">
-      <img class="main_cover" src="icons/broken/playlists_191919.svg">
-      <p class="favorites_title" id="favorites-name">Favorites</p>
-    </a>
+  <div class="favorites_details">
+    <p class="favorites_title" id="favorites-name"><!--ici--></p>
+    <p class="creation_date" id="creation-date"><!--ici--></p>
   </div>
 
-  <div class="new_playlist">
-    <p> New Playlist</p>
-    <form class="new_playlist_form" id="new-playlist-form" action="" method="post">
-      <input type="text" name="playlist_name" id="playlist_name" placeholder="New playlist name">
-      <input type="submit" value="Create">
-    </form>
-  </div>
-    
-  <div class="playlists" id="playlist-list-container">
-    <p>Playlists</p>
-    <div class="playlists_title" id="playlist-list">
-      <!--ici-->
-    </div>
+  <div class="tracklist" id="tracklist-container">
+    <!--ici-->
   </div>
   
 </main>

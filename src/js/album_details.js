@@ -55,7 +55,7 @@ if(albumId){
         option.value = 'disabled';
         option.disabled = true;
         option.selected = true;
-        option.textContent = 'Chose Playlist';
+        option.textContent = 'Choose Playlist';
 
         select.appendChild(option);
         for (const playlist of playlists) {
