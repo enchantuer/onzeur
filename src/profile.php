@@ -22,14 +22,14 @@
     </a>
   </div>
   <div class="nav_item">
-    <a href="#">
+    <a href="search.html">
       <img class="nav_icon" src="icons/broken/search_191919.svg" alt="search">
       <img class="nav_icon_dark" src="icons/broken/search_ffffff.svg" alt="search">
       <p>Search</p>
     </a>
   </div>
   <div class="nav_item">
-    <a href="#">
+    <a href="playlists.html">
       <img class="nav_icon" src="icons/broken/playlists_191919.svg" alt="playlists">
       <img class="nav_icon_dark" src="icons/broken/playlists_ffffff.svg" alt="playlists">
       <p>Playlists</p>
