@@ -213,15 +213,15 @@ function addData($request) {
             if ($request_resource != 'track') {
                 notFound();
             }
-            if (!isset($_SESSION['id'])) {
+            if (!isset($_POST['id'])) {
                 return null;
             }
-            json_encode((new Playlist($_SESSION['userId']))->addTrack($_SESSION['id']));
+            json_encode((new Playlist(isset($_POST['id'])))->addTrack($_POST['title']));
         }
-        if (!isset($_POST['id'])) {
+        if (!isset($_POST['name'])) {
             return null;
         }
-        return json_encode((new Playlist($_SESSION['userId']))->add());
+        return json_encode(Playlist::createByUserIdAndName($_SESSION['userId'], $_POST['name']));
     }
     notFound();
 }
@@ -256,7 +256,7 @@ function deleteData($request) {
             if (!isset($_SESSION['id'])) {
                 return null;
             }
-            json_encode((new Playlist($_SESSION['userId']))->removeTrack($_SESSION['id']));
+            json_encode((new Playlist($_SESSION['userId']))->removeTrack($_GET['id']));
         }
         if (!isset($_POST['id'])) {
             return null;
@@ -283,6 +283,9 @@ function getResponse() {
     }
     if ($request_method == 'PUT') {
         return updateData($request);
+    }
+    if ($request_method == 'DELETE') {
+        return deleteData($request);
     }
     return null;
 }
