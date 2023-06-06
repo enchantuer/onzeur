@@ -190,7 +190,7 @@ function addData($request) {
             notFound();
         }
         if (!isset($_POST['id'])) {
-            return null;
+            return 'null';
         }
         $user = new User($_SESSION['userId']);
         return json_encode($user->addToHistory(intval($_POST['id'])));
@@ -201,7 +201,7 @@ function addData($request) {
             notFound();
         }
         if (!isset($_POST['id'])) {
-            return null;
+            return 'null';
         }
         return json_encode((new User($_SESSION['userId']))->addToFavorites($_POST['id']));
     }
@@ -287,7 +287,6 @@ function getResponse() {
     if ($request_method == 'DELETE') {
         return deleteData($request);
     }
-    return 'lol';
 }
 
 echo getResponse();
