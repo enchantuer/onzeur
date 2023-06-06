@@ -48,6 +48,8 @@ checkConnection();
 
 <main>
   <h1 id="track-title"><!--titre--></h1>
+  <h2 id="album-name"><!--titre--></h2>
+  <h3 id="artist-name"><!--titre--></h3>
   <img src="" alt="album" id="trackImage">
   <div class="audio-player">
     <audio id="audio" controls>

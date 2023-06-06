@@ -31,7 +31,7 @@ function dbGetAlbum(PDO $db, int $id): false|array {
 }
 
 function dbGetTrack(PDO $db, int $id): false|array {
-    $query = $db->prepare('SELECT * FROM track_ WHERE id_track = :id');
+    $query = $db->prepare('SELECT t.id_track, t.title, t.duration, t.url, t.id_album, t.id_artist, a.name artist_name, ab.title album_title FROM track_ t JOIN artist_ a USING(id_artist) JOIN album_ ab USING(id_album)    WHERE id_track = :id');
     $query->execute([':id' => $id]);
     return $query->fetch(PDO::FETCH_ASSOC);
 }
@@ -138,7 +138,7 @@ function dbGetPlaylistUserId(PDO $db, int $playlistId): false|int {
 }
 
 function dbGetTracksByPlaylist(PDO $db, int $playlistId): false|array {
-    $query = $db->prepare('SELECT * FROM playlist_track_ WHERE id_playlist = :id');
+    $query = $db->prepare('SELECT t.id_track, title, duration, url, id_album, id_artist FROM playlist_track_ pt JOIN track_ t USING(id_track) WHERE pt.id_playlist = :id');
     $query->execute([':id' => $playlistId]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }

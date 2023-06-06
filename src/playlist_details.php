@@ -5,11 +5,11 @@ checkConnection();
 
 <html>
 <head>
-  <title>Album</title>
+  <title>Playlist</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style/main_style.css"/>
   <script src="js/ajax.js" defer></script>
-  <script src="js/album_details.js" defer></script>
+  <script src="js/playlist_details.js" defer></script>
   <script src="js/theme_switch.js" defer></script>
 </head>
 <body>
@@ -47,13 +47,9 @@ checkConnection();
 </nav>
 
 <main>
-  <div class="album_details">
-    <img class="main_cover" id="album-cover" src="#" alt="album">
-    <div class="album_info">
-      <p class="album_title" id="album-name"><!--ici--></p>
-      <p class="album_artist" id="artist-name"><!--ici--></p>
-      <p class="album_year"><span id="release-date"><!--ici--></span> | <span id="album-type"><!--ici--></span></p>
-    </div>
+  <div class="playlist_details">
+    <p class="playlist_title" id="playlist-name"><!--ici--></p>
+    <p class="creation_date" id="creation-date"><!--ici--></p>
   </div>
 
   <div class="tracklist" id="tracklist-container">

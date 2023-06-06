@@ -1,6 +1,6 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
 
 
 require_once "php/database.php";
@@ -75,7 +75,7 @@ function getJSON($request) {
             checkNotFound($request);
             $playlist = new Playlist(array_shift($request));
             checkAllowed($playlist->getUserId());
-            return Track::fromPlaylist($playlist->id);
+            return Track::fromPlaylist($playlist);
         }
         if (count($request) > 0 or !intval($request_resource)) {
             notFound();
@@ -114,21 +114,16 @@ function getJSON($request) {
     }
 
     elseif ($request_resource == 'playlist') {
+        checkUserConnection();
         if (count($request) == 0) {
-            checkUserConnection();
             return Playlist::fromUser($_SESSION['userId']);
         }
-        $userId = array_shift($request);
-        checkAllowed($userId);
-        if (count($request) == 0) {
-            return Playlist::fromUser($userId);
-        }
         $playlistId = array_shift($request);
-
-        if (count($request) > 0 or !intval($playlistId)) {
-            notFound();
+        if (count($request) == 0) {
+            $playlist = Playlist::fromIds($_SESSION['userId'], $playlistId);
+            checkAllowed($playlist->userId);
+            return $playlist;
         }
-        return Playlist::fromIds($userId, $playlistId);
     }
 
     elseif ($request_resource == 'user') {
@@ -226,7 +221,7 @@ function addData($request) {
             if (!(isset($_POST['playlistId']) AND isset($_POST['trackId']))) {
                 return 'null';
             }
-            json_encode((new Playlist(isset($_POST['playlistId'])))->addTrack($_POST['trackId']));
+            return json_encode((new Playlist(intval($_POST['playlistId'])))->addTrack($_POST['trackId']));
         }
         if (!isset($_POST['name'])) {
             return 'null';
