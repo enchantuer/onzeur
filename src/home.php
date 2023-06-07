@@ -44,24 +44,16 @@ checkConnection();
     </div> -->
   </div>
 
+  <h2>Playlists</h2>
   <div class="playlists">
     <!-- apperçu de quelques playlists qui redirigent vers la page playlists.html -->
-    <div class="playlist_item">
-      <img class="playlist_cover" src="images/album_covers/cover_1.jpg" alt="cover"/>
-      <div class="playlist_info">
-        <p class="playlist_title">Title</p>
-        <p class="playlist_artist">Artist</p>
-      </div>
+    
   </div>
 
+  <h2>Favorites</h2>
   <div class="favorites">
     <!-- apperçu de quelques favoris qui redirigent vers la page favorites.html -->
-    <div class="favorite_item">
-      <img class="favorite_cover" src="images/album_covers/cover_1.jpg" alt="cover"/>
-      <div class="favorite_info">
-        <p class="favorite_title">Title</p>
-        <p class="favorite_artist">Artist</p>
-      </div>
+   
   </div>
   
 </main>

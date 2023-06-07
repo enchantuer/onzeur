@@ -430,7 +430,7 @@ p.album_artist{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: right;
+    justify-content: center;
     align-items: top;
     width: 100%;
     padding-bottom: 2.5vw;
