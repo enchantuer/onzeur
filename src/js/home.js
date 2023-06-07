@@ -16,20 +16,9 @@ ajaxRequest('GET', '../api.php/history', function(history){
 const searchBar = document.querySelector('form');
 searchBar.addEventListener('submit', event => {
     event.preventDefault();
-    document.querySelector('#artistes').innerHTML = '';
-    document.querySelector('#albums').innerHTML = '';
-    document.querySelector('#tracks').innerHTML = '';
     const filter = Number(document.querySelector('#filter').value);
     const search = document.querySelector('#search').value;
-    if (filter === 1 || filter === 0) {
-        ajaxRequest('GET', '../api.php/artist', displayArtistes, `name=${search}`)
-    }
-    if (filter === 2 || filter === 0) {
-        ajaxRequest('GET', '../api.php/album', displayAlbum, `title=${search}`)
-    }
-    if (filter === 3 || filter === 0) {
-        ajaxRequest('GET', '../api.php/track', displayTrack, `title=${search}`)
-    }
+    document.location.href =`search.php?search=${search}&filter=${filter}`;
 });
 
 function generateCard(titleText, imgSrc, bodyText, footerContent,linkUrl){

@@ -18,9 +18,23 @@ checkConnection();
 <?php echo get_nav(); ?>
 
 <main>
-  <div class="filter_search">
-
-  </div>
+    <form method="post" class="searchBar">
+        <input type="text" placeholder="Search" id="search">
+        <button type="submit">
+            <div id="img_item_container">
+                <img src="icons/broken/search_191919.svg" class="icon">
+                <img src="icons/broken/search_ffffff.svg" class="icon_dark">
+            </div>
+        </button>
+        <div class="select-container">
+            <select id="filter">
+                <option name="searchBy" value="0">All</option>
+                <option name="searchBy" value="1">Artist</option>
+                <option name="searchBy" value="2">Album</option>
+                <option name="searchBy" value="3">Track</option>
+            </select>
+        </div>
+    </form>
 
   <div class="history" id="history-container">
     <!-- <div class="track">
