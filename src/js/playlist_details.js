@@ -13,7 +13,7 @@ if(playlistId){
             console.log(trackList);
             const trackListContainer = document.getElementById('tracklist-container');
             for (let i = 0; i < trackList.length; i++) {
-              const track = trackList[i];
+                const track = trackList[i];
                 track.addDate = track.addDate.slice(0, -7);
                 const trackHtml = document.createElement('div');
                 trackHtml.className = 'track';
@@ -33,7 +33,7 @@ if(playlistId){
                 deleteButton.className = 'delete-track';
                 deleteButton.textContent = 'Delete';
                 deleteButton.addEventListener('click', function() {
-                    deleteTrackFromPlaylist(track.id, playlist.id_playlist);
+                    deleteTrackFromPlaylist(track.id, playlistId);
                 });
                 trackHtml.appendChild(deleteButton);
 
@@ -52,23 +52,27 @@ if(playlistId){
                   `<button class="delete-track" onclick="deleteTrackFromPlaylist(${track.id}, ${playlistId})">Delete</button>` +
                   `<button class="like-track" onclick="addTrackToFavorites(${track.id})">Like</button>` +
                   '</div>';*/
-              trackListContainer.insertAdjacentHTML('beforeend', trackHtml);
+              trackListContainer.appendChild(trackHtml);
             }
           });
         });
     }
 
-    function addTrackToFavorites(trackId) {
-        ajaxRequest('POST', '../api.php/favorites', function() {
-          console.log('Track added to favorites');
-        },
-        `trackId=${trackId}`);
-      }
+function addTrackToFavorites(trackId) {
+    ajaxRequest('POST', '../api.php/favorites', function() {
+      console.log('Track added to favorites');
+    },
+    `id=${trackId}`);
+}
 
-        function deleteTrackFromPlaylist(trackId, playlistId) {
-            ajaxRequest('DELETE', '../api.php/playlist/track', function() {
-              console.log('Track deleted from playlist');
-              window.location.reload();
-            },
-            `trackId=${trackId}&playlistId=${playlistId}`);
-          }
+function deleteTrackFromPlaylist(trackId, playlistId) {
+    ajaxRequest(
+        'DELETE',
+        '../api.php/playlist/track',
+        function() {
+            console.log('Track deleted from playlist');
+            window.location.reload();
+        },
+        `trackId=${trackId}&playlistId=${playlistId}`
+    );
+}
