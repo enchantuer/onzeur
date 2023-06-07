@@ -23,8 +23,10 @@ checkConnection();
   </div>
 
   <div class="history" id="history-container">
-    <!-- last 10 tracks played -->
-    
+    <!-- <div class="track">
+      <img src="img" alt="album">
+      <a href="audio_player.html?id=1" class="track_name_link">titre</a>
+    </div> -->
   </div>
 
   <div class="playlists">
