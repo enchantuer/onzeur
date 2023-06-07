@@ -428,7 +428,8 @@ p.album_artist{
     display: flex;
     flex-direction: row;
     text-align: left;
-    margin: 0 5vw;
+    flex-wrap: wrap;
+    margin: 2vw 5vw;
     padding-bottom: 2.5vw;
     width: auto;
     border-bottom: 1px solid var(--light-aeaeae);
