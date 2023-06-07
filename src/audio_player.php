@@ -55,10 +55,13 @@ checkConnection();
     <audio id="audio" controls>
       <source id="audio-source" type="audio/mp3">
     </audio>
-    <div class="progress-bar">
-      <div class="progress"></div>
-    </div>
-    <button id="play-pause-button" class="play"></button>
+    <!--
+      work in progress progress bar à la mano
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+      <button id="play-pause-button" class="play"></button>
+    -->
   </div>
 </main>
 

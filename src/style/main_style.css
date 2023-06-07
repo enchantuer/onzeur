@@ -451,6 +451,11 @@ p.album_artist{
     width: 10vw;
     height: 10vw;
   }
+
+
+  .favorites{
+    margin-bottom: 2vw;
+  }
   
 }
 
