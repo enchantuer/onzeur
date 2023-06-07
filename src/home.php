@@ -36,6 +36,7 @@ checkConnection();
         </div>
     </form>
 
+  <h2>History</h2>
   <div class="history" id="history-container">
     <!-- <div class="track">
       <img src="img" alt="album">
