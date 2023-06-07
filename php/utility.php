@@ -1,5 +1,6 @@
 <?php
 function get_nav(): string {
+    echo $_SERVER['PHP_SELF'];
     if($_SERVER['PHP_SELF']!=='/onzeur/src/home.php'){
         $homeIcon = '<img class="nav_icon" src="icons/broken/home_191919.svg" alt="home"><img class="nav_icon_dark" src="icons/broken/home_ffffff.svg" alt="home">';
     }else{
@@ -22,23 +23,23 @@ function get_nav(): string {
         $searchIcon = '<img class="nav_icon" src="icons/broken/search_ee7733.svg" alt="search">';
     }
 
-    if ($_SERVER['PHP_SELF'] === '/onzeur/src/search.php') {
+    if ($_SERVER['PHP_SELF'] === '/onzeur/src/playlists.php') {
         $playlist = 'active';
     } else {
         $playlist = '';
     }
-    if ($_SERVER['PHP_SELF'] !== '/onzeur/src/search.php') {
+    if ($_SERVER['PHP_SELF'] !== '/onzeur/src/playlists.php') {
         $playlistIcon = '<img class="nav_icon" src="icons/broken/playlists_191919.svg" alt="search"><img class="nav_icon_dark" src="icons/broken/playlists_ffffff.svg" alt="search">';
     } else {
         $playlistIcon = '<img class="nav_icon" src="icons/broken/playlists_ee7733.svg" alt="search">';
     }
 
-    if ($_SERVER['PHP_SELF'] === '/onzeur/src/search.php') {
+    if ($_SERVER['PHP_SELF'] === '/onzeur/src/profile.php') {
         $profile = 'active';
     } else {
         $profile = '';
     }
-    if ($_SERVER['PHP_SELF'] !== '/onzeur/src/search.php') {
+    if ($_SERVER['PHP_SELF'] !== '/onzeur/src/profile.php') {
         $profileIcon = '<img class="nav_icon" src="icons/broken/profile_191919.svg" alt="search"><img class="nav_icon_dark" src="icons/broken/profile_ffffff.svg" alt="search">';
     } else {
         $profileIcon = '<img class="nav_icon" src="icons/broken/profile_ee7733.svg" alt="search">';
@@ -48,7 +49,7 @@ function get_nav(): string {
     <nav>
     <div class='logo'></div>
     <div class='nav_item $home'>
-        <a href='#'>
+        <a href='home.php'>
             $homeIcon
             <p>Home</p>
         </a>
