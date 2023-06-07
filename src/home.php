@@ -45,15 +45,16 @@ checkConnection();
   </div>
 
   <h2>Playlists</h2>
-  <div class="playlists">
+  <div class="playlists" id="playlist-list">
     <!-- apperçu de quelques playlists qui redirigent vers la page playlists.html -->
     
   </div>
 
-  <h2>Favorites</h2>
-  <div class="favorites">
+  <div class="favorites_details">
+    <h2 class="favorites_title" id="favorites-name"><!--ici--></h2>
+  </div>
+  <div class="favorites" id="favorites-container">
     <!-- apperçu de quelques favoris qui redirigent vers la page favorites.html -->
-   
   </div>
   
 </main>
