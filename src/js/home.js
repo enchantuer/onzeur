@@ -5,7 +5,7 @@ ajaxRequest('GET', '../api.php/history', function(history){
     const track = history[i];
     const trackHtml = '<div class="track">' +
         `<img src="${track.image}" alt="album">` +
-        `<a href="audio_player.html?id=${track.id}" class="track_name_link">${(i+1)}. ${track.title}</a>` +
+        `<a href="audio_player.php?id=${track.id}" class="track_name_link">${(i+1)}. ${track.title}</a>` +
         '</div>';
     historyContainer.insertAdjacentHTML('beforeend', trackHtml);
   }
@@ -64,39 +64,5 @@ function displayArtistes(data) {
             `artist_details.php?id=${artist.id}`
         );
         artistCards.appendChild(card);
-    }
-}
-
-function displayAlbum(data) {
-    console.log(data);
-    const albumCard = document.querySelector('#albums');
-    for (const album of data) {
-        const card = generateCard(
-            album.title,
-            album.imageUrl,
-            'Album',
-            `<span>${album.artistName}</span>
-                <span>|</span>
-                <span>Tracks : ${album.nbOfTracks}</span>`,
-            `album_details.php?id=${album.id}`
-        );
-        albumCard.appendChild(card);
-    }
-}
-
-function displayTrack(data) {
-    console.log(data);
-    const trackCards = document.querySelector('#tracks');
-    for (const track of data) {
-        const card = generateCard(
-            track.title,
-            track.image,
-            'Track',
-            `<span>${track.artistName}</span>
-                <span>|</span>  
-                <span>Album : ${track.albumName}</span>`,
-            `track_details.php?id=${track.id}`
-        );
-        trackCards.appendChild(card);
     }
 }
