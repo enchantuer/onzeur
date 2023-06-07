@@ -1,11 +1,17 @@
-const searchBar = document.querySelector('form');
-searchBar.addEventListener('submit', event => {
-    event.preventDefault();
-    document.querySelector('#artistes').innerHTML = '';
-    document.querySelector('#albums').innerHTML = '';
-    document.querySelector('#tracks').innerHTML = '';
-    const filter = Number(document.querySelector('#filter').value);
-    const search = document.querySelector('#search').value;
+function checkGet() {
+    let params = new URLSearchParams(document.location.search);
+    let search = params.get('search');
+    let filter = Number(params.get('filter'));
+    if (search != undefined && filter != undefined) {
+        console.log('Get search and filter detected :', search, '|', filter);
+        searchRequest(search, filter);
+        document.querySelector('#search').value = search;
+        document.querySelector('#filter').value = filter;
+    }
+}
+checkGet();
+
+function searchRequest(search, filter) {
     if (filter === 1 || filter === 0) {
         ajaxRequest('GET', '../api.php/artist', displayArtistes, `name=${search}`)
     }
@@ -15,6 +21,17 @@ searchBar.addEventListener('submit', event => {
     if (filter === 3 || filter === 0) {
         ajaxRequest('GET', '../api.php/track', displayTrack, `title=${search}`)
     }
+}
+
+const searchBar = document.querySelector('form');
+searchBar.addEventListener('submit', event => {
+    event.preventDefault();
+    document.querySelector('#artistes').innerHTML = '';
+    document.querySelector('#albums').innerHTML = '';
+    document.querySelector('#tracks').innerHTML = '';
+    const filter = Number(document.querySelector('#filter').value);
+    const search = document.querySelector('#search').value;
+    searchRequest(search, filter);
 });
 
 function generateCard(titleText, imgSrc, bodyText, footerContent,linkUrl){
