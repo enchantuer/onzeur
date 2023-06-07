@@ -431,7 +431,7 @@ p.album_artist{
     flex-wrap: wrap;
     margin: 2vw 5vw;
     padding-bottom: 2.5vw;
-    width: auto;
+    width: 30vw;
     border-bottom: 1px solid var(--light-aeaeae);
     justify-content: space-between;
   }
