@@ -49,7 +49,6 @@ checkConnection();
 <main>
   <div class="favorites_details">
     <p class="favorites_title" id="favorites-name"><!--ici--></p>
-    <p class="creation_date" id="creation-date"><!--ici--></p>
   </div>
 
   <div class="tracklist" id="tracklist-container">

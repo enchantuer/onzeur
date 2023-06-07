@@ -1,7 +1,7 @@
+// Display favorites
 ajaxRequest('GET', '../api.php/favorites', function(playlist){
     console.log(playlist);
     document.getElementById('favorites-name').textContent = playlist.name;
-    document.getElementById('creation-date').textContent = playlist.creation_date;
 
     ajaxRequest('GET', '../api.php/track/playlist/' + playlist.id_playlist, function(trackList) {
         console.log(trackList);
@@ -31,15 +31,6 @@ ajaxRequest('GET', '../api.php/favorites', function(playlist){
             });
             trackHtml.appendChild(deleteButton);
 
-            
-
-
-         
-         
-       /*     const trackHtml = '<div class="track">' +
-              `<img src="${track.image}" alt="album">` +
-              `<a href="audio_player.php?id=${track.id}" class="track_name_link">${(i+1)}. ${track.title} - ${track.addDate}</a>` +
-              '</div>';*/
           trackListContainer.appendChild(trackHtml);
         }
     });
