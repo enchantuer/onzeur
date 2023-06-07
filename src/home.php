@@ -23,6 +23,7 @@ checkConnection();
   </div>
 
   <div class="history" id="history-container">
+    <h2>History</h2>
     <!-- <div class="track">
       <img src="img" alt="album">
       <a href="audio_player.html?id=1" class="track_name_link">titre</a>
