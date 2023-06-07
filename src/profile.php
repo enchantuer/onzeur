@@ -1,5 +1,6 @@
 <?php
 require_once '../php/connection.php';
+require_once '../php/utility.php';
 checkConnection();
 ?>
 
@@ -17,37 +18,7 @@ checkConnection();
   <h1>Profile</h1>
 </header>
 
-<nav>
-  <div class="logo"></div>
-  <div class="nav_item">
-    <a href="home.php">
-      <img class="nav_icon" src="icons/broken/home_191919.svg" alt="home">
-      <img class="nav_icon_dark" src="icons/broken/home_ffffff.svg" alt="home">
-      <p>Home</p>
-    </a>
-  </div>
-  <div class="nav_item">
-    <a href="search.php">
-      <img class="nav_icon" src="icons/broken/search_191919.svg" alt="search">
-      <img class="nav_icon_dark" src="icons/broken/search_ffffff.svg" alt="search">
-      <p>Search</p>
-    </a>
-  </div>
-  <div class="nav_item">
-    <a href="playlists.php">
-      <img class="nav_icon" src="icons/broken/playlists_191919.svg" alt="playlists">
-      <img class="nav_icon_dark" src="icons/broken/playlists_ffffff.svg" alt="playlists">
-      <p>Playlists</p>
-    </a>
-  </div>
-  <div class="nav_item">
-    <a href="#">
-      <img class="nav_icon" src="icons/broken/profile_191919.svg" alt="profile">
-      <img class="nav_icon_dark" src="icons/broken/profile_ffffff.svg" alt="profile">
-      <p>Profile</p>
-    </a>
-  </div>
-</nav>
+<?php echo get_nav(); ?>
 
 <form name="registration" action="" method="post" id="form">
   <label for="firstname">First Name:</label>
