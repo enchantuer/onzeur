@@ -435,7 +435,7 @@ p.album_artist{
     width: 100%;
   }
 
-  #history-container.dark{
+  .track{
     margin: 0;
     padding: 0;
     display: flex;
