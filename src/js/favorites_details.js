@@ -40,7 +40,19 @@ ajaxRequest('GET', '../api.php/favorites', function(playlist){
               `<img src="${track.image}" alt="album">` +
               `<a href="audio_player.php?id=${track.id}" class="track_name_link">${(i+1)}. ${track.title} - ${track.addDate}</a>` +
               '</div>';*/
-          trackListContainer.insertAdjacentHTML('beforeend', trackHtml);
+          trackListContainer.appendChild(trackHtml);
         }
-      });
     });
+});
+
+function deleteTrackFromPlaylist(trackId, playlistId) {
+    ajaxRequest(
+        'DELETE',
+        '../api.php/playlist/track',
+        function () {
+            console.log('Track deleted from favorites');
+            window.location.reload();
+        },
+        `trackId=${trackId}&playlistId=${playlistId}`
+    );
+}
