@@ -1,6 +1,5 @@
 <?php
 function get_nav(): string {
-    echo $_SERVER['PHP_SELF'];
     if($_SERVER['PHP_SELF']!=='/onzeur/src/home.php'){
         $homeIcon = '<img class="nav_icon" src="icons/broken/home_191919.svg" alt="home"><img class="nav_icon_dark" src="icons/broken/home_ffffff.svg" alt="home">';
     }else{

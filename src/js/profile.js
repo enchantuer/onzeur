@@ -25,8 +25,8 @@ ajaxRequest('GET', '../api.php/user', displayProfile);
 const form = document.querySelector("form");
 form.addEventListener('submit', event => {
     event.preventDefault();
-    const firstName = document.querySelector('#firstName').value;
-    const lastName = document.querySelector('#lastname').value;
+    const firstName = document.querySelector('#first_name').value;
+    const lastName = document.querySelector('#last_name').value;
     const birthdate = document.querySelector('#birthdate').value;
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password');
@@ -54,8 +54,8 @@ function updateResponse(status) {
 
 function toggleFields() {
     const emailInput = document.getElementById('email');
-    const firstNameInput = document.getElementById('firstName');
-    const lastNameInput = document.getElementById('lastName');
+    const firstNameInput = document.getElementById('first_name');
+    const lastNameInput = document.getElementById('last_name');
     const dateOfBirthInput = document.getElementById('birthdate');
     const passwordInput = document.getElementById('password');
     const passwordConfirmation = document.getElementById('password2');
