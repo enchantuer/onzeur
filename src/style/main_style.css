@@ -425,18 +425,23 @@ p.album_artist{
 
 
   #history-container{
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: row;
-    text-align: left;
     flex-wrap: wrap;
-    margin: 2vw 5vw;
-    padding-bottom: 2.5vw;
-    width: 30vw;
-    border-bottom: 1px solid var(--light-aeaeae);
-    justify-content: space-between;
+    justify-content: right;
+    align-items: top;
+    width: 100%;
   }
+
   #history-container.dark{
-    border-bottom: 1px solid var(--dark-32323d);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 20vw;
   }
 
   #history-container img{
