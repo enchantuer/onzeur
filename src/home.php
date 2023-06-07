@@ -38,6 +38,7 @@ checkConnection();
 
   <h2>History</h2>
   <div class="history" id="history-container">
+    <!-- example -->
     <!-- <div class="track">
       <img src="img" alt="album">
       <a href="audio_player.html?id=1" class="track_name_link">titre</a>
@@ -46,13 +47,11 @@ checkConnection();
 
   <h2>Playlists</h2>
   <div class="playlists">
-    <!-- apperçu de quelques playlists qui redirigent vers la page playlists.html -->
     
   </div>
 
   <h2>Favorites</h2>
   <div class="favorites">
-    <!-- apperçu de quelques favoris qui redirigent vers la page favorites.html -->
    
   </div>
   
