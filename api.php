@@ -259,17 +259,17 @@ function deleteData($request) {
             if ($request_resource != 'track') {
                 notFound();
             }
-            if (!isset($_POST['id'])) {
+            if (!(isset($_GET['trackId']) AND isset($_GET['playlistId']))) {
                 return null;
             }
-            $playlist = new Playlist($_POST['id']);
+            $playlist = new Playlist($_GET['playlistId']);
             checkAllowed($playlist->getUserId());
-            json_encode($playlist->removeTrack($_GET['id']));
+            return json_encode($playlist->removeTrack($_GET['trackId']));
         }
-        if (!isset($_POST['id'])) {
+        if (!isset($_GET['id'])) {
             return null;
         }
-        $playlist = new Playlist($_POST['id']);
+        $playlist = new Playlist($_GET['id']);
         checkAllowed($playlist->getUserId());
         return json_encode($playlist->delete());
     }

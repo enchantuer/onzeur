@@ -7,8 +7,8 @@
 // \param callback The callback to call where the request is successful.
 // \param data The data associated with the request.
 function ajaxRequest(type,url,callback,data=null){
-  var xhr=new XMLHttpRequest();
-  if (type==='GET' && data!=null){
+  const xhr=new XMLHttpRequest();
+  if ((type==='GET' || type==='DELETE') && data!=null){
     url+='?'+data;
   }
   xhr.open(type,url);
