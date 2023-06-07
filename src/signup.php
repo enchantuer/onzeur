@@ -31,7 +31,7 @@ if (isset($_SESSION['userId']) && isValidUser($conn, $_SESSION['userId'])) {
   <label for="lastname">Last Name:</label>
   <input type="text" name="lastName" placeholder="Last Name" required/>
   <label for="birthdate">Birthdate:</label>
-  <input type="date" name="birthdate" placeholder="Birthdate" required/>
+  <input type="date" name="birthdate" placeholder="Birthdate" id='birthdate' required/>
   <label for="email">Email:</label>
   <input type="email" name="email" placeholder="Email" required/>
   <label for="password">Password:</label>
