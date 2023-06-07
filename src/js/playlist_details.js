@@ -1,4 +1,4 @@
-console.log('allo');
+
 let params = new URLSearchParams(document.location.search);
 let playlistId = params.get('id');
 
