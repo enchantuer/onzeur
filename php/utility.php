@@ -71,6 +71,11 @@ function get_nav(): string {
             <p>Profile</p>
         </a>
     </div>
+    <div class='nav_item'>
+        <a href='disconnect.php'>
+            <p>Logout</p>
+        </a>
+    </div>
     </nav>
     ";
 }
