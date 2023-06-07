@@ -455,6 +455,11 @@ p.album_artist{
 
   .favorites{
     margin-bottom: 2vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: top;
   }
   
 }
